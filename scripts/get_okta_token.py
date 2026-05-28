@@ -191,9 +191,30 @@ def main() -> int:
         action="store_true",
         help="Print full JSON response instead of just the access_token",
     )
+    parser.add_argument(
+        "--jwt-only",
+        action="store_true",
+        help="Sign and print the client_assertion JWT only — skip the token exchange. "
+        "Useful for pasting into Bruno's clientAssertion env var so Flow 09 can run the exchange.",
+    )
     args = parser.parse_args()
 
     cfg = load_config(args)
+
+    if args.jwt_only:
+        token_endpoint = f"{cfg['orgUrl']}/oauth2/v1/token"
+        now = int(time.time())
+        claims = {
+            "iss": cfg["clientId"],
+            "sub": cfg["clientId"],
+            "aud": token_endpoint,
+            "iat": now,
+            "exp": now + 300,
+            "jti": str(uuid.uuid4()),
+        }
+        print(sign_jwt(cfg["privateJwk"], claims))
+        return 0
+
     response = get_token(cfg)
 
     if args.full:
