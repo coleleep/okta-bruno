@@ -1,0 +1,38 @@
+meta {
+  name: Unlock account
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn/recovery/unlock
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "{{testUsername}}",
+    "factorType": "EMAIL",
+    "relayState": ""
+  }
+}
+
+script:post-response {
+  if (res.status === 200 && res.body && res.body.stateToken) {
+    bru.setVar('stateToken', res.body.stateToken);
+  }
+}
+
+docs {
+Starts an account-unlock flow for a locked-out user. Same shape as forgot-password — sends a recovery code via email or SMS.
+
+The user must verify the recovery factor (next request) before the account is unlocked.
+
+**Note:** the org's password policy must have self-service unlock enabled for this to work.
+}

@@ -1,0 +1,38 @@
+meta {
+  name: 01 - Revoke token
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/revoke
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/x-www-form-urlencoded
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  token: {{flowRefreshToken}}
+  ~token_type_hint: refresh_token
+}
+
+docs {
+Revokes a token. Returns 200 with empty body on success — even if the token is already invalid (per RFC 7009).
+
+**`token_type_hint`** values: `access_token`, `refresh_token`. Provide it for slightly faster lookup; Okta works without it.
+
+**Cascading effect:** revoking a refresh token invalidates all access tokens minted from it. Revoking only the access token does not invalidate the refresh token.
+
+**Common use:** sign-out flows, token rotation cleanup, security incident response.
+
+**Tip for testing:** revoke `flowRefreshToken`, then run `Flow 04 - Refresh token` and verify it returns `400 invalid_grant`.
+}

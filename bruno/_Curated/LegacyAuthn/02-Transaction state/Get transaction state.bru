@@ -1,0 +1,26 @@
+meta {
+  name: Get transaction state
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stateToken": "{{stateToken}}"
+  }
+}
+
+docs {
+Returns the current state of an in-progress authentication transaction. Useful for resuming a flow or polling factor status.
+}

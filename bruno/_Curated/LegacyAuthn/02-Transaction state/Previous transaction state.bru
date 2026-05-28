@@ -1,0 +1,26 @@
+meta {
+  name: Previous transaction state
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn/previous
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stateToken": "{{stateToken}}"
+  }
+}
+
+docs {
+Moves the transaction back to its previous state. Useful for "go back" UX in enrollment or recovery flows.
+}

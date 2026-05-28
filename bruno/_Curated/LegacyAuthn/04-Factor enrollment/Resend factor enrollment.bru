@@ -1,0 +1,26 @@
+meta {
+  name: Resend factor enrollment
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn/factors/{{factorId}}/lifecycle/resend
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stateToken": "{{stateToken}}"
+  }
+}
+
+docs {
+Re-sends the activation passcode for SMS, Call, or Email factors during enrollment. Use when the user did not receive the original message.
+}

@@ -1,0 +1,52 @@
+meta {
+  name: Enroll factor
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn/factors
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stateToken": "{{stateToken}}",
+    "factorType": "sms",
+    "provider": "OKTA",
+    "profile": {
+      "phoneNumber": "+15551234567"
+    }
+  }
+}
+
+script:post-response {
+  if (res.status === 200 && res.body) {
+    if (res.body.stateToken) bru.setVar('stateToken', res.body.stateToken);
+    if (res.body._embedded && res.body._embedded.factor && res.body._embedded.factor.id) {
+      bru.setVar('factorId', res.body._embedded.factor.id);
+    }
+  }
+}
+
+docs {
+Enrolls a new MFA factor during an `MFA_ENROLL` transaction state.
+
+**Common factor types:**
+- `sms` — provider OKTA, profile.phoneNumber
+- `call` — provider OKTA, profile.phoneNumber
+- `push` — provider OKTA (Okta Verify Push)
+- `token:software:totp` — provider OKTA or GOOGLE
+- `email` — provider OKTA
+- `webauthn` — provider FIDO
+
+After enrollment, the factor is in PENDING_ACTIVATION until the user activates it (next request).
+
+The new factor's ID is captured into `factorId`.
+}

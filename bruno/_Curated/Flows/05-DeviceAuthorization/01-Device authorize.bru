@@ -1,0 +1,55 @@
+meta {
+  name: 01 - Device authorize
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/device/authorize
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/x-www-form-urlencoded
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  client_id: {{oauthClientId}}
+  scope: openid profile email offline_access
+}
+
+script:post-response {
+  if (res.status === 200 && res.body) {
+    bru.setVar('deviceCode', res.body.device_code);
+    bru.setVar('userCode', res.body.user_code);
+    bru.setVar('verificationUri', res.body.verification_uri);
+    bru.setVar('verificationUriComplete', res.body.verification_uri_complete);
+    console.log('===========================================================');
+    console.log('User code:       ' + res.body.user_code);
+    console.log('Verification URI: ' + res.body.verification_uri);
+    console.log('Open in browser: ' + res.body.verification_uri_complete);
+    console.log('===========================================================');
+  }
+}
+
+docs {
+Starts the OAuth Device Authorization flow. The response contains:
+
+- `device_code` — opaque identifier polled at the token endpoint
+- `user_code` — short human-readable code (e.g. `WDJB-MJHT`) the user types into the verification page
+- `verification_uri` — page where the user enters the code (`{{orgUrl}}/activate`)
+- `verification_uri_complete` — same page with the code pre-filled
+- `expires_in` — seconds before the device_code expires
+- `interval` — minimum seconds between token polls
+
+**Next:** the user opens `verification_uri_complete` in any browser, signs in, and approves the request. Then run `02 - Poll for token` repeatedly until you get tokens or an error.
+
+**Setup:** OAuth app must have **Device Authorization** grant enabled. Native apps and CLI tools are typical clients.
+}

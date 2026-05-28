@@ -1,0 +1,26 @@
+meta {
+  name: Resend factor challenge
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn/factors/{{factorId}}/verify/resend
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stateToken": "{{stateToken}}"
+  }
+}
+
+docs {
+Re-sends an SMS, Call, or Email factor challenge code during verification. Use when the user did not receive the original code.
+}

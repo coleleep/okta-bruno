@@ -1,0 +1,61 @@
+meta {
+  name: Primary authentication
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "{{testUsername}}",
+    "password": "{{testPassword}}",
+    "options": {
+      "multiOptionalFactorEnroll": true,
+      "warnBeforePasswordExpired": true
+    }
+  }
+}
+
+script:post-response {
+  if (res.status === 200 && res.body) {
+    if (res.body.stateToken) {
+      bru.setVar('stateToken', res.body.stateToken);
+      console.log('stateToken captured: ' + res.body.stateToken.substring(0, 20) + '…');
+    }
+    if (res.body.sessionToken) {
+      bru.setVar('sessionToken', res.body.sessionToken);
+      console.log('sessionToken: ' + res.body.sessionToken);
+    }
+    console.log('status: ' + res.body.status);
+    if (res.body._embedded && res.body._embedded.factor) {
+      bru.setVar('factorId', res.body._embedded.factor.id);
+    }
+  }
+}
+
+docs {
+Legacy `/api/v1/authn` primary authentication. Returns a transaction state object whose `status` field drives the next step.
+
+**Possible status values:**
+- `SUCCESS` — authentication complete, response contains `sessionToken`
+- `MFA_REQUIRED` — choose a factor to challenge (`_embedded.factors` lists options)
+- `MFA_CHALLENGE` — factor active, waiting for user response
+- `MFA_ENROLL` — user must enroll a factor before continuing
+- `PASSWORD_EXPIRED` / `PASSWORD_WARN` — password change needed
+- `LOCKED_OUT` — account locked
+- `RECOVERY` — user is in a recovery flow
+
+The `stateToken` is required for all subsequent transaction-state requests. It is captured automatically into the `stateToken` collection variable.
+
+**Note:** this is the legacy authentication API. New integrations should use OIDC/OAuth flows instead. Kept here because Classic-mode customers still use it.
+}

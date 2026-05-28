@@ -1,0 +1,31 @@
+meta {
+  name: Verify recovery factor (Email)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn/recovery/factors/EMAIL/verify
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stateToken": "{{stateToken}}",
+    "passCode": ""
+  }
+}
+
+docs {
+Verifies the email recovery code the user received after `Forgot password` or `Unlock account`.
+
+Set the `passCode` value to the code from the user's email.
+
+On success, transaction moves to next state (typically `RECOVERY` for a security-question challenge or `PASSWORD_RESET`).
+}

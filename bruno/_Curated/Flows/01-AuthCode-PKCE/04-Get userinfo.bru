@@ -1,0 +1,32 @@
+meta {
+  name: 04 - Get userinfo
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/userinfo
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{flowAccessToken}}
+}
+
+tests {
+  test('returns user claims', function() {
+    expect(res.status).to.equal(200);
+    expect(res.body).to.have.property('sub');
+  });
+}
+
+docs {
+Calls `/userinfo` with the `flowAccessToken` captured in step 03. Returns the user's claims as configured for the granted scopes (`openid profile email`).
+
+If you get a 401, the token has expired or the scope set didn't include the claims you expected.
+}

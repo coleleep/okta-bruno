@@ -1,0 +1,29 @@
+meta {
+  name: Activate factor (passcode)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn/factors/{{factorId}}/lifecycle/activate
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stateToken": "{{stateToken}}",
+    "passCode": ""
+  }
+}
+
+docs {
+Activates a pending factor by submitting the passcode the user received (SMS, voice, email, TOTP). The factor moves to ACTIVE.
+
+For Push factors, the activation lifecycle is different — use the activation polling URL embedded in the response from `Enroll factor`.
+}

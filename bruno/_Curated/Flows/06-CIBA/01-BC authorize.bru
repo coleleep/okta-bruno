@@ -1,0 +1,52 @@
+meta {
+  name: 01 - BC authorize
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/bc/authorize
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/x-www-form-urlencoded
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  scope: openid profile email
+  login_hint: {{testUsername}}
+  binding_message: Approve sign-in from your support test
+  ~request:
+}
+
+script:post-response {
+  if (res.status === 200 && res.body && res.body.auth_req_id) {
+    bru.setVar('authReqId', res.body.auth_req_id);
+    console.log('auth_req_id captured. Tell user to approve on their device, then poll.');
+    console.log('  expires_in: ' + res.body.expires_in + 's');
+    console.log('  interval:   ' + res.body.interval + 's');
+  } else {
+    console.log('Failed: ' + res.status);
+    console.log(JSON.stringify(res.body, null, 2));
+  }
+}
+
+docs {
+Initiates a Client-Initiated Backchannel Authentication (CIBA) request. The user receives a push notification on their registered device (Okta Verify with Push) and must approve.
+
+**Required:** the OAuth client must have CIBA grant enabled and `urn:openid:params:grant-type:ciba` in its grant types. The user identified by `login_hint` must have Okta Verify with Push enrolled.
+
+**`binding_message`** is shown to the user on their device — use it to confirm the request matches what they're expecting.
+
+**Optional `request`:** signed JWT with the same parameters. Use when your client is configured for signed requests.
+
+Captures `auth_req_id` for the polling step.
+}

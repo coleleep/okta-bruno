@@ -1,0 +1,50 @@
+meta {
+  name: 02 - Poll for token
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/token
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/x-www-form-urlencoded
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  grant_type: urn:openid:params:grant-type:ciba
+  auth_req_id: {{authReqId}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body && res.body.access_token) {
+    bru.setVar('flowAccessToken', res.body.access_token);
+    if (res.body.id_token) bru.setVar('flowIdToken', res.body.id_token);
+    console.log('Tokens captured.');
+  } else if (res.body && res.body.error) {
+    if (res.body.error === 'authorization_pending') {
+      console.log('User has not yet approved on device. Poll again.');
+    } else if (res.body.error === 'slow_down') {
+      console.log('Polling too fast.');
+    } else if (res.body.error === 'access_denied') {
+      console.log('User denied the request.');
+    } else if (res.body.error === 'expired_token') {
+      console.log('auth_req_id expired. Restart with step 01.');
+    } else {
+      console.log('Error: ' + res.body.error);
+    }
+  }
+}
+
+docs {
+Polls the token endpoint with `auth_req_id`. Same poll loop behavior as Device Authorization — wait `interval` seconds between calls until terminal state.
+}

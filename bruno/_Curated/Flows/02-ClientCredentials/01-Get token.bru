@@ -1,0 +1,55 @@
+meta {
+  name: 01 - Get token (client credentials)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/token
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/x-www-form-urlencoded
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  grant_type: client_credentials
+  scope:
+}
+
+script:post-response {
+  if (res.status === 200 && res.body && res.body.access_token) {
+    bru.setVar('flowAccessToken', res.body.access_token);
+    console.log('Captured access_token. Expires in ' + res.body.expires_in + 's.');
+  } else {
+    console.log('Failed: ' + res.status);
+    console.log(JSON.stringify(res.body, null, 2));
+  }
+}
+
+tests {
+  test('grant succeeded', function() {
+    expect(res.status).to.equal(200);
+    expect(res.body).to.have.property('access_token');
+  });
+}
+
+docs {
+Client Credentials flow against your Okta auth server. Used for service-to-service calls where there is no user.
+
+**Setup:** your OAuth app must be configured as **Service** type with the Client Credentials grant enabled. The client must have the requested scopes assigned in the auth server policy.
+
+**Client authentication:** sends `oauthClientId` / `oauthClientSecret` via HTTP Basic. If your app is configured for `client_secret_post` instead, move the credentials into the body and remove the auth block.
+
+Set the `scope` value in the body to whatever scopes you want (space-separated). Example: `okta.users.read okta.groups.read`.
+
+Captures the `access_token` into the `flowAccessToken` collection variable.
+}

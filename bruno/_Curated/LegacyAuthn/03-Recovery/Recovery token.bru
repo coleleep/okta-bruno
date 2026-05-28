@@ -1,0 +1,34 @@
+meta {
+  name: Recovery token (admin-initiated)
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "recoveryToken": ""
+  }
+}
+
+script:post-response {
+  if (res.status === 200 && res.body && res.body.stateToken) {
+    bru.setVar('stateToken', res.body.stateToken);
+  }
+}
+
+docs {
+Validates a one-time recovery token issued via the admin Users API (`POST /api/v1/users/{userId}/lifecycle/reset_password?sendEmail=false` returns this token).
+
+Set `recoveryToken` to the value returned by the admin call. The user can use this token to bypass the email step and go directly to security-question/password reset.
+}

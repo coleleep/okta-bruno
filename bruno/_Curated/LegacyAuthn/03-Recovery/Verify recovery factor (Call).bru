@@ -1,0 +1,27 @@
+meta {
+  name: Verify recovery factor (Call)
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn/recovery/factors/CALL/verify
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stateToken": "{{stateToken}}",
+    "passCode": ""
+  }
+}
+
+docs {
+Verifies the voice-call recovery code. The user receives an automated phone call reading the code aloud.
+}

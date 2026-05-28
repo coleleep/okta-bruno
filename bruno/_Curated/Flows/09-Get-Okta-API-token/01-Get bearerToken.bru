@@ -1,0 +1,66 @@
+meta {
+  name: 01 - Get bearerToken (for Okta API)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/oauth2/v1/token
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/x-www-form-urlencoded
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  grant_type: client_credentials
+  scope: okta.users.read okta.groups.read okta.apps.read
+}
+
+script:post-response {
+  if (res.status === 200 && res.body && res.body.access_token) {
+    bru.setVar('bearerToken', res.body.access_token);
+    console.log('bearerToken captured. Expires in ' + res.body.expires_in + 's.');
+    console.log('To use in any auto-generated Management request, change the Authorization header from:');
+    console.log('  Authorization: SSWS {{apiKey}}');
+    console.log('to:');
+    console.log('  Authorization: Bearer {{bearerToken}}');
+  } else {
+    console.log('Failed: ' + res.status);
+    console.log(JSON.stringify(res.body, null, 2));
+  }
+}
+
+tests {
+  test('grant succeeded', function() {
+    expect(res.status).to.equal(200);
+    expect(res.body).to.have.property('access_token');
+  });
+}
+
+docs {
+**Purpose:** populate the collection-level `bearerToken` variable so you can use OAuth instead of SSWS for Okta Management API calls.
+
+**Endpoint:** `/oauth2/v1/token` — note this is the **org-level** auth server (no `/{authServerId}/`), which is required for Okta API scopes.
+
+**Setup:** create an OAuth Service app in your Okta admin console:
+
+1. Admin Console → Applications → Create App → API Services.
+2. Configure OAuth client authentication (private key JWT or client secret).
+3. Under Okta API Scopes, grant the scopes you need (e.g., `okta.users.manage`, `okta.groups.manage`, `okta.apps.read`, etc.).
+4. Add the scopes to the `scope` parameter in the body of this request.
+
+**Scope reference:** see https://developer.okta.com/docs/api/oauth2/
+
+**Switching a request from SSWS to Bearer:**
+
+In the auto-generated Management requests, the `headers` block has `Authorization: SSWS {{apiKey}}`. Edit that one line to `Authorization: Bearer {{bearerToken}}` to use the OAuth token. Bruno will save your change to the local `.bru` file — it will be overwritten on the next regen, so don't make the change permanent there. Instead, copy the request into `_Curated/` if you want a long-lived OAuth-authenticated version.
+}

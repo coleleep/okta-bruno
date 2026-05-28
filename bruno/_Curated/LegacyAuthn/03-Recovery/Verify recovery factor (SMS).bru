@@ -1,0 +1,27 @@
+meta {
+  name: Verify recovery factor (SMS)
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn/recovery/factors/SMS/verify
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stateToken": "{{stateToken}}",
+    "passCode": ""
+  }
+}
+
+docs {
+Verifies the SMS recovery code. Same shape as email verification, different factor type in the URL.
+}

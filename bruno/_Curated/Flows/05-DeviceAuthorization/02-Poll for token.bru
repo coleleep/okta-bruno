@@ -1,0 +1,63 @@
+meta {
+  name: 02 - Poll for token
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/token
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/x-www-form-urlencoded
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  grant_type: urn:ietf:params:oauth:grant-type:device_code
+  device_code: {{deviceCode}}
+  client_id: {{oauthClientId}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body && res.body.access_token) {
+    bru.setVar('flowAccessToken', res.body.access_token);
+    if (res.body.id_token) bru.setVar('flowIdToken', res.body.id_token);
+    if (res.body.refresh_token) bru.setVar('flowRefreshToken', res.body.refresh_token);
+    console.log('Tokens captured.');
+  } else if (res.body && res.body.error) {
+    if (res.body.error === 'authorization_pending') {
+      console.log('Pending — user has not completed approval. Run again in a few seconds.');
+    } else if (res.body.error === 'slow_down') {
+      console.log('Polling too fast. Wait longer between requests.');
+    } else if (res.body.error === 'access_denied') {
+      console.log('User denied the authorization.');
+    } else if (res.body.error === 'expired_token') {
+      console.log('device_code expired. Restart with step 01.');
+    } else {
+      console.log('Error: ' + res.body.error + ' — ' + (res.body.error_description || ''));
+    }
+  }
+}
+
+docs {
+Polls the token endpoint with the `device_code` from step 01.
+
+**Expected responses while waiting:**
+- `400 authorization_pending` — user hasn't approved yet, keep polling.
+- `400 slow_down` — your polling is too fast. Increase the interval.
+
+**Terminal responses:**
+- `200 OK` — user approved, tokens returned.
+- `400 access_denied` — user denied or canceled.
+- `400 expired_token` — `device_code` expired (default 5 minutes); restart flow.
+
+Run this request repeatedly (every `interval` seconds from step 01's response, default 5s) until you get a terminal state.
+}

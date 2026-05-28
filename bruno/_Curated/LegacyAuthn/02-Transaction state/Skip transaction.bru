@@ -1,0 +1,26 @@
+meta {
+  name: Skip transaction
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn/skip
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stateToken": "{{stateToken}}"
+  }
+}
+
+docs {
+Skips an optional state in the transaction (e.g., MFA_ENROLL when enrollment is optional). Returns the next state.
+}

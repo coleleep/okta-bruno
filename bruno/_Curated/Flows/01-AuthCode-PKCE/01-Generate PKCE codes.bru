@@ -1,0 +1,59 @@
+meta {
+  name: 01 - Generate PKCE codes
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/.well-known/openid-configuration
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+script:pre-request {
+  // Generate PKCE code_verifier and code_challenge.
+  // Also creates random state and nonce for the authorize request.
+  const crypto = require('crypto');
+
+  function base64url(buf) {
+    return buf.toString('base64')
+      .replace(/=/g, '')
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_');
+  }
+
+  const verifier = base64url(crypto.randomBytes(32));
+  const challenge = base64url(crypto.createHash('sha256').update(verifier).digest());
+  const state = base64url(crypto.randomBytes(16));
+  const nonce = base64url(crypto.randomBytes(16));
+
+  bru.setVar('pkceCodeVerifier', verifier);
+  bru.setVar('pkceCodeChallenge', challenge);
+  bru.setVar('oauthState', state);
+  bru.setVar('oauthNonce', nonce);
+
+  console.log('PKCE generated.');
+  console.log('  code_verifier:  ' + verifier);
+  console.log('  code_challenge: ' + challenge);
+  console.log('  state:          ' + state);
+  console.log('  nonce:          ' + nonce);
+}
+
+docs {
+This request generates fresh PKCE codes and stores them as collection variables:
+
+- `pkceCodeVerifier` — the secret verifier (kept for the token exchange step)
+- `pkceCodeChallenge` — the SHA-256 hash, base64url-encoded, sent on the authorize request
+- `oauthState` — random CSRF token
+- `oauthNonce` — random replay-protection nonce
+
+The actual HTTP call hits the OIDC discovery endpoint (harmless and useful for verifying connectivity to your org). The work happens in the pre-request script.
+
+**Run this request first**, then run `02 - Build authorize URL`.
+
+PKCE values live until you regenerate them. If you re-run step 02 without re-running this, you get the same codes again.
+}

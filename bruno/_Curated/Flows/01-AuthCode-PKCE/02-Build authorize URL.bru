@@ -1,0 +1,50 @@
+meta {
+  name: 02 - Build authorize URL
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/authorize
+  body: none
+  auth: none
+}
+
+params:query {
+  client_id: {{oauthClientId}}
+  response_type: code
+  scope: openid profile email offline_access
+  redirect_uri: {{oauthRedirectUri}}
+  state: {{oauthState}}
+  nonce: {{oauthNonce}}
+  code_challenge: {{pkceCodeChallenge}}
+  code_challenge_method: S256
+}
+
+headers {
+  Accept: text/html
+}
+
+script:post-response {
+  // The /authorize endpoint returns a redirect (or a sign-in page if not yet authenticated).
+  // Print the full URL so you can copy it into a browser and complete sign-in.
+  const url = req.getUrl();
+  console.log('Authorize URL — open this in a browser:');
+  console.log(url);
+}
+
+docs {
+**This request is meant to be inspected, not consumed programmatically.**
+
+Run it once to print the full `/authorize` URL with your PKCE challenge, state, and nonce baked in. Copy the URL from the console output and paste it into a browser.
+
+You will be prompted to sign in to your Okta org. After successful authentication, Okta redirects to `{{oauthRedirectUri}}` with a `code` parameter in the query string:
+
+```
+http://localhost:8080/callback?code=ABC123…&state=xyz
+```
+
+Copy the `code` value, then in Bruno set the collection variable `authCode` to that value (Collection Settings > Vars). Then run `03 - Exchange code for tokens`.
+
+**Tip:** if you don't have a callback server running on `oauthRedirectUri`, your browser will show a connection error after auth — that is fine. The `code` is in the address bar and that is all you need.
+}

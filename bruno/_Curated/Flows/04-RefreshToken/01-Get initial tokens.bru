@@ -1,0 +1,51 @@
+meta {
+  name: 01 - Get initial tokens (with offline_access)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/token
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/x-www-form-urlencoded
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  grant_type: password
+  username: {{testUsername}}
+  password: {{testPassword}}
+  scope: openid profile email offline_access
+}
+
+script:post-response {
+  if (res.status === 200 && res.body && res.body.refresh_token) {
+    bru.setVar('flowRefreshToken', res.body.refresh_token);
+    bru.setVar('flowAccessToken', res.body.access_token);
+    console.log('Captured refresh_token: ' + res.body.refresh_token.substring(0, 20) + '…');
+  } else {
+    console.log('No refresh_token in response. Make sure the client has offline_access scope and refresh tokens are enabled.');
+  }
+}
+
+docs {
+Initial token grant that requests `offline_access` scope to receive a refresh token.
+
+**Setup requirements:**
+- Client app must have refresh token grant type enabled.
+- `offline_access` scope must be granted by the auth server policy.
+- The client policy's `Refresh token rotation` and `Refresh token leeway` settings affect how long the refresh token is valid.
+
+Uses ROPC here for simplicity. For real testing, run the Authorization Code + PKCE flow with `offline_access` in the scope set instead — same result, no deprecated grant.
+
+Captures `flowRefreshToken` for the next request.
+}

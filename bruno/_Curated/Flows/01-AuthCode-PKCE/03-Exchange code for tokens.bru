@@ -1,0 +1,61 @@
+meta {
+  name: 03 - Exchange code for tokens
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/token
+  body: formUrlEncoded
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/x-www-form-urlencoded
+}
+
+body:form-urlencoded {
+  grant_type: authorization_code
+  client_id: {{oauthClientId}}
+  code_verifier: {{pkceCodeVerifier}}
+  code: {{authCode}}
+  redirect_uri: {{oauthRedirectUri}}
+}
+
+script:post-response {
+  if (res.status === 200 && res.body) {
+    if (res.body.access_token) {
+      bru.setVar('flowAccessToken', res.body.access_token);
+      console.log('access_token captured -> {{flowAccessToken}}');
+    }
+    if (res.body.id_token) {
+      bru.setVar('flowIdToken', res.body.id_token);
+      console.log('id_token captured -> {{flowIdToken}}');
+    }
+    if (res.body.refresh_token) {
+      bru.setVar('flowRefreshToken', res.body.refresh_token);
+      console.log('refresh_token captured -> {{flowRefreshToken}}');
+    }
+  } else {
+    console.log('Token exchange failed: status ' + res.status);
+    console.log(JSON.stringify(res.body, null, 2));
+  }
+}
+
+tests {
+  test('exchange succeeded', function() {
+    expect(res.status).to.equal(200);
+    expect(res.body).to.have.property('access_token');
+  });
+}
+
+docs {
+Exchanges the authorization code (set in collection var `authCode`) for tokens.
+
+**Public client (PKCE) configuration:** no client secret. The `code_verifier` proves possession of the original PKCE challenge.
+
+**Confidential client configuration:** if your app is confidential, replace this request body with `client_secret_basic` auth (set request auth to Basic with `{{oauthClientId}}` / `{{oauthClientSecret}}`) and remove `client_id` from the body.
+
+On success the response includes `access_token`, `id_token`, and (because we requested `offline_access`) `refresh_token`. The post-response script captures all three into collection variables `flowAccessToken`, `flowIdToken`, `flowRefreshToken` for the next step.
+}

@@ -1,0 +1,59 @@
+meta {
+  name: 02 - Refresh token
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/token
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/x-www-form-urlencoded
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  grant_type: refresh_token
+  refresh_token: {{flowRefreshToken}}
+  scope: openid profile email offline_access
+}
+
+script:post-response {
+  if (res.status === 200 && res.body && res.body.access_token) {
+    bru.setVar('flowAccessToken', res.body.access_token);
+    if (res.body.refresh_token) {
+      // Rotated refresh token — update the var.
+      bru.setVar('flowRefreshToken', res.body.refresh_token);
+      console.log('Refresh token rotated. New value stored.');
+    } else {
+      console.log('Refresh token NOT rotated (same value still valid).');
+    }
+  }
+}
+
+tests {
+  test('refresh succeeded', function() {
+    expect(res.status).to.equal(200);
+    expect(res.body).to.have.property('access_token');
+  });
+}
+
+docs {
+Exchanges the stored `flowRefreshToken` for a new access token.
+
+**Refresh token rotation:** if your auth server's policy has token rotation enabled (the default), the response includes a new `refresh_token` and the old one is invalidated. The post-response script updates `flowRefreshToken` to the new value automatically.
+
+If rotation is off, the same refresh token can be used repeatedly until it expires.
+
+**Common errors:**
+- 400 `invalid_grant` — refresh token expired, revoked, or already used (with rotation on).
+- 400 `invalid_scope` — requested scope not allowed for this client.
+}

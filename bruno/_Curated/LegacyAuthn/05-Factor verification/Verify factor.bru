@@ -1,0 +1,44 @@
+meta {
+  name: Verify factor
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authn/factors/{{factorId}}/verify
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "stateToken": "{{stateToken}}",
+    "passCode": ""
+  }
+}
+
+script:post-response {
+  if (res.status === 200 && res.body) {
+    if (res.body.stateToken) bru.setVar('stateToken', res.body.stateToken);
+    if (res.body.sessionToken) {
+      bru.setVar('sessionToken', res.body.sessionToken);
+      console.log('SUCCESS — sessionToken captured: ' + res.body.sessionToken);
+    }
+  }
+}
+
+docs {
+Verifies an MFA factor challenge. Used when transaction state is `MFA_REQUIRED` or `MFA_CHALLENGE`.
+
+**Body shape varies by factor:**
+- SMS / Call / Email / TOTP: `passCode`
+- Push: poll without `passCode` until status moves from `WAITING` to `SUCCESS`
+- WebAuthn: include `clientData` and `authenticatorData` in the body
+
+On success the transaction moves to `SUCCESS` and `sessionToken` is included.
+}
