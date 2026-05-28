@@ -20,9 +20,11 @@ script:pre-request {
   // requires private_key_jwt for client authentication on the Client
   // Credentials grant. Build a signed JWT here and inject it as
   // `client_assertion` in the request body.
+  //
+  // Uses Node's built-in `crypto` only — no jsonwebtoken dependency.
+  // `crypto` must be in bruno.json's scripts.moduleWhitelist.
 
   const crypto = require('crypto');
-  const jwt = require('jsonwebtoken');
 
   const orgUrl = bru.getEnvVar('orgUrl');
   const clientId = bru.getEnvVar('oktaApiClientId');
@@ -33,7 +35,18 @@ script:pre-request {
   }
 
   const jwk = JSON.parse(jwkString);
-  const privateKey = crypto.createPrivateKey({ key: jwk, format: 'jwk' });
+  const alg = jwk.alg || 'RS256';
+
+  function base64url(input) {
+    const buf = Buffer.isBuffer(input) ? input : Buffer.from(input);
+    return buf.toString('base64')
+      .replace(/=/g, '')
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_');
+  }
+
+  const header = { alg: alg, typ: 'JWT' };
+  if (jwk.kid) header.kid = jwk.kid;
 
   const now = Math.floor(Date.now() / 1000);
   const payload = {
@@ -45,16 +58,26 @@ script:pre-request {
     jti: crypto.randomUUID(),
   };
 
-  const header = { alg: jwk.alg || 'RS256', typ: 'JWT' };
-  if (jwk.kid) header.kid = jwk.kid;
+  const headerB64 = base64url(JSON.stringify(header));
+  const payloadB64 = base64url(JSON.stringify(payload));
+  const signingInput = headerB64 + '.' + payloadB64;
 
-  const assertion = jwt.sign(payload, privateKey, {
-    algorithm: header.alg,
-    header,
-  });
+  const privateKey = crypto.createPrivateKey({ key: jwk, format: 'jwk' });
+
+  let hashAlg;
+  if (alg === 'RS256') hashAlg = 'RSA-SHA256';
+  else if (alg === 'RS384') hashAlg = 'RSA-SHA384';
+  else if (alg === 'RS512') hashAlg = 'RSA-SHA512';
+  else throw new Error('Unsupported alg: ' + alg + '. This script supports RS256/RS384/RS512.');
+
+  const signer = crypto.createSign(hashAlg);
+  signer.update(signingInput);
+  signer.end();
+  const signatureBuf = signer.sign(privateKey);
+  const assertion = signingInput + '.' + base64url(signatureBuf);
 
   bru.setVar('clientAssertion', assertion);
-  console.log('Signed client_assertion JWT (alg=' + header.alg + (jwk.kid ? ', kid=' + jwk.kid : '') + ').');
+  console.log('Signed client_assertion JWT (alg=' + alg + (jwk.kid ? ', kid=' + jwk.kid : '') + ').');
 }
 
 body:form-urlencoded {
@@ -90,35 +113,47 @@ docs {
 
 **Endpoint:** `/oauth2/v1/token` — the **Org Authorization Server**. This is the only auth server that issues tokens with Okta API access scopes (`okta.users.*`, `okta.groups.*`, etc.).
 
-**Client authentication:** the Org auth server requires `private_key_jwt` (RFC 7523). Client secrets do not work here. The pre-request script signs a short-lived JWT with your private key and sends it as `client_assertion`.
+**Client authentication:** the Org auth server requires `private_key_jwt` (RFC 7523). Client secrets do not work here. The pre-request script signs a short-lived JWT with your private key (using Node's built-in `crypto`) and sends it as `client_assertion`.
+
+## One-time Bruno setup
+
+Bruno sandboxes the script runtime and blocks `require()` by default. The collection's `bruno.json` already declares `crypto` in `scripts.moduleWhitelist`, but you may also need to flip Bruno's app-level safe mode:
+
+- **Bruno Preferences → General → JavaScript Sandbox** must be set to allow scripts (not Safe Mode).
+
+If you see "require is not defined" or similar, that's the setting.
 
 ## Setup
 
 1. **Create an API Services app in Okta:**
    - Admin Console → Applications → Create App Integration → API Services.
-   - Note the **Client ID** — set it as the `oktaApiClientId` env variable.
+   - Note the **Client ID** — paste into `oktaApiClientId` env var.
 
-2. **Configure key authentication on the app:**
+2. **Configure key authentication:**
    - On the General tab, under Client Credentials, choose **Public key / Private key**.
-   - Generate a new key pair (Okta will create the keys for you) or upload your own.
-   - When the JWK is shown, click **PEM / JWK toggle** if needed and copy the **private JWK** as JSON.
-   - Paste the JWK into the `oktaApiPrivateJwk` env variable as a **single-line JSON string** (minified). Example:
+   - Generate a new key pair (Okta will create both halves) or upload your own.
+   - Copy the **private** JWK as JSON.
+   - Paste it into the `oktaApiPrivateJwk` env variable as a **single-line minified JSON string**:
      ```
      {"kty":"RSA","kid":"abc123","n":"...","e":"AQAB","d":"...","p":"...","q":"...","dp":"...","dq":"...","qi":"...","alg":"RS256"}
      ```
 
 3. **Grant Okta API scopes:**
-   - On the API Services app, go to the **Okta API Scopes** tab.
-   - Grant the scopes you need (e.g., `okta.users.manage`, `okta.groups.manage`, `okta.apps.read`).
+   - On the API Services app, **Okta API Scopes** tab.
+   - Grant the scopes you need (e.g., `okta.users.manage`, `okta.groups.read`).
    - Update the `scope` parameter in this request's body to match.
 
 4. **Run this request.** The pre-request script signs the JWT, the body sends it, and the post-response script captures the access token into `bearerToken`.
 
-## Switching a request from SSWS to Bearer
+## Switching a Management request from SSWS to Bearer
 
-In the auto-generated Management requests, the `headers` block has `Authorization: SSWS {{apiKey}}`. Edit that one line to `Authorization: Bearer {{bearerToken}}` to use the OAuth token. Bruno will save your change to the local `.bru` file — it will be overwritten on the next regen, so don't make the change permanent there. Instead, copy the request into `_Curated/` if you want a long-lived OAuth-authenticated version.
+Edit the `headers` block: change `Authorization: SSWS {{apiKey}}` to `Authorization: Bearer {{bearerToken}}`. Bruno saves the edit to the local `.bru` file. It will be overwritten on regen — copy the request into `_Curated/` if you want a long-lived OAuth-authenticated version.
+
+## Supported algorithms
+
+This script supports `RS256` (default), `RS384`, and `RS512`. ECDSA (`ES256`, `ES384`, `ES512`) is not implemented — JOSE format requires `r||s` signature encoding which differs from Node's DER output. Stick with RSA keys.
 
 ## Scope reference
 
-See https://developer.okta.com/docs/api/oauth2/ for the full list of Okta API scopes.
+https://developer.okta.com/docs/api/oauth2/
 }
