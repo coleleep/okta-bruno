@@ -20,6 +20,7 @@ body:form-urlencoded {
   scope: okta.users.read okta.groups.read okta.apps.read
   client_assertion_type: urn:ietf:params:oauth:client-assertion-type:jwt-bearer
   client_assertion: {{clientAssertion}}
+  client_id: {{oktaApiClientId}}
 }
 
 script:post-response {
@@ -40,7 +41,14 @@ tests {
 }
 
 docs {
-**This request fires the actual Client Credentials grant against the Okta Org Authorization Server.** It reads `{{clientAssertion}}` from the env vars — a pre-signed JWT — and the post-response script captures the resulting `access_token` into `bearerToken`.
+**This request fires the actual Client Credentials grant against the Okta Org Authorization Server.** It reads `{{clientAssertion}}` (a pre-signed JWT) and `{{oktaApiClientId}}` from the env vars. The post-response script captures the resulting `access_token` into `bearerToken`.
+
+## Required env variables
+
+| Variable | What it is |
+|---|---|
+| `oktaApiClientId` | Client ID of your API Services app — the same value used as `iss`/`sub` in the JWT. Okta requires it in the body even when `client_assertion` is present. |
+| `clientAssertion` | The signed JWT (good for 5 minutes). Sign externally with the Python helper. |
 
 ## Why a pre-signed JWT?
 
@@ -49,7 +57,7 @@ The Org auth server (`/oauth2/v1/token`, no authServerId) requires `private_key_
 ## Workflow each session
 
 ```bash
-# Sign a JWT (good for 5 minutes — set in Python helper)
+# Sign a JWT (good for 5 minutes)
 python3 ~/dev/okta-bruno/scripts/get_okta_token.py \
     --config ~/.okta-token-config.json \
     --jwt-only | pbcopy
@@ -70,7 +78,7 @@ That prints the access_token directly. Paste into `bearerToken`. Skip running th
 
 ## One-time setup
 
-1. **Create an API Services app** in Okta (Admin Console → Applications → Create App Integration → API Services). Note the Client ID.
+1. **Create an API Services app** in Okta (Admin Console → Applications → Create App Integration → API Services). Note the Client ID — paste into the `oktaApiClientId` env var.
 2. **Configure key authentication** on the General tab → Client Credentials → Public key / Private key. Generate or upload keys. Copy the private JWK as JSON.
 3. **Grant Okta API scopes** on the app's Okta API Scopes tab.
 4. **Save your config** at `~/.okta-token-config.json`:
