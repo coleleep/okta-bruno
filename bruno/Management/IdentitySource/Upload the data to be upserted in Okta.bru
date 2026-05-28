@@ -1,0 +1,39 @@
+meta {
+  name: Upload the data to be upserted in Okta
+  type: http
+  seq: 17
+}
+
+post {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}/bulk-upsert
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "entityType": "USERS",
+    "profiles": [
+      {
+        "externalId": ""
+      }
+    ]
+  }
+}
+
+docs {
+Uploads entities that need to be inserted or updated in Okta from the identity source for the given session
+
+**Responses:**
+- `202`: Accepted
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

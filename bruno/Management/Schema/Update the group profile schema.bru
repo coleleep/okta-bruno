@@ -1,0 +1,53 @@
+meta {
+  name: Update the group profile schema
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/meta/schemas/group/default
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "$schema": "",
+    "created": "",
+    "definitions": {
+      "base": ""
+    },
+    "description": "",
+    "id": "",
+    "lastUpdated": "",
+    "name": "",
+    "properties": {
+      "profile": ""
+    },
+    "title": "",
+    "type": "",
+    "_links": {
+      "self": ""
+    }
+  }
+}
+
+docs {
+Updates the group profile schema. This updates, adds, or removes one or more custom profile properties in a group schema. Currently Okta does not support changing base group profile properties.
+
+> **Note:** You must set properties explicitly to `null` to remove them from the schema; otherwise, `POST` is interpreted as a partial update.
+
+The [User Types](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/) feature does not extend to groups. All groups use the same group schema. Unlike user schema operations, group schema operations all specify `default` and don't accept a schema ID.
+
+**Responses:**
+- `200`: successful operation
+- `400`: 
+- `403`: 
+- `429`:
+}

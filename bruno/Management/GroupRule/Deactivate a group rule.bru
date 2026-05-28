@@ -1,0 +1,26 @@
+meta {
+  name: Deactivate a group rule
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/groups/rules/{{groupRuleId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates a specific group rule by ID from your org
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

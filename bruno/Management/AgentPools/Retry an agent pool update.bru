@@ -1,0 +1,26 @@
+meta {
+  name: Retry an agent pool update
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates/{{updateId}}/retry
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retries an agent pool update if the update is unsuccessful or communication with Okta was interrupted during an agent auto-update
+
+**Responses:**
+- `201`: Retried
+- `403`: 
+- `404`: 
+- `429`:
+}

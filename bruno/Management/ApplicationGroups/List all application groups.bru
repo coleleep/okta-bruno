@@ -1,0 +1,31 @@
+meta {
+  name: List all application groups
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/groups
+  body: none
+  auth: none
+}
+
+params:query {
+  ~q: 
+  ~after: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all app group assignments
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

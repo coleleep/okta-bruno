@@ -1,0 +1,80 @@
+meta {
+  name: Replace a user
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{orgUrl}}/api/v1/users/{{id}}
+  body: json
+  auth: none
+}
+
+params:query {
+  ~strict: 
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "credentials": {
+      "password": ""
+    },
+    "profile": {
+      "city": "",
+      "costCenter": "",
+      "countryCode": "",
+      "department": "",
+      "displayName": "",
+      "division": "",
+      "email": "user@example.com",
+      "employeeNumber": "",
+      "firstName": "",
+      "honorificPrefix": "",
+      "honorificSuffix": "",
+      "lastName": "",
+      "locale": "",
+      "login": "",
+      "manager": "",
+      "managerId": "",
+      "middleName": "",
+      "mobilePhone": "",
+      "nickName": "",
+      "organization": "",
+      "postalAddress": "",
+      "preferredLanguage": "",
+      "primaryPhone": "",
+      "profileUrl": "",
+      "secondEmail": "user@example.com",
+      "state": "",
+      "streetAddress": "",
+      "timezone": "",
+      "title": "",
+      "userType": "",
+      "zipCode": ""
+    },
+    "realmId": "guo1bfiNtSnZYILxO0g4",
+    "type": {
+      "id": ""
+    }
+  }
+}
+
+docs {
+Replaces a user's profile, credentials, or both using strict-update semantics.
+
+All profile properties must be specified when updating a user's profile with a `PUT` method. Any property not specified in the request is deleted.
+> **Important:** Don't use a `PUT` method for partial updates.
+
+**Responses:**
+- `200`: Success
+- `400`: Bad Request
+- `403`: Forbidden
+- `404`: Not Found
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Revoke an API token
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/api-tokens/{{apiTokenId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Revokes an API token by `apiTokenId`
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

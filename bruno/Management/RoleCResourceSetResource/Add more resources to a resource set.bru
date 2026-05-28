@@ -1,0 +1,36 @@
+meta {
+  name: Add more resources to a resource set
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}/resources
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "additions": [
+      ""
+    ]
+  }
+}
+
+docs {
+Adds more resources to a resource set
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: Forbidden
+- `404`: 
+- `429`:
+}

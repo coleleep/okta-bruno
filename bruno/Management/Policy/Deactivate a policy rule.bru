@@ -1,0 +1,26 @@
+meta {
+  name: Deactivate a policy rule
+  type: http
+  seq: 21
+}
+
+post {
+  url: {{orgUrl}}/api/v1/policies/{{policyId}}/rules/{{ruleId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates a policy rule identified by `policyId` and `ruleId`
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

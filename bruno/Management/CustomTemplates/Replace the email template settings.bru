@@ -1,0 +1,36 @@
+meta {
+  name: Replace the email template settings
+  type: http
+  seq: 13
+}
+
+put {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/templates/email/{{templateName}}/settings
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "recipients": "ALL_USERS"
+  }
+}
+
+docs {
+Replaces an email template's settings
+
+**Responses:**
+- `200`: Successfully updated the email template's settings.
+- `400`: 
+- `403`: 
+- `404`: 
+- `409`: Conflict
+- `422`: Could not update the email template's settings due to an invalid setting value.
+- `429`:
+}

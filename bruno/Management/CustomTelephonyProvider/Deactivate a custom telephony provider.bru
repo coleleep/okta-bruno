@@ -1,0 +1,27 @@
+meta {
+  name: Deactivate a custom telephony provider
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/telephony-providers/{{customTelephonyProviderId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates a custom telephony provider by its ID. Keep the following points in mind when you deactivate a provider:
+* You must deactivate a provider before deleting it.
+* If you have two telephony providers configured, and both are active, you can only deactivate the secondary provider. The second provider is the one that isn't set as the primary provider.
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`:
+}

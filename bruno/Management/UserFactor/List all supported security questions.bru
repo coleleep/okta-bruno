@@ -1,0 +1,26 @@
+meta {
+  name: List all supported security questions
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/factors/questions
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all available security questions for the specified user
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,37 @@
+meta {
+  name: Update an identity source group
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/groups/{{groupOrExternalId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "externalId": "",
+    "profile": {
+      "description": "",
+      "displayName": ""
+    }
+  }
+}
+
+docs {
+Updates a group to an identity source for the given identity source instance and group ID
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

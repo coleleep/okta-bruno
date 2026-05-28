@@ -1,0 +1,35 @@
+meta {
+  name: /device/authorize
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{authorizationServerId}}/v1/device/authorize
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  client_id: 
+  scope: 
+}
+
+docs {
+Returns a user code, device code, activation link, and QR code activation link
+
+**Responses:**
+- `200`: Based on the type of token and whether it's active, the returned JSON contains a different set of information.
+- `400`: Bad Request
+- `401`: Unauthorized
+- `429`:
+}

@@ -1,0 +1,40 @@
+meta {
+  name: Create a custom SMTP server
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/email-servers
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "alias": "CustomServer1",
+    "authType": "BASIC_SMTP_AUTH",
+    "enabled": false,
+    "host": "192.168.160.1",
+    "port": 587,
+    "username": "some_user@domain.com"
+  }
+}
+
+docs {
+Creates a custom email SMTP server configuration for your org.
+
+For more information about configuring the OAuth 2.0 authentication methods, see [Custom email providers with OAuth 2.0](https://developer.okta.com/docs/guides/custom-smtp/main/).
+
+**Responses:**
+- `201`: Successfully enrolled server credentials
+- `400`: 
+- `403`: 
+- `429`:
+}

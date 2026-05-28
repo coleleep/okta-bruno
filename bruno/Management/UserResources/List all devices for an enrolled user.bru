@@ -1,0 +1,28 @@
+meta {
+  name: List all devices for an enrolled user
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/devices
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all devices enrolled by a user
+
+> **Note:** To list all devices registered to an org, use the [List all devices endpoint in the Devices API](/openapi/okta-management/management/tags/device/other/listdevices).
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

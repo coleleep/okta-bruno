@@ -1,0 +1,28 @@
+meta {
+  name: Retrieve the well-known app authenticator configuration
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/.well-known/app-authenticator-configuration
+  body: none
+  auth: none
+}
+
+params:query {
+  oauthClientId: 
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+Retrieves the well-known app authenticator configuration. Includes an app authenticator's settings, supported methods, and other details.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `429`:
+}

@@ -1,0 +1,31 @@
+meta {
+  name: List all authorization servers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authorizationServers
+  body: none
+  auth: none
+}
+
+params:query {
+  ~q: 
+  ~limit: 200
+  ~after: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all custom authorization servers in the org
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

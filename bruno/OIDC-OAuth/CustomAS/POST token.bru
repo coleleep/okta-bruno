@@ -1,0 +1,37 @@
+meta {
+  name: /token
+  type: http
+  seq: 18
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{authorizationServerId}}/v1/token
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  grant_type: authorization_code
+}
+
+docs {
+This endpoint returns access tokens, ID tokens, and refresh tokens depending on the request parameters. For [password](https://developer.okta.com/docs/guides/implement-grant-type/ropassword/main/), [client credentials](https://developer.okta.com/docs/guides/implement-grant-type/clientcreds/main/), [SAML 2.0 assertion](https://developer.okta.com/docs/guides/implement-grant-type/saml2assert/main/), and [refresh token](https://developer.okta.com/docs/guides/refresh-tokens/main/) flows, calling `/token` is the only step of the flow. For the [authorization code](https://developer.okta.com/docs/guides/implement-grant-type/authcode/main/) flow, calling `/token` is the second step of the flow.
+
+> **Note:** The `/token` endpoint requires client authentication. The method is configured per client app. See [Client authentication methods](/openapi/okta-oauth/guides/client-auth/).
+
+**Responses:**
+- `200`: Based on the scopes requested. The scopes specified in a request are included in the access token in the response.
+- `400`: Bad Request
+- `401`: Unauthorized
+- `403`: Forbidden
+- `429`:
+}

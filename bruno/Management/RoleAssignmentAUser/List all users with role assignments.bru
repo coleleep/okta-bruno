@@ -1,0 +1,30 @@
+meta {
+  name: List all users with role assignments
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/iam/assignees/users
+  body: none
+  auth: none
+}
+
+params:query {
+  ~after: 
+  ~limit: 100
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all users with role assignments
+
+**Responses:**
+- `200`: Success
+- `403`: Forbidden
+- `429`:
+}

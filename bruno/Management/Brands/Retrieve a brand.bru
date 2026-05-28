@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a brand
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a brand by `brandId`
+
+**Responses:**
+- `200`: Successfully retrieved the brand
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,36 @@
+meta {
+  name: /revoke
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{orgUrl}}/oauth2/v1/revoke
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  token: <access_token_value>
+}
+
+docs {
+The API takes an access or refresh token and revokes it. Revoked tokens are considered inactive at the introspection endpoint. A client may only revoke its own tokens. See [Revoke tokens](https://developer.okta.com/docs/guides/revoke-tokens/).
+
+> **Note:** The `/revoke` endpoint requires client authentication. The method is configured per client app. See [Client authentication methods](/openapi/okta-oauth/guides/client-auth/).
+
+**Responses:**
+- `200`: Successful Revocation. Note that revoking an invalid, expired, or revoked token is still considered a success so information isn't leaked.
+- `400`: Bad Request
+- `401`: Unauthorized
+- `429`:
+}

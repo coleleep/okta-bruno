@@ -1,0 +1,36 @@
+meta {
+  name: List all YubiKey OTP tokens
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org/factors/yubikey_token/tokens
+  body: none
+  auth: none
+}
+
+params:query {
+  ~after: 
+  ~expand: 
+  ~filter: 
+  ~forDownload: False
+  ~limit: 20
+  ~sortBy: 
+  ~sortOrder: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all YubiKey OTP tokens
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,38 @@
+meta {
+  name: Replace a key
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{orgUrl}}/api/v1/hook-keys/{{id}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "name": ""
+  }
+}
+
+docs {
+Replaces a key by `id`
+
+This request replaces existing properties after passing validation.
+
+> **Note:** The only parameter that you can update is the name of the key, which must be unique at all times.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

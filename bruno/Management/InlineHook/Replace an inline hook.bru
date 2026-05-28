@@ -1,0 +1,40 @@
+meta {
+  name: Replace an inline hook
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{orgUrl}}/api/v1/inlineHooks/{{inlineHookId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "channel": {
+      "version": ""
+    },
+    "name": "",
+    "version": ""
+  }
+}
+
+docs {
+Replaces an inline hook by `inlineHookId`. The submitted inline hook properties replace the existing properties after passing validation.
+
+>**Note:** Some properties are immutable and can't be updated.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

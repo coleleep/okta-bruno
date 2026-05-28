@@ -1,0 +1,30 @@
+meta {
+  name: Assign an admin role app instance target
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles/{{roleAssignmentId}}/targets/catalog/apps/{{appName}}/{{appId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Assigns an app instance target to an `APP_ADMIN` role assignment to an admin user. When you assign the first OIN app or app instance target, you reduce the scope of the role assignment.
+The role no longer applies to all app targets, but applies only to the specified target.
+
+> **Note:** You can target a mixture of both OIN app and app instance targets, but can't assign permissions to manage all instances of an OIN app and then assign a subset of permission to the same OIN app.
+> For example, you can't specify that an admin has access to manage all instances of the Salesforce app and then also manage specific configurations of the Salesforce app.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

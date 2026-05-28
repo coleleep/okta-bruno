@@ -1,0 +1,35 @@
+meta {
+  name: Replace a policy
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{orgUrl}}/api/v1/policies/{{policyId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "name": "",
+    "type": "ACCESS_POLICY"
+  }
+}
+
+docs {
+Replaces the properties of a policy identified by `policyId`
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

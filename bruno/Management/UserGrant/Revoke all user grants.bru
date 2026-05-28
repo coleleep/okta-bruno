@@ -1,0 +1,26 @@
+meta {
+  name: Revoke all user grants
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/grants
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Revokes all grants for a specified user
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

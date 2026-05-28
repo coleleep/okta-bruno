@@ -1,0 +1,38 @@
+meta {
+  name: Update an inline hook
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/inlineHooks/{{inlineHookId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "channel": {
+      "version": ""
+    },
+    "name": "",
+    "version": ""
+  }
+}
+
+docs {
+Updates an inline hook by `inlineHookId`
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

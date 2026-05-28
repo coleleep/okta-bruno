@@ -1,0 +1,27 @@
+meta {
+  name: Clone an existing policy
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{orgUrl}}/api/v1/policies/{{policyId}}/clone
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Clones an existing policy
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the Okta Support settings
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org/privacy/oktaSupport
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves Okta Support Settings for your org
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

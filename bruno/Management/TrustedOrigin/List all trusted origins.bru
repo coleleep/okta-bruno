@@ -1,0 +1,32 @@
+meta {
+  name: List all trusted origins
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/trustedOrigins
+  body: none
+  auth: none
+}
+
+params:query {
+  ~q: 
+  ~filter: 
+  ~after: 
+  ~limit: 20
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all trusted origins
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

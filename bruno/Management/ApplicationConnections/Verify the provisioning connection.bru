@@ -1,0 +1,32 @@
+meta {
+  name: Verify the provisioning connection
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appName}}/{{appId}}/oauth2/callback
+  body: none
+  auth: none
+}
+
+params:query {
+  ~code: 
+  ~state: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Verifies the OAuth 2.0-based connection as part of the OAuth 2.0 consent flow. The validation of the consent flow is the last step of the provisioning setup for an OAuth 2.0-based connection.
+Currently, this operation only supports `office365`,`google`, `zoomus`, and `slack` apps.
+
+**Responses:**
+- `204`: No content
+- `403`: 
+- `404`: 
+- `429`:
+}

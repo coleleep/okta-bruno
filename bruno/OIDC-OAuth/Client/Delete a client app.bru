@@ -1,0 +1,25 @@
+meta {
+  name: Delete a client app
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/oauth2/v1/clients/{{clientId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+Deletes a client app
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

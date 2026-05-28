@@ -1,0 +1,29 @@
+meta {
+  name: /userinfo
+  type: http
+  seq: 18
+}
+
+get {
+  url: {{orgUrl}}/oauth2/v1/userinfo
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{bearerToken}}
+}
+
+docs {
+Returns information about the user that's the subject of the access token. Many of these claims are also included in the [ID token](https://developer.okta.com/docs/reference/api/oidc/#id-token), but calling this endpoint always returns all of the user's claims. You can configure the ID token to include a subset of the user's claims. See [Scope-dependent claims](https://developer.okta.com/docs/reference/api/oidc/#scope-dependent-claims-not-always-returned).
+
+**Responses:**
+- `200`: Success
+- `401`: Unauthorized
+- `403`: Forbidden
+- `429`:
+}

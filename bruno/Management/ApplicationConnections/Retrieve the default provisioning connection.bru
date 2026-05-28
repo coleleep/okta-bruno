@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the default provisioning connection
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/connections/default
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the default provisioning connection for an app
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

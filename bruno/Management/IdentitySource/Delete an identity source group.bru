@@ -1,0 +1,26 @@
+meta {
+  name: Delete an identity source group
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/groups/{{groupOrExternalId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a group in an identity source for a given identity source ID and group ID
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

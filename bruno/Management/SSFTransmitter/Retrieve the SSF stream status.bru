@@ -1,0 +1,32 @@
+meta {
+  name: Retrieve the SSF stream status
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{orgUrl}}/api/v1/ssf/stream/status
+  body: none
+  auth: none
+}
+
+params:query {
+  stream_id: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the status of an SSF stream. The status indicates whether the transmitter is able to transmit events over the stream.
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

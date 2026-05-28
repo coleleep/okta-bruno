@@ -1,0 +1,59 @@
+meta {
+  name: Replace a device assurance policy
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/device-assurances/{{deviceAssuranceId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "createdBy": "",
+    "createdDate": "",
+    "devicePostureChecks": {
+      "include": [
+        {
+          "variableName": "macOSFirewall",
+          "value": "1"
+        },
+        {
+          "variableName": "windowsFirewall",
+          "value": "1"
+        }
+      ]
+    },
+    "displayRemediationMode": "SHOW",
+    "gracePeriod": {
+      "type": "BY_DATE_TIME"
+    },
+    "id": "",
+    "lastUpdate": "",
+    "lastUpdatedBy": "",
+    "name": "",
+    "platform": "ANDROID",
+    "_links": {
+      "self": ""
+    }
+  }
+}
+
+docs {
+Replaces a device assurance policy by `deviceAssuranceId`
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

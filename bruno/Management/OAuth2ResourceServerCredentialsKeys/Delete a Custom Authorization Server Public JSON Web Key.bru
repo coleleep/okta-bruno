@@ -1,0 +1,28 @@
+meta {
+  name: Delete a Custom Authorization Server Public JSON Web Key
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/resourceservercredentials/keys/{{keyId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a custom authorization server public JSON web key by key `id`. You can only delete an inactive key.
+
+**Responses:**
+- `204`: No Content
+- `400`: Bad Request
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

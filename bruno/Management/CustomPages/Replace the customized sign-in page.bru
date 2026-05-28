@@ -1,0 +1,61 @@
+meta {
+  name: Replace the customized sign-in page
+  type: http
+  seq: 11
+}
+
+put {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/sign-in/customized
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "pageContent": "",
+    "contentSecurityPolicySetting": {
+      "mode": ""
+    },
+    "widgetCustomizations": {
+      "signInLabel": "",
+      "usernameLabel": "",
+      "usernameInfoTip": "",
+      "passwordLabel": "",
+      "passwordInfoTip": "",
+      "showPasswordVisibilityToggle": false,
+      "showUserIdentifier": false,
+      "forgotPasswordLabel": "",
+      "forgotPasswordUrl": "",
+      "unlockAccountLabel": "",
+      "unlockAccountUrl": "",
+      "helpLabel": "",
+      "helpUrl": "",
+      "customLink1Label": "",
+      "customLink1Url": "",
+      "customLink2Label": "",
+      "customLink2Url": "",
+      "authenticatorPageCustomLinkLabel": "",
+      "authenticatorPageCustomLinkUrl": "",
+      "classicRecoveryFlowEmailOrUsernameLabel": "",
+      "classicFooterHelpTitle": ""
+    },
+    "widgetVersion": ""
+  }
+}
+
+docs {
+Replaces the customized sign-in page. The customized sign-in page appears in your live environment.
+
+**Responses:**
+- `200`: Successfully replaced the customized sign-in page.
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

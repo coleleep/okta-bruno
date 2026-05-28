@@ -1,0 +1,42 @@
+meta {
+  name: Create an application
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps
+  body: json
+  auth: none
+}
+
+params:query {
+  ~activate: True
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "label": "",
+    "signOnMode": "AUTO_LOGIN"
+  }
+}
+
+docs {
+Creates an app instance in your Okta org.
+
+You can either create an OIN app instance or a custom app instance:
+* OIN app instances have prescribed `name` (key app definition) and `signOnMode` options. See the [OIN schemas](/openapi/okta-management/management/application/googleapplication) for the request body.
+* For custom app instances, select the [signOnMode](/openapi/okta-management/management/tags/application/other/createapplication#application/createapplication/t=request&path=&d=0/signonmode) that pertains to your app and specify the required parameters in the request body.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

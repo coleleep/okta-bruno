@@ -1,0 +1,36 @@
+meta {
+  name: Create a group push mapping
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/group-push/mappings
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "sourceGroupId": ""
+  }
+}
+
+docs {
+Creates or links a group push mapping.
+
+**Note:** Either `targetGroupId` or `targetGroupName` must be provided, but not both. If `targetGroupId` is provided, it links to an existing group. If `targetGroupName` is provided, it creates a new group.
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `401`: 
+- `403`: Forbidden
+- `429`:
+}

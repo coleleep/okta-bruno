@@ -1,0 +1,40 @@
+meta {
+  name: Replace a push provider
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/push-providers/{{pushProviderId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "id": "",
+    "lastUpdatedDate": "",
+    "name": "",
+    "providerType": "APNS",
+    "_links": {
+      "self": ""
+    }
+  }
+}
+
+docs {
+Replaces a push provider by `pushProviderId`
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

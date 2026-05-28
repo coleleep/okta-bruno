@@ -1,0 +1,30 @@
+meta {
+  name: Retrieve a refresh token for a client
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/clients/{{clientId}}/tokens/{{tokenId}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~expand: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a refresh token for a Client
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

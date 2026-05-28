@@ -1,0 +1,28 @@
+meta {
+  name: List the primary or all of the associated linked object values
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userIdOrLogin}}/linkedObjects/{{relationshipName}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists either the `self` link for the primary user or all associated users in the relationship specified by `relationshipName`. If the specified user isn't associated in any relationship, an empty array is returned.
+
+Use `me` instead of `id` to specify the current session user.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

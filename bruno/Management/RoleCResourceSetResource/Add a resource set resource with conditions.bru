@@ -1,0 +1,39 @@
+meta {
+  name: Add a resource set resource with conditions
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}/resources
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "conditions": {
+      "Exclude": {
+        "okta:ORN": ""
+      }
+    },
+    "resourceOrnOrUrl": ""
+  }
+}
+
+docs {
+Adds a resource with conditions for a resource set
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: Forbidden
+- `404`: 
+- `429`:
+}

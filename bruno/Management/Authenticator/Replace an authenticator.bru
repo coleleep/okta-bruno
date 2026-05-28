@@ -1,0 +1,27 @@
+meta {
+  name: Replace an authenticator
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{orgUrl}}/api/v1/authenticators/{{authenticatorId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Replaces the properties for an authenticator identified by `authenticatorId`
+
+**Responses:**
+- `200`: 
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

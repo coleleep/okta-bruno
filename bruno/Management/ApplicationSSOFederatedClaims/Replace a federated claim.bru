@@ -1,0 +1,38 @@
+meta {
+  name: Replace a federated claim
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/federated-claims/{{claimId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2024-02-29T20:08:24.000Z",
+    "expression": "appuser.entitlements.role",
+    "id": "ofc2f4zrZbs8nUa7p0g4",
+    "lastUpdated": "2023-02-21T20:08:24.000Z",
+    "name": "roleg"
+  }
+}
+
+docs {
+Replaces a claim that will be included in tokens produced by federation protocols (for example: OIDC `id_tokens` or SAML Assertions)
+
+**Responses:**
+- `201`: Created
+- `400`: Bad Request
+- `401`: 
+- `403`: 
+- `429`:
+}

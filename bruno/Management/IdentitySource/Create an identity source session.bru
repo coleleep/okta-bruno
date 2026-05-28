@@ -1,0 +1,26 @@
+meta {
+  name: Create an identity source session
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/sessions
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Creates an identity source session for the given identity source instance
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

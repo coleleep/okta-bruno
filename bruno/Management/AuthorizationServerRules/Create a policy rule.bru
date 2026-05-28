@@ -1,0 +1,41 @@
+meta {
+  name: Create a policy rule
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/policies/{{policyId}}/rules
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2026-01-01T00:00:00Z",
+    "id": "",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "name": "",
+    "priority": 0,
+    "status": "ACTIVE",
+    "system": false,
+    "type": "RESOURCE_ACCESS"
+  }
+}
+
+docs {
+Creates a policy rule for the specified Custom Authorization Server and Policy
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

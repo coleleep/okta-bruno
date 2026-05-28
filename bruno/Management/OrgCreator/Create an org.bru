@@ -1,0 +1,50 @@
+meta {
+  name: Create an org
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/api/v1/orgs
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "admin": {
+      "profile": {
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "login": ""
+      }
+    },
+    "edition": "SKU",
+    "name": "My Child Org 1",
+    "subdomain": "my-child-org-1"
+  }
+}
+
+docs {
+Creates an org (child org) that has the same features as the current requesting org (parent org).
+A child org inherits any new features added to the parent org, but new features added to the child org aren't propagated back to the parent org.
+> **Notes:**
+> * Some features associated with products, such as Atspoke, Workflows, and Okta Identity Governance, aren't propagated to the child org.
+> * Wait at least 30 seconds after a 201-Created response before you make API requests to the new child org.
+> * For rate limits, see [Org creation rate limits](https://developer.okta.com/docs/reference/rl-additional-limits/#org-creation-rate-limits).
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `401`: 
+- `403`: 
+- `429`: 
+- `500`:
+}

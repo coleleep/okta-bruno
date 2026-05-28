@@ -1,0 +1,32 @@
+meta {
+  name: Initiate the global revocation of all tokens and sessions
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/oauth2/v1/global-token-revocation
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "sub_id": {}
+  }
+}
+
+docs {
+Initiates the global revocation of all tokens and sessions for a specified user enabling external identity providers to trigger a comprehensive sign-out process. This includes executing IdP-initiated sign-out flows across all apps that are using global token revocation and requiring users to re-authenticate to access protected resources.
+
+**Responses:**
+- `204`: No Content
+- `400`: Bad Request
+- `403`: 
+- `429`:
+}

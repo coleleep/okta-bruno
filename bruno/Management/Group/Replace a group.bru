@@ -1,0 +1,40 @@
+meta {
+  name: Replace a group
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "profile": {
+      "description": "All users West of The Rockies",
+      "name": "West Coast users"
+    }
+  }
+}
+
+docs {
+Replaces the profile for a group of `OKTA_GROUP` type from your org.
+> **Note :** You only can modify profiles for groups of the `OKTA_GROUP` type.
+>
+> App imports are responsible for updating profiles for groups of the `APP_GROUP` type, such as Active Directory groups.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

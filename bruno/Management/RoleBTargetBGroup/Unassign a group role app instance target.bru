@@ -1,0 +1,29 @@
+meta {
+  name: Unassign a group role app instance target
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}/roles/{{roleAssignmentId}}/targets/catalog/apps/{{appName}}/{{appId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unassigns an app instance target from an `APP_ADMIN` role assignment to a group
+
+> **Note:** You can't remove the last app instance target from a role assignment.
+> If you need a role assignment that applies to all apps, delete the `APP_ADMIN` role assignment with the target and create another one. See [Unassign a group role](/openapi/okta-management/management/roleassignmentbgroup/unassignrolefromgroup).
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

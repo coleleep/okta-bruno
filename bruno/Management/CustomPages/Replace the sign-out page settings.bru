@@ -1,0 +1,34 @@
+meta {
+  name: Replace the sign-out page settings
+  type: http
+  seq: 19
+}
+
+put {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/sign-out/customized
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "type": "EXTERNALLY_HOSTED"
+  }
+}
+
+docs {
+Replaces the sign-out page settings
+
+**Responses:**
+- `200`: Successfully replaced the sign-out page settings.
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

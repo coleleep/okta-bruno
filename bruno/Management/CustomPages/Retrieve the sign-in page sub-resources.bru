@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the sign-in page sub-resources
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/sign-in
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the sign-in page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+
+**Responses:**
+- `200`: Successfully retrieved the sign-in page.
+- `403`: 
+- `404`: 
+- `429`:
+}

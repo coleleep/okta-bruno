@@ -1,0 +1,36 @@
+meta {
+  name: Update an SMTP server configuration
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{orgUrl}}/api/v1/email-servers/{{emailServerId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "authType": "BASIC_SMTP_AUTH"
+  }
+}
+
+docs {
+Updates the specified custom SMTP server configuration
+
+> **Note:** When you update an SMTP server configuration that uses OAuth 2.0 authentication, the [`authType`](#components/schemas/BaseEmailServer/properties/authType) property is required in the request body.
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

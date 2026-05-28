@@ -1,0 +1,89 @@
+meta {
+  name: Create a user
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users
+  body: json
+  auth: none
+}
+
+params:query {
+  ~activate: True
+  ~provider: False
+  ~nextLogin: 
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "profile": {
+      "city": "",
+      "costCenter": "",
+      "countryCode": "",
+      "department": "",
+      "displayName": "",
+      "division": "",
+      "email": "user@example.com",
+      "employeeNumber": "",
+      "firstName": "",
+      "honorificPrefix": "",
+      "honorificSuffix": "",
+      "lastName": "",
+      "locale": "",
+      "login": "",
+      "manager": "",
+      "managerId": "",
+      "middleName": "",
+      "mobilePhone": "",
+      "nickName": "",
+      "organization": "",
+      "postalAddress": "",
+      "preferredLanguage": "",
+      "primaryPhone": "",
+      "profileUrl": "",
+      "secondEmail": "user@example.com",
+      "state": "",
+      "streetAddress": "",
+      "timezone": "",
+      "title": "",
+      "userType": "",
+      "zipCode": ""
+    }
+  }
+}
+
+docs {
+Creates a new user in your Okta org with or without credentials.<br>
+> **Legal Disclaimer**
+>
+> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service,
+> you agreed not to use Okta's service/product to spam and/or send unsolicited messages.
+> Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all
+> liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
+
+All responses return the created user. Activation of a user is an asynchronous operation. The system performs group reconciliation during activation and assigns the user to all apps via direct or indirect relationships (group memberships).
+* The user's `transitioningToStatus` property is `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.
+* The user's `status` is `ACTIVE` when the activation process is complete.
+
+The user is emailed a one-time activation token if activated without a password.
+
+> **Note:** If the user is assigned to an app that is configured for provisioning, the activation process triggers downstream provisioning to the app.  It is possible for a user to sign in before these apps have been successfully provisioned for the user.
+
+> **Important:** Do not generate or send a one-time activation token when activating users with an assigned password. Users should sign in with their assigned password.
+
+For more information about the various scenarios of creating a user listed in the examples, see the [User creation scenarios](/openapi/okta-management/management/tags/user/section/user-status#section/User-creation-scenarios) section.
+
+**Responses:**
+- `200`: Success
+- `400`: Bad Request
+- `403`: Forbidden
+- `429`:
+}

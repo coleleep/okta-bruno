@@ -1,0 +1,27 @@
+meta {
+  name: List all groups
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{id}}/groups
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all groups of which the user is a member
+> **Note:** To list all groups in your org, use the [List all groups endpoints in the Groups API](/openapi/okta-management/management/group/listgroups).
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

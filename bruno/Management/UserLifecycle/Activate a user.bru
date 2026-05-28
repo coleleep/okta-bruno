@@ -1,0 +1,48 @@
+meta {
+  name: Activate a user
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{id}}/lifecycle/activate
+  body: none
+  auth: none
+}
+
+params:query {
+  ~sendEmail: True
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Activates a user.
+
+Perform this operation only on users with a `STAGED` or `DEPROVISIONED` status. Activation of a user is an asynchronous operation.
+* The user has the `transitioningToStatus` property with an `ACTIVE` value during activation. This indicates that the user hasn't completed the asynchronous operation.
+* The user has an `ACTIVE` status when the activation process completes.
+
+Users who don't have a password must complete the welcome flow by visiting the activation link to complete the transition to `ACTIVE` status.
+
+> **Note:** If you want to send a branded user activation email, change the subdomain of your request to the custom domain that's associated with the brand.
+> For example, change `subdomain.okta.com` to `custom.domain.one`. See [Multibrand and custom domains](https://developer.okta.com/docs/concepts/brands/#multibrand-and-custom-domains).
+
+> **Note:** If you have optional password enabled, visiting the activation link is optional for users who aren't required to enroll a password.
+> See [Create user with optional password](/openapi/okta-management/management/user/create-user-with-optional-password#user/Create-user-with-optional-password).
+
+> **Legal disclaimer**
+> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service,
+> you agreed not to use Okta's service/product to spam and/or send unsolicited messages.
+> Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all
+> liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

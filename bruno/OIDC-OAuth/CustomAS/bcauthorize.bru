@@ -1,0 +1,38 @@
+meta {
+  name: /bc/authorize
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{authorizationServerId}}/v1/bc/authorize
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  id_token_hint: 
+  login_hint: 
+  scope: 
+}
+
+docs {
+This endpoint returns a unique identifier (`auth_req_id`) that identifies the authentication flow while it tries to authenticate the user in the background. This `auth_req_id` value is used in subsequent token requests to the `/token` endpoint.
+
+> **Note:** The `/bc/authorize` endpoint requires client authentication. The method is configured per client app. See [Client authentication methods](/openapi/okta-oauth/guides/client-auth/).
+
+**Responses:**
+- `200`: Success
+- `400`: Bad Request
+- `401`: Unauthorized
+- `429`:
+}

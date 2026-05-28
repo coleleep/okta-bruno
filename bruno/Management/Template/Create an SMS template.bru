@@ -1,0 +1,39 @@
+meta {
+  name: Create an SMS template
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/templates/sms
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2026-01-01T00:00:00Z",
+    "id": "",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "name": "",
+    "template": "",
+    "translations": {},
+    "type": "SMS_VERIFY_CODE"
+  }
+}
+
+docs {
+Creates a new custom SMS template
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

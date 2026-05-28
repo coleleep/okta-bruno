@@ -1,0 +1,41 @@
+meta {
+  name: Replace a CAPTCHA instance
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{orgUrl}}/api/v1/captchas/{{captchaId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "id": "",
+    "name": "",
+    "secretKey": "",
+    "siteKey": "",
+    "type": "HCAPTCHA",
+    "_links": {
+      "self": ""
+    }
+  }
+}
+
+docs {
+Replaces the properties for a specified CAPTCHA instance
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

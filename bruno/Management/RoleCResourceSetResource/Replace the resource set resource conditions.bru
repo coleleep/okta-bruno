@@ -1,0 +1,38 @@
+meta {
+  name: Replace the resource set resource conditions
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}/resources/{{resourceId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "conditions": {
+      "Exclude": {
+        "okta:ORN": ""
+      }
+    }
+  }
+}
+
+docs {
+Replaces the conditions of a resource identified by `resourceId` in a resource set
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: Forbidden
+- `404`: 
+- `429`:
+}

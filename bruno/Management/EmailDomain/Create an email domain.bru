@@ -1,0 +1,36 @@
+meta {
+  name: Create an email domain
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/email-domains
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "brandId": "",
+    "domain": ""
+  }
+}
+
+docs {
+Creates an Email Domain in your org
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `409`: Conflict
+- `429`:
+}

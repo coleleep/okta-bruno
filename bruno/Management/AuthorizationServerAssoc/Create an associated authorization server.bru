@@ -1,0 +1,36 @@
+meta {
+  name: Create an associated authorization server
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/associatedServers
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "trusted": [
+      ""
+    ]
+  }
+}
+
+docs {
+Creates trusted relationships between the given authorization server and other authorization servers
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

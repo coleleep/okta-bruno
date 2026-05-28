@@ -1,0 +1,33 @@
+meta {
+  name: Replace the rate limit warning threshold percentage
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{orgUrl}}/api/v1/rate-limit-settings/warning-threshold
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "warningThreshold": 0
+  }
+}
+
+docs {
+Replaces the Rate Limit Warning Threshold Percentage and returns the configured property
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

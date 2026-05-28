@@ -1,0 +1,30 @@
+meta {
+  name: /token
+  type: http
+  seq: 17
+}
+
+options {
+  url: {{orgUrl}}/oauth2/{{authorizationServerId}}/v1/token
+  body: none
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+docs {
+Use this operation to request the permitted communication options for the `/token` endpoint.
+
+> **Note:** CORS is enforced on a per-client basis. This endpoint always returns CORS headers with the current origin.
+
+**Responses:**
+- `204`: Success
+- `429`:
+}

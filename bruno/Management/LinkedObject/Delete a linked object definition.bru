@@ -1,0 +1,26 @@
+meta {
+  name: Delete a linked object definition
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/meta/schemas/user/linkedObjects/{{linkedObjectName}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes the Linked Object definition specified by either the `primary` or `associated` name. The entire definition is removed, regardless of which name that you specify.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

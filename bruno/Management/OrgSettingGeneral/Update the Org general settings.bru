@@ -1,0 +1,52 @@
+meta {
+  name: Update the Org general settings
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/org
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "address1": "",
+    "address2": "",
+    "city": "",
+    "companyName": "",
+    "country": "",
+    "created": "2026-01-01T00:00:00Z",
+    "endUserSupportHelpURL": "",
+    "expiresAt": "2026-01-01T00:00:00Z",
+    "id": "",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "phoneNumber": "",
+    "postalCode": "",
+    "state": "",
+    "status": "ACTIVE",
+    "subdomain": "",
+    "supportPhoneNumber": "",
+    "website": "",
+    "_links": {
+      "contacts": ""
+    }
+  }
+}
+
+docs {
+Updates partial Org General Settings
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

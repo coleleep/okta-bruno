@@ -1,0 +1,26 @@
+meta {
+  name: Unassign a group role group target
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}/roles/{{roleAssignmentId}}/targets/groups/{{targetGroupId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unassigns a group target from a [`USER_ADMIN`](/openapi/okta-management/guides/roles/#standard-roles), `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to a group.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

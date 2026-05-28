@@ -1,0 +1,32 @@
+meta {
+  name: List all principal rate limits
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/principal-rate-limits
+  body: none
+  auth: none
+}
+
+params:query {
+  filter: 
+  ~after: 
+  ~limit: 20
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all Principal Rate Limit entities considering the provided parameters
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `429`:
+}

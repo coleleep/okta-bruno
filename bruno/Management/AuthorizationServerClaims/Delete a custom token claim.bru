@@ -1,0 +1,26 @@
+meta {
+  name: Delete a custom token claim
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/claims/{{claimId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a custom token Claim specified by the `claimId`
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

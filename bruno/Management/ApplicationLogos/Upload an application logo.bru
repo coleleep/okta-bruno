@@ -1,0 +1,37 @@
+meta {
+  name: Upload an application logo
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/logo
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:multipart-form {
+  # populate fields here
+}
+
+docs {
+Uploads a logo for the app instance.
+If the app already has a logo, this operation replaces the previous logo.
+
+The logo is visible in the Admin Console as an icon for your app instance.
+If you have one `appLink` object configured, this logo also appears in the End-User Dashboard as an icon for your app.
+> **Note:** If you have multiple `appLink` objects, use the Admin Console to add logos for each app link.
+> You can't use the API to add logos for multiple app links.
+
+**Responses:**
+- `201`: Content Created
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

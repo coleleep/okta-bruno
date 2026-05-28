@@ -1,0 +1,27 @@
+meta {
+  name: Delete an event hook
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/eventHooks/{{eventHookId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes the event hook that matches the provided `id`. After deletion, the event hook is unrecoverable.
+As a safety precaution, you can only delete event hooks with a status of `INACTIVE`.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

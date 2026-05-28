@@ -1,0 +1,29 @@
+meta {
+  name: Unassign a client role app target
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{orgUrl}}/oauth2/v1/clients/{{clientId}}/roles/{{roleAssignmentId}}/targets/catalog/apps/{{appName}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unassigns an OIN app target for a role assignment to a client app
+
+> **Note:** You can't remove the last OIN app target from a role assignment.
+> If you need a role assignment that applies to all apps, delete the role assignment with the target and create another one. See [Unassign a client role](/openapi/okta-management/management/tags/roleassignmentclient/other/deleterolefromclient).
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

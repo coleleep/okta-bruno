@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a JSON Web Key Set (JWKS) for the default provisioning connection
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/connections/default/jwks
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a JWKS for the default provisioning connection.  This can be used by the OAuth 2.0 app's `jwk_uri` property in the target org.
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `404`: 
+- `429`:
+}

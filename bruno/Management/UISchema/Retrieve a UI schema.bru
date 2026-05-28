@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a UI schema
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/meta/uischemas/{{id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a UI Schema by `id`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

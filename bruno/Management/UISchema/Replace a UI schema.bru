@@ -1,0 +1,39 @@
+meta {
+  name: Replace a UI schema
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/meta/uischemas/{{id}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "uiSchema": {
+      "buttonLabel": "Submit",
+      "elements": [],
+      "label": "Sign in",
+      "type": ""
+    }
+  }
+}
+
+docs {
+Replaces a UI Schema by `id`
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

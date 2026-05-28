@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve a custom telephony provider
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/telephony-providers/{{customTelephonyProviderId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the details of a custom telephony provider by its ID
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`:
+}

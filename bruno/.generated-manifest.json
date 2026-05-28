@@ -1,0 +1,11 @@
+{
+  "spec_version": "current",
+  "counts": {
+    "management": 732,
+    "oauth": 44
+  },
+  "generated_dirs": [
+    "bruno/Management",
+    "bruno/OIDC-OAuth"
+  ]
+}

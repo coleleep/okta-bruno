@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the Admin Console opt-in status
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{orgUrl}}/api/v1/iam/governance/optIn
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the entitlement management opt-in status for the Admin Console
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

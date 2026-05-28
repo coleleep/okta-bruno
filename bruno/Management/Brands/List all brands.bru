@@ -1,0 +1,25 @@
+meta {
+  name: List all brands
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all the brands in your org
+
+**Responses:**
+- `200`: Successfully returned the list of brands
+- `403`: 
+- `429`:
+}

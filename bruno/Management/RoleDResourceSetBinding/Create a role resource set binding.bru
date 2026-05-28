@@ -1,0 +1,41 @@
+meta {
+  name: Create a role resource set binding
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}/bindings
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "members": [
+      ""
+    ],
+    "role": ""
+  }
+}
+
+docs {
+Creates a binding for the resource set, custom role, and members (users or groups)
+
+> **Note:** If you use a custom role with permissions that don't apply to the resources in the resource set, it doesn't affect the admin role. For example,
+ the `okta.users.userprofile.manage` permission gives the admin no privileges if it's granted to a resource set that only includes `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}`
+ resources. If you want the admin to be able to manage the users within the group, the resource set must include the corresponding `https://{yourOktaDomain}/api/v1/groups/{targetGroupId}/users` resource.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: Forbidden
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,29 @@
+meta {
+  name: List all SMS templates
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/templates/sms
+  body: none
+  auth: none
+}
+
+params:query {
+  ~templateType: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all custom SMS templates. A subset of templates can be returned that match a template type.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

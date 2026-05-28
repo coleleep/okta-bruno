@@ -1,0 +1,26 @@
+meta {
+  name: List all admin role app targets
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles/{{roleAssignmentId}}/targets/catalog/apps
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all app targets for an `APP_ADMIN` role assigned to a user. The response is a list that includes OIN-cataloged apps or app instances. The response payload for an app instance contains the `id` property, but an OIN-cataloged app payload doesn't.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

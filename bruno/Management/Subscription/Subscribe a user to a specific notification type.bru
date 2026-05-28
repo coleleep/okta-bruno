@@ -1,0 +1,29 @@
+meta {
+  name: Subscribe a user to a specific notification type
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/subscriptions/{{notificationType}}/subscribe
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Subscribes the current user to a specified notification type. Returns an `AccessDeniedException` message if requests are made for another user.
+
+**Responses:**
+- `200`: No Content
+- `403`: 
+- `404`: Not Found
+- `429`:
+
+**Path parameters:**
+- `{{userId}}`
+}

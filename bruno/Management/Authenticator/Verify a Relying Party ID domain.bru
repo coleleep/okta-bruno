@@ -1,0 +1,27 @@
+meta {
+  name: Verify a Relying Party ID domain
+  type: http
+  seq: 19
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authenticators/{{authenticatorId}}/methods/{{webAuthnMethodType}}/verify-rp-id-domain
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Verifies the [Relying Party identifier (RP ID)](https://www.w3.org/TR/webauthn/#relying-party-identifier) domain for the specified Passkey (FIDO2 WebAuthn) authenticator and the specific `webauthn` authenticator method
+
+**Responses:**
+- `204`: No Content
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

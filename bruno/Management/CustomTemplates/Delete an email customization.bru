@@ -1,0 +1,29 @@
+meta {
+  name: Delete an email customization
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/templates/email/{{templateName}}/customizations/{{customizationId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes an Email Customization by its unique identifier
+
+<x-lifecycle class="ea"></x-lifecycle> If Custom languages for Okta Email Templates is disabled, deletion of an existing additional language customization by ID doesn't register.
+
+**Responses:**
+- `204`: Successfully deleted the email customization.
+- `403`: 
+- `404`: 
+- `409`: Could not delete the email customization deleted because it is the default email customization.
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Delete the preview error page
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/error/preview
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+
+**Responses:**
+- `204`: Successfully deleted the preview error page.
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the ThreatInsight configuration
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/threats/configuration
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the ThreatInsight configuration for the org
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

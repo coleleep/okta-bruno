@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an identity source user
+  type: http
+  seq: 20
+}
+
+get {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/users/{{externalId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a user by external ID in an identity source for the given identity source instance
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

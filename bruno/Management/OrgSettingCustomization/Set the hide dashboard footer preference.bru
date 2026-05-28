@@ -1,0 +1,25 @@
+meta {
+  name: Set the hide dashboard footer preference
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/org/preferences/hideEndUserFooter
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Sets the preference to hide the Okta End-User Dashboard footer for all end users of your org
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

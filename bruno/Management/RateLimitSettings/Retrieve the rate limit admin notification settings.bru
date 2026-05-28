@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the rate limit admin notification settings
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/rate-limit-settings/admin-notifications
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the currently configured Rate Limit Admin Notification Settings
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

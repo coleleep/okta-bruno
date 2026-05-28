@@ -1,0 +1,41 @@
+meta {
+  name: Replace a policy rule
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/policies/{{policyId}}/rules/{{ruleId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2026-01-01T00:00:00Z",
+    "id": "",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "name": "",
+    "priority": 0,
+    "status": "ACTIVE",
+    "system": false,
+    "type": "RESOURCE_ACCESS"
+  }
+}
+
+docs {
+Replaces the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

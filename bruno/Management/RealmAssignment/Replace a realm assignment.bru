@@ -1,0 +1,41 @@
+meta {
+  name: Replace a realm assignment
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{orgUrl}}/api/v1/realm-assignments/{{assignmentId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "actions": {
+      "assignUserToRealm": ""
+    },
+    "conditions": {
+      "profileSourceId": ""
+    },
+    "name": "",
+    "priority": 0
+  }
+}
+
+docs {
+Replaces a realm assignment
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

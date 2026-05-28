@@ -1,0 +1,36 @@
+meta {
+  name: Send a test message from a custom telephony provider
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{orgUrl}}/api/v1/telephony-providers/{{customTelephonyProviderId}}/test
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "countryCodeIso2": "",
+    "factor": "SMS",
+    "phoneNumber": ""
+  }
+}
+
+docs {
+Sends a test message (SMS or call) using the specified custom telephony provider to verify that the provider is configured correctly.
+
+You must provide a valid phone number and country code to send the test message. Send it to a phone number that you have access to so you can confirm that the message was received.
+
+**Responses:**
+- `204`: No Content
+- `400`: 
+- `403`:
+}

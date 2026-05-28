@@ -1,0 +1,40 @@
+meta {
+  name: Update a feature
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/features/{{featureName}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "create": {
+      "lifecycleCreate": ""
+    },
+    "update": {
+      "lifecycleDeactivate": ""
+    }
+  }
+}
+
+docs {
+Updates a Feature object for an app
+> **Note:** This endpoint supports partial updates.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

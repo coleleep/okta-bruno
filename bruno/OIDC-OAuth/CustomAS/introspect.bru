@@ -1,0 +1,39 @@
+meta {
+  name: /introspect
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{authorizationServerId}}/v1/introspect
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  token: 
+  token_type_hint: access_token
+}
+
+docs {
+This endpoint takes an access token, ID token, refresh token, or device secret and returns a boolean that indicates whether it's active. If the token is active, additional data about the token is also returned. If the token is invalid, expired, or revoked, it's considered inactive.
+
+Ensure that you are using the `/introspect` endpoint of the same authorization server that you used to create the token.
+
+> **Note:** The `/introspect` endpoint requires client authentication. The method is configured per client app. See [Client authentication methods](/openapi/okta-oauth/guides/client-auth/). For public clients (such as single-page and mobile apps) that don't have a `client_secret`, you must include the `client_id` as a query parameter when calling the `/introspect` endpoint. Make sure that you aren't passing the Authorization header in the request.
+
+**Responses:**
+- `200`: Based on the type of token and whether it's active, the returned JSON contains a different set of information.
+- `400`: Bad Request
+- `401`: Unauthorized
+- `429`:
+}

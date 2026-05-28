@@ -1,0 +1,35 @@
+meta {
+  name: Send a PIN to user
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/webauthn-registration/api/v1/send-pin
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "authenticatorEnrollmentId": "",
+    "fulfillmentProvider": "yubico",
+    "userId": ""
+  }
+}
+
+docs {
+Sends the decoded PIN for the specified WebAuthn preregistration enrollment. PINs are sent to the user's email. To resend the PIN, call this operation again.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Activate an event hook
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/eventHooks/{{eventHookId}}/lifecycle/activate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Activates the event hook that matches the provided `id`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

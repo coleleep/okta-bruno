@@ -1,0 +1,27 @@
+meta {
+  name: Retrieve a Custom Authorization Server Public JSON Web Key
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/resourceservercredentials/keys/{{keyId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a custom authorization server public JSON web key by key `id`
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

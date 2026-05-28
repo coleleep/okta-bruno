@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the default error page
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/error/default
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the default error page. The default error page appears when no customized error page exists.
+
+**Responses:**
+- `200`: Successfully retrieved the default error page.
+- `403`: 
+- `404`: 
+- `429`:
+}

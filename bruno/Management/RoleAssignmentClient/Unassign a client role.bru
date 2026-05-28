@@ -1,0 +1,26 @@
+meta {
+  name: Unassign a client role
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/oauth2/v1/clients/{{clientId}}/roles/{{roleAssignmentId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unassigns a role assignment (identified by `roleAssignmentId`) from a client app (identified by `clientId`)
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

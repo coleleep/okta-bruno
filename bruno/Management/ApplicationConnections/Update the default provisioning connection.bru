@@ -1,0 +1,38 @@
+meta {
+  name: Update the default provisioning connection
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/connections/default
+  body: json
+  auth: none
+}
+
+params:query {
+  ~activate: 
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "profile": ""
+  }
+}
+
+docs {
+Updates the default provisioning connection for an app
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an API token's metadata
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/api-tokens/{{apiTokenId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the metadata for an active API token by `apiTokenId`
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

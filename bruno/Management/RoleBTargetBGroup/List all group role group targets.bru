@@ -1,0 +1,27 @@
+meta {
+  name: List all group role group targets
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}/roles/{{roleAssignmentId}}/targets/groups
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all group targets for a [`USER_ADMIN`](/openapi/okta-management/guides/roles/#standard-roles), `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to a group.
+If the role isn't scoped to specific group targets, Okta returns an empty array `[]`.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

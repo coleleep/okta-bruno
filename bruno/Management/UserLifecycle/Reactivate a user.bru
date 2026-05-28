@@ -1,0 +1,37 @@
+meta {
+  name: Reactivate a user
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{id}}/lifecycle/reactivate
+  body: none
+  auth: none
+}
+
+params:query {
+  ~sendEmail: False
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Reactivates a user.
+
+Perform this operation only on users with a `PROVISIONED` or `RECOVERY` [status](/openapi/okta-management/management/user/listusers#user/listusers/t=response&c=200&path=status).
+This operation restarts the activation workflow if for some reason the user activation wasn't completed when using the `activationToken` from [Activate User](/openapi/okta-management/management/userlifecycle/activateuser).
+
+Users that don't have a password must complete the flow by completing the [Reset password](/openapi/okta-management/management/usercred/resetpassword) flow and MFA enrollment steps to transition the user to `ACTIVE` status.
+
+If `sendEmail` is `false`, returns an activation link for the user to set up their account. The activation token can be used to create a custom activation link.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

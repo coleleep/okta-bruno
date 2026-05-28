@@ -1,0 +1,47 @@
+meta {
+  name: Upload a YubiKey OTP seed
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/org/factors/yubikey_token/tokens
+  body: json
+  auth: none
+}
+
+params:query {
+  ~after: 
+  ~expand: 
+  ~filter: 
+  ~forDownload: False
+  ~limit: 20
+  ~sortBy: 
+  ~sortOrder: 
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "serialNumber": "",
+    "publicId": "",
+    "privateId": "",
+    "aesKey": ""
+  }
+}
+
+docs {
+Uploads a seed for a user to enroll a YubiKey OTP
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

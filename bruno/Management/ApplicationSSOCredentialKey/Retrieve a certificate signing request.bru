@@ -1,0 +1,28 @@
+meta {
+  name: Retrieve a certificate signing request
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/credentials/csrs/{{csrId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a certificate signing request (CSR) for the app by `csrId`.
+
+Returns a Base64-encoded CSR in DER format if the `Accept` media type is `application/pkcs10` or a CSR object if the `Accept` media type is `application/json`.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

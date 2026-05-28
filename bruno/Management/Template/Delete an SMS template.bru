@@ -1,0 +1,26 @@
+meta {
+  name: Delete an SMS template
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/templates/sms/{{templateId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes an SMS template
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Delete a Cross App Access connection
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/cwo/connections/{{connectionId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a Cross App Access connection with the specified ID
+
+**Responses:**
+- `204`: No Content
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,48 @@
+meta {
+  name: Replace a policy
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/policies/{{policyId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "id": "",
+    "type": "OAUTH_AUTHORIZATION_POLICY",
+    "name": "",
+    "conditions": {
+      "clients": ""
+    },
+    "description": "",
+    "priority": 0,
+    "status": "ACTIVE",
+    "system": false,
+    "created": "2026-01-01T00:00:00Z",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "_links": {
+      "rules": ""
+    }
+  }
+}
+
+docs {
+Replaces a policy
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

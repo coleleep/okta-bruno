@@ -1,0 +1,46 @@
+meta {
+  name: Enroll a preregistered WebAuthn factor
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/webauthn-registration/api/v1/enroll
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "enrollmentRpIds": [
+      ""
+    ],
+    "fulfillmentProvider": "yubico",
+    "userId": "",
+    "yubicoTransportKeyJWK": {
+      "crv": "P-384",
+      "kid": "",
+      "kty": "EC",
+      "use": "enc",
+      "x": "",
+      "y": ""
+    }
+  }
+}
+
+docs {
+Enrolls a preregistered WebAuthn factor. This WebAuthn factor has a longer challenge timeout period to accommodate the fulfillment request process. As part of this operation, Okta generates elliptic curve (EC) key-pairs used to encrypt the factor PIN and enrollment data sent by the fulfillment provider.
+
+**Responses:**
+- `200`: Success
+- `400`: PIN or cred requests generation failed
+- `403`: 
+- `404`: 
+- `429`:
+}

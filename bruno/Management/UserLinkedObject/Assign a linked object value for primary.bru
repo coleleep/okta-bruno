@@ -1,0 +1,28 @@
+meta {
+  name: Assign a linked object value for primary
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{orgUrl}}/api/v1/users/{{userIdOrLogin}}/linkedObjects/{{primaryRelationshipName}}/{{primaryUserId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Assigns the first user as the `associated` and the second user as the `primary` for the specified relationship.
+
+If the first user is already associated with a different `primary` for this relationship, the previous link is removed. A linked object relationship can specify only one primary user for an associated user.
+
+**Responses:**
+- `204`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

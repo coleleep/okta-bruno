@@ -1,0 +1,33 @@
+meta {
+  name: List all realms
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/realms
+  body: none
+  auth: none
+}
+
+params:query {
+  ~limit: 200
+  ~search: 
+  ~sortBy: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all realms.
+
+> **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
+
+**Responses:**
+- `200`: OK
+- `403`: Forbidden
+- `429`:
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Delete a group
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a group of the `OKTA_GROUP` or `APP_GROUP` type from your org.
+> **Note:** You can't remove groups of type `APP_GROUP` if they are used in a group push mapping.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

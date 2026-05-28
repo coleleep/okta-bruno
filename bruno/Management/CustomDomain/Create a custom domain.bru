@@ -1,0 +1,34 @@
+meta {
+  name: Create a custom domain
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/domains
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "certificateSourceType": "MANUAL",
+    "domain": "login.example.com"
+  }
+}
+
+docs {
+Creates your custom domain
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

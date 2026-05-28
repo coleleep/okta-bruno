@@ -1,0 +1,25 @@
+meta {
+  name: List all API token metadata
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/api-tokens
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all the metadata of the active API tokens
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

@@ -1,0 +1,46 @@
+meta {
+  name: Create a linked object definition
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/meta/schemas/user/linkedObjects
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "associated": {
+      "name": "",
+      "title": "",
+      "type": ""
+    },
+    "primary": {
+      "name": "",
+      "title": "",
+      "type": ""
+    },
+    "_links": {
+      "self": ""
+    }
+  }
+}
+
+docs {
+Creates a Linked Object definition
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `409`: Conflict
+- `429`:
+}

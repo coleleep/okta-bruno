@@ -1,0 +1,38 @@
+meta {
+  name: Create a UI schema
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/meta/uischemas
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "uiSchema": {
+      "buttonLabel": "Submit",
+      "elements": [],
+      "label": "Sign in",
+      "type": ""
+    }
+  }
+}
+
+docs {
+Creates an input for an enrollment form
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

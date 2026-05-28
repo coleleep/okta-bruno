@@ -1,0 +1,28 @@
+meta {
+  name: List all assigned app links
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{id}}/appLinks
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all app links for all direct or indirect (through group membership) assigned apps
+
+> **Note:** To list all apps in an org, use the [List all applications endpoint in the Applications API](/openapi/okta-management/management/tags/application/other/listapplications).
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

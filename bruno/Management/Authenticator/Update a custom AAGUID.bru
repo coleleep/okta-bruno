@@ -1,0 +1,26 @@
+meta {
+  name: Update a custom AAGUID
+  type: http
+  seq: 10
+}
+
+patch {
+  url: {{orgUrl}}/api/v1/authenticators/{{authenticatorId}}/aaguids/{{aaguid}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Updates the properties of a custom AAGUID by the `authenticatorId` and `aaguid` ID
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

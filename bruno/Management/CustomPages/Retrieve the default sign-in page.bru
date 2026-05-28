@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the default sign-in page
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/sign-in/default
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the default sign-in page. The default sign-in page appears when no customized sign-in page exists.
+
+**Responses:**
+- `200`: Successfully retrieved the default sign-in page.
+- `403`: 
+- `404`: 
+- `429`:
+}

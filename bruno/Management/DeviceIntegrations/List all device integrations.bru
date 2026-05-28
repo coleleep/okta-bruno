@@ -1,0 +1,26 @@
+meta {
+  name: List all device integrations
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/device-integrations
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all device integrations for your org. Examples include Device Posture Provider, Windows Security Center, Chrome Device Trust, OSQuery, and Android Device Trust.
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `429`:
+}

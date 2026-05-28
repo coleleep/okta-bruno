@@ -1,0 +1,26 @@
+meta {
+  name: List all role resource set binding members
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}/bindings/{{roleIdOrLabel}}/members
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all members of a role resource set binding with pagination support
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

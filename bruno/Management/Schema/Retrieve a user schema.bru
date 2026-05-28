@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a user schema
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{orgUrl}}/api/v1/meta/schemas/user/{{schemaId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the schema for a user type
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

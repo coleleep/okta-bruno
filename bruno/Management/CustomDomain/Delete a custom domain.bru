@@ -1,0 +1,26 @@
+meta {
+  name: Delete a custom domain
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/domains/{{domainId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a custom domain by `domainId`
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

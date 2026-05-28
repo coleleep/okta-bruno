@@ -1,0 +1,36 @@
+meta {
+  name: List all policies
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/policies
+  body: none
+  auth: none
+}
+
+params:query {
+  type: 
+  ~status: 
+  ~q: 
+  ~expand: 
+  ~sortBy: 
+  ~limit: 
+  ~resourceId: 
+  ~after: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all policies with the specified type
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

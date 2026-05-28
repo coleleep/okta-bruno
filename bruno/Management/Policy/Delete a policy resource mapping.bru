@@ -1,0 +1,26 @@
+meta {
+  name: Delete a policy resource mapping
+  type: http
+  seq: 14
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/policies/{{policyId}}/mappings/{{mappingId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes the resource mapping for a policy identified by `policyId` and `mappingId`
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,33 @@
+meta {
+  name: Grant Okta Aerial access to your org
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/org/privacy/aerial/grant
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "accountId": ""
+  }
+}
+
+docs {
+Grants an Okta Aerial account consent to manage your org. If the org is a child org, consent is taken from the parent org. Grant calls directly to the child are not allowed.
+
+**Responses:**
+- `200`: Success
+- `400`: Can't complete request due to errors
+- `403`: 
+- `429`:
+}

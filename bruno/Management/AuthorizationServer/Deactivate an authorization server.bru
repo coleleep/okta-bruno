@@ -1,0 +1,26 @@
+meta {
+  name: Deactivate an authorization server
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates an authorization server
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: List all domains associated with a brand
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/domains
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all domains associated with a brand by `brandId`
+
+**Responses:**
+- `200`: Successfully returned the list of domains for the brand
+- `403`: 
+- `404`: 
+- `429`:
+}

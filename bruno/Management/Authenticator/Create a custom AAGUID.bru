@@ -1,0 +1,43 @@
+meta {
+  name: Create a custom AAGUID
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authenticators/{{authenticatorId}}/aaguids
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "aaguid": "",
+    "attestationRootCertificates": [
+      {
+        "x5c": ""
+      }
+    ],
+    "authenticatorCharacteristics": {
+      "fipsCompliant": false,
+      "hardwareProtected": false,
+      "platformAttached": false
+    }
+  }
+}
+
+docs {
+Creates a custom AAGUID for the Passkey (FIDO2 WebAuthn) authenticator
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

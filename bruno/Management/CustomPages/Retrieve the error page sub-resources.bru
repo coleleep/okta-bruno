@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the error page sub-resources
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/error
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the error page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+
+**Responses:**
+- `200`: Successfully retrieved the error page.
+- `403`: 
+- `404`: 
+- `429`:
+}

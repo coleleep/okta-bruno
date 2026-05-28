@@ -1,0 +1,26 @@
+meta {
+  name: Assign all apps as target to admin role
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles/{{roleAssignmentId}}/targets/catalog/apps
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Assigns all apps as target to an `APP_ADMIN` role
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

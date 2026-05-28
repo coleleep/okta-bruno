@@ -1,0 +1,30 @@
+meta {
+  name: Retrieve an application
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~expand: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves an application from your Okta organization by `id`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

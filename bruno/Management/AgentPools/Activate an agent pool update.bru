@@ -1,0 +1,26 @@
+meta {
+  name: Activate an agent pool update
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates/{{updateId}}/activate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Activates a scheduled agent pool update
+
+**Responses:**
+- `201`: Activated
+- `403`: 
+- `404`: 
+- `429`:
+}

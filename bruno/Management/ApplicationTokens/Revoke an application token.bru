@@ -1,0 +1,26 @@
+meta {
+  name: Revoke an application token
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/tokens/{{tokenId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Revokes the specified token for the specified app
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,25 @@
+meta {
+  name: List all authenticators
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authenticators
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all authenticators
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

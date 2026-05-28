@@ -1,0 +1,56 @@
+meta {
+  name: /par
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{orgUrl}}/oauth2/v1/par
+  body: json
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:json {
+  {
+    "client_id": "",
+    "code_challenge": "",
+    "code_challenge_method": "",
+    "display": "",
+    "idp": "",
+    "idp_scope": "",
+    "login_hint": "",
+    "max_age": 0,
+    "nonce": "",
+    "prompt": "",
+    "redirect_uri": "",
+    "request": "",
+    "response_mode": "",
+    "response_type": "",
+    "scope": "",
+    "sessionToken": "",
+    "state": ""
+  }
+}
+
+docs {
+The pushed authorization request endpoint (`/par`) promotes OAuth security by allowing the authorization server to authenticate the client before any user interaction happens. The increased confidence in the client's identity during the authorization process means the authorization server can refuse illegitimate requests much earlier in the process. This process prevents attempts to spoof clients or otherwise tamper with or misuse an authorization request and provides a simple way to make a confidential and integrity-protected request.
+
+The `/par` endpoint allows an OAuth 2.0 client to push the payload of an authorization request directly to the authorization server. The authorization server provides a request URI value in the response. The request URI is a reference to the authorization request payload data in a subsequent call to the `/authorize` endpoint through a user agent.
+
+**Responses:**
+- `200`: Success
+- `400`: Bad Request
+- `401`: Unauthorized
+- `403`: Forbidden
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an authorization server key
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/credentials/keys/{{keyId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves an Authorization Server Key specified by the `keyId`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

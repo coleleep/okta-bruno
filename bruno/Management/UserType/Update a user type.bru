@@ -1,0 +1,36 @@
+meta {
+  name: Update a user type
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/meta/types/user/{{typeId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "description": "",
+    "displayName": ""
+  }
+}
+
+docs {
+Updates an existing user type. This operation is a partial update.
+> **Note**: You can only update the `displayName` and `description` elements. The `name` of an existing user type can't be changed.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

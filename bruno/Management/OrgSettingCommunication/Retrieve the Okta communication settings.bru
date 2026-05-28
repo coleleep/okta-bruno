@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the Okta communication settings
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org/privacy/oktaCommunication
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves Okta Communication Settings of your org
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

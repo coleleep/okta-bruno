@@ -1,0 +1,26 @@
+meta {
+  name: Activate an application
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/lifecycle/activate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Activates an inactive application
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

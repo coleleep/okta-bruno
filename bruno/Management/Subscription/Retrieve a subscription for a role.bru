@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a subscription for a role
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/roles/{{roleRef}}/subscriptions/{{notificationType}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a subscription by `notificationType` for a specified Role
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: Not Found
+- `429`:
+}

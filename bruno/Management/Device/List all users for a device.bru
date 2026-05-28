@@ -1,0 +1,26 @@
+meta {
+  name: List all users for a device
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{orgUrl}}/api/v1/devices/{{deviceId}}/users
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all Users for a device by `deviceId`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

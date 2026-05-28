@@ -1,0 +1,41 @@
+meta {
+  name: /oob-authenticate
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{authorizationServerId}}/v1/oob-authenticate
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  challenge_hint: urn:okta:params:oauth:grant-type:oob
+  channel_hint: push
+  login_hint: 
+}
+
+docs {
+Initiates direct authentication with an out-of-band authenticator
+
+> **Note:** The `/oob-authenticate` endpoint requires client authentication. The method is configured per client app. See [Client authentication methods](/openapi/okta-oauth/guides/client-auth/).
+
+> **Note:** This endpoint is deprecated. Use [/primary-authenticate](/openapi/okta-oauth/oauth/orgas/primary-authenticate) instead.
+
+**Responses:**
+- `200`: Out-of-band authentication has successfully been initiated.
+- `400`: Bad Request
+- `401`: Unauthorized
+- `403`: Forbidden
+- `429`: Too Many Requests
+}

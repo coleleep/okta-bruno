@@ -1,0 +1,44 @@
+meta {
+  name: Update an SMS template
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/templates/sms/{{templateId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2026-01-01T00:00:00Z",
+    "id": "",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "name": "",
+    "template": "",
+    "translations": {},
+    "type": "SMS_VERIFY_CODE"
+  }
+}
+
+docs {
+Updates only some of the SMS Template properties:
+  * All properties within the custom SMS Template that have values are updated.
+  * Any translation that doesn't exist is added.
+  * Any translation with a null or empty value is removed.
+  * Any translation with non-empty/null value is updated.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,43 @@
+meta {
+  name: Replace a policy rule
+  type: http
+  seq: 18
+}
+
+put {
+  url: {{orgUrl}}/api/v1/policies/{{policyId}}/rules/{{ruleId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2026-01-01T00:00:00Z",
+    "id": "",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "name": "",
+    "priority": 0,
+    "system": false,
+    "type": "ACCESS_POLICY",
+    "_links": {
+      "activate": ""
+    }
+  }
+}
+
+docs {
+Replaces the properties for a policy rule identified by `policyId` and `ruleId`
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

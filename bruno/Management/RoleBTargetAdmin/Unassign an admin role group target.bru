@@ -1,0 +1,29 @@
+meta {
+  name: Unassign an admin role group target
+  type: http
+  seq: 9
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles/{{roleAssignmentId}}/targets/groups/{{groupId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unassigns a group target from a `USER_ADMIN`, `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to an admin user.
+
+> **Note:** You can't remove the last group target from a role assignment since this causes an exception.
+> If you need a role assignment that applies to all groups, delete the role assignment to the user and recreate a new one.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

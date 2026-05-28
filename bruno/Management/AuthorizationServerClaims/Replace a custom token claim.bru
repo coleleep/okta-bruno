@@ -1,0 +1,48 @@
+meta {
+  name: Replace a custom token claim
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/claims/{{claimId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "alwaysIncludeInToken": false,
+    "claimType": "IDENTITY",
+    "conditions": {
+      "scopes": []
+    },
+    "group_filter_type": "CONTAINS",
+    "id": "",
+    "name": "",
+    "status": "ACTIVE",
+    "system": false,
+    "value": "",
+    "valueType": "EXPRESSION",
+    "_links": {
+      "self": ""
+    }
+  }
+}
+
+docs {
+Replaces a custom token Claim specified by the `claimId`
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

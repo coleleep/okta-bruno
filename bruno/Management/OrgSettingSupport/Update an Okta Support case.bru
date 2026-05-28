@@ -1,0 +1,44 @@
+meta {
+  name: Update an Okta Support case
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{orgUrl}}/api/v1/org/privacy/oktaSupport/cases/{{caseNumber}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "caseNumber": "",
+    "impersonation": {
+      "status": "DISABLED",
+      "expiration": "2026-01-01T00:00:00Z"
+    },
+    "selfAssigned": {
+      "status": "APPROVED"
+    },
+    "subject": ""
+  }
+}
+
+docs {
+Updates access to the org for an Okta Support case:
+
+* You can enable, disable, or extend access to your org for an Okta Support case.
+
+* You can approve Okta Support access to your org for self-assigned cases. A self-assigned case is created and assigned by the same Okta Support user.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

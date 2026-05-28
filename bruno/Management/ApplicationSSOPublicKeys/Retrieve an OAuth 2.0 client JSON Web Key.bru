@@ -1,0 +1,27 @@
+meta {
+  name: Retrieve an OAuth 2.0 client JSON Web Key
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/credentials/jwks/{{keyId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves an OAuth 2.0 client JSON Web Key by `keyId`
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

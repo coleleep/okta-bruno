@@ -1,0 +1,25 @@
+meta {
+  name: List all resource sets
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/iam/resource-sets
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all resource sets with pagination support
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

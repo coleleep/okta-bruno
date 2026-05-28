@@ -1,0 +1,25 @@
+meta {
+  name: List all behavior detection rules
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/behaviors
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all behavior detection rules with pagination support
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

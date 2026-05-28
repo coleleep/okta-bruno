@@ -1,0 +1,27 @@
+meta {
+  name: List all the OAuth 2.0 client JSON Web Keys
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/credentials/jwks
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all JSON Web Keys for an OAuth 2.0 client app
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

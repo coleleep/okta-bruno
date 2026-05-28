@@ -1,0 +1,27 @@
+meta {
+  name: Assign an admin role group target
+  type: http
+  seq: 8
+}
+
+put {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles/{{roleAssignmentId}}/targets/groups/{{groupId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Assigns a group target for a `USER_ADMIN`, `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to an admin user.
+When you assign the first group target, you reduce the scope of the role assignment. The role no longer applies to all targets but applies only to the specified target.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

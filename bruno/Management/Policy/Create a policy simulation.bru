@@ -1,0 +1,36 @@
+meta {
+  name: Create a policy simulation
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/policies/simulate
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  [
+    {
+      "appInstance": ""
+    }
+  ]
+}
+
+docs {
+Creates a policy or policy rule simulation. The access simulation evaluates policy and policy rules based on the existing policy rule configuration.
+The evaluation result simulates what the real-world authentication flow is and what policy rules have been applied or matched to the authentication flow.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

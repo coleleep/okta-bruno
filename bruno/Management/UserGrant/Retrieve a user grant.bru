@@ -1,0 +1,30 @@
+meta {
+  name: Retrieve a user grant
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/grants/{{grantId}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~expand: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a grant for the specified user
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

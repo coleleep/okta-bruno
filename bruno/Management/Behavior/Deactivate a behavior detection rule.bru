@@ -1,0 +1,26 @@
+meta {
+  name: Deactivate a behavior detection rule
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/behaviors/{{behaviorId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates a behavior detection rule
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

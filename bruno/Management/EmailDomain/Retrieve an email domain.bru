@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an email domain
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/email-domains/{{emailDomainId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves an Email Domain by `emailDomainId`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

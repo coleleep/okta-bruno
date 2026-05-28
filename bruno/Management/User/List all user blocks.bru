@@ -1,0 +1,26 @@
+meta {
+  name: List all user blocks
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{id}}/blocks
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists information about how the user is blocked from accessing their account
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a role resource set binding member
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}/bindings/{{roleIdOrLabel}}/members/{{memberId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a member (identified by `memberId`) that belongs to a role resource set binding
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

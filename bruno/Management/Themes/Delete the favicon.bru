@@ -1,0 +1,26 @@
+meta {
+  name: Delete the favicon
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/themes/{{themeId}}/favicon
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a theme favicon. The theme will use the default Okta favicon.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

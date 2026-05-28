@@ -1,0 +1,33 @@
+meta {
+  name: List all user grants
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/grants
+  body: none
+  auth: none
+}
+
+params:query {
+  ~scopeId: 
+  ~expand: 
+  ~after: 
+  ~limit: 20
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all grants for the specified user
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

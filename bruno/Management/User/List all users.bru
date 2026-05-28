@@ -1,0 +1,41 @@
+meta {
+  name: List all users
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users
+  body: none
+  auth: none
+}
+
+params:query {
+  ~search: 
+  ~filter: 
+  ~q: 
+  ~limit: 200
+  ~sortBy: 
+  ~fields: 
+  ~expand: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists users in your org, with pagination in most cases.
+
+A subset of users can be returned that match a supported filter expression or search criteria. Different results are returned depending on specified queries in the request.
+
+> **Notes:**
+>  * This operation omits users that have a status of `DEPROVISIONED` in the response. To return all users, use a filter or search query instead.
+>  * The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
+
+**Responses:**
+- `200`: Success
+- `403`: Forbidden
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Revoke a certificate signing request
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/credentials/csrs/{{csrId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Revokes a certificate signing request and deletes the key pair from the app
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

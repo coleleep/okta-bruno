@@ -1,0 +1,26 @@
+meta {
+  name: List all API service integration instances
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/integrations/api/v1/api-services
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all API Service Integration instances with a pagination option
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `429`:
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Delete a realm
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/realms/{{realmId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a realm permanently. This operation can only be performed after disassociating other entities like users and identity providers from a realm.
+
+**Responses:**
+- `204`: No Content
+- `400`: Bad Request
+- `403`: Forbidden
+- `404`: Not Found
+- `429`:
+}

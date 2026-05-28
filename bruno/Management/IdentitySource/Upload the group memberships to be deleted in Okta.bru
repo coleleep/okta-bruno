@@ -1,0 +1,38 @@
+meta {
+  name: Upload the group memberships to be deleted in Okta
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}/bulk-group-memberships-delete
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "memberships": [
+      {
+        "groupExternalId": ""
+      }
+    ]
+  }
+}
+
+docs {
+Uploads the group memberships that need to be deleted in Okta from the identity source for the given session
+
+**Responses:**
+- `202`: Accepted
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

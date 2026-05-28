@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the user lockout settings
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/attack-protection/api/v1/user-lockout-settings
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the User Lockout Settings for an org
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

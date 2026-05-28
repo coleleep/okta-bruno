@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an identity source session
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves an identity source session for a given identity source ID and session ID
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,46 @@
+meta {
+  name: Replace an event hook
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/eventHooks/{{eventHookId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "channel": {
+      "config": "",
+      "type": "",
+      "version": ""
+    },
+    "events": {
+      "items": "",
+      "type": ""
+    },
+    "name": ""
+  }
+}
+
+docs {
+Replaces an event hook. Okta validates the new properties before replacing the existing values.
+Some event hook properties are immutable and can't be updated. Refer to the parameter description in the request body schema.
+
+>**Note:** Updating the `channel` property requires you to verify the hook again.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

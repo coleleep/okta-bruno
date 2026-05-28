@@ -1,0 +1,36 @@
+meta {
+  name: Replace the realm profile
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/realms/{{realmId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "profile": {
+      "name": ""
+    }
+  }
+}
+
+docs {
+Replaces the realm profile
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

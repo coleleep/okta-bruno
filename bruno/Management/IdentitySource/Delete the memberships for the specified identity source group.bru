@@ -1,0 +1,26 @@
+meta {
+  name: Delete the memberships for the specified identity source group
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/groups/{{groupOrExternalId}}/membership/{{memberExternalId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes group memberships for the specified identity source group using member external IDs
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

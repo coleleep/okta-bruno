@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a policy
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/policies/{{policyId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a policy
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

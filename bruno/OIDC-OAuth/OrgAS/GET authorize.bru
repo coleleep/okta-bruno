@@ -1,0 +1,48 @@
+meta {
+  name: /authorize
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/oauth2/v1/authorize
+  body: none
+  auth: none
+}
+
+params:query {
+  ~acr_values: 
+  client_id: 
+  ~code_challenge: 
+  ~code_challenge_method: 
+  ~display: 
+  ~enroll_amr_values: 
+  ~idp_scope: 
+  ~idp: 
+  ~interclient_token: 
+  ~login_hint: 
+  ~max_age: 
+  ~nonce: 
+  ~prompt: 
+  redirect_uri: 
+  response_type: 
+  ~response_mode: 
+  ~request_uri: 
+  ~request: 
+  scope: 
+  ~sessionToken: 
+  state: 
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+This is a starting point for browser-based OpenID Connect flows such as the implicit and authorization code flows. This request authenticates the user and returns tokens along with an authorization grant to the client app as a part of the callback response.
+
+> **Note:** Requests to the `/authorize` endpoint should redirect the browser (user agent) to the endpoint. You can't use AJAX with this endpoint. Example responses are intentionally omitted, but include displaying a sign-in prompt, redirecting to the client app, or displaying an error.
+
+**Responses:**
+- `429`:
+}

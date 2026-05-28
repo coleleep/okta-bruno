@@ -1,0 +1,26 @@
+meta {
+  name: Delete a WebAuthn preregistration factor
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{orgUrl}}/webauthn-registration/api/v1/users/{{userId}}/enrollments/{{authenticatorEnrollmentId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a specific WebAuthn preregistration factor for a user
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

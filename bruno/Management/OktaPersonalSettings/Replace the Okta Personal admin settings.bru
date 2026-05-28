@@ -1,0 +1,35 @@
+meta {
+  name: Replace the Okta Personal admin settings
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{orgUrl}}/okta-personal-settings/api/v1/edit-feature
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "enableEnduserEntryPoints": false,
+    "enableExportApps": false
+  }
+}
+
+docs {
+Replaces Okta Personal admin settings in a Workforce org
+
+**Responses:**
+- `204`: No Content
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

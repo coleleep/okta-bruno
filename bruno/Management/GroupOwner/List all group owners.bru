@@ -1,0 +1,32 @@
+meta {
+  name: List all group owners
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}/owners
+  body: none
+  auth: none
+}
+
+params:query {
+  ~search: 
+  ~after: 
+  ~limit: 1000
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all owners for a specific group
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

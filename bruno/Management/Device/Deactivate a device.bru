@@ -1,0 +1,30 @@
+meta {
+  name: Deactivate a device
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/api/v1/devices/{{deviceId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates a device by setting its status to `DEACTIVATED` by `deviceId`.
+Deactivation causes a device to lose all device user links. Set the device status to `DEACTIVATED` before deleting it.
+> **Note:** When deactivating a Device, keep in mind the following:
+  - Device deactivation is a destructive operation for device factors and client certificates. Device reenrollment using Okta Verify allows end users to set up new factors on the device.
+  - Device deletion removes the device record from Okta. Reenrollment creates a new device record.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

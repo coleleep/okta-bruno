@@ -1,0 +1,34 @@
+meta {
+  name: Update an agent pool update settings
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates/settings
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "agentType": "AD"
+  }
+}
+
+docs {
+Updates an agent pool update instance settings
+
+**Responses:**
+- `201`: Updated
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

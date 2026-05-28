@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a role resource set binding
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}/bindings/{{roleIdOrLabel}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the binding of a role (identified by `roleIdOrLabel`) for a resource set (identified by `resourceSetIdOrLabel`)
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

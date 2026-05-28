@@ -1,0 +1,44 @@
+meta {
+  name: Update recovery question
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/credentials/change_recovery_question
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "password": {
+      "value": "pa$$word"
+    },
+    "provider": {
+      "name": "OKTA"
+    },
+    "recovery_question": {
+      "answer": "se7en",
+      "question": "what is your favourite movie?"
+    }
+  }
+}
+
+docs {
+Updates a user's recovery question and answer credential by validating the user's current password.
+You can only perform this operation on users in `STAGED`, `ACTIVE`, or `RECOVERY` status that have a valid [password credential](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#tag/User/operation/createUser!path=credentials/password&t=request).
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

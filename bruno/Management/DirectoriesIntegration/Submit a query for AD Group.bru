@@ -1,0 +1,41 @@
+meta {
+  name: Submit a query for AD Group
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/directories/{{appInstanceId}}/groups/{{groupId}}/query
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "attributes": [
+      "distinguishedName",
+      "description",
+      "cn",
+      "whenCreated"
+    ]
+  }
+}
+
+docs {
+Submits a query search on the on-premises agent to asynchronously fetch specific Active Directory (AD) attributes for a group.
+Returns a `resultId` that is used to poll for the results.
+
+**Responses:**
+- `202`: Accepted. Query initiated.
+- `400`: Bad Request
+- `403`: 
+- `404`: 
+- `502`: 
+- `504`:
+}

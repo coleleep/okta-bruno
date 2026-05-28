@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a governance bundle
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/iam/governance/bundles/{{bundleId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a governance bundle for the Admin Console
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `429`:
+}

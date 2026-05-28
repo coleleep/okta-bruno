@@ -1,0 +1,37 @@
+meta {
+  name: Map a resource to a policy
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{orgUrl}}/api/v1/policies/{{policyId}}/mappings
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "resourceId": "",
+    "resourceType": "ACCESS_POLICY"
+  }
+}
+
+docs {
+Maps a resource to a policy identified by `policyId`
+
+> **Note:** Use the [Assign an app sign-in policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApplicationPolicies/#tag/ApplicationPolicies/operation/assignApplicationPolicy) endpoint to assign an app sign-in policy to an app.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the authenticator settings
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/attack-protection/api/v1/authenticator-settings
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the Authenticator Settings for an org
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

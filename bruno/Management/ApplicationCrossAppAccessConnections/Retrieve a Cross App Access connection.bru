@@ -1,0 +1,27 @@
+meta {
+  name: Retrieve a Cross App Access connection
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/cwo/connections/{{connectionId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the Cross App Access connection with the specified ID
+
+**Responses:**
+- `200`: Success
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

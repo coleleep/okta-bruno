@@ -1,0 +1,39 @@
+meta {
+  name: Create an email customization
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/templates/email/{{templateName}}/customizations
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "body": "",
+    "subject": "",
+    "language": ""
+  }
+}
+
+docs {
+Creates a new Email Customization
+
+<x-lifecycle class="ea"></x-lifecycle> If Custom languages for Okta Email Templates is enabled, you can create a customization for any BCP47 language in addition to the Okta-supported languages.
+
+**Responses:**
+- `201`: Successfully created the email customization.
+- `400`: 
+- `403`: 
+- `404`: 
+- `409`: Could not create the email customization because it conflicts with an existing email customization.
+- `429`:
+}

@@ -1,0 +1,33 @@
+meta {
+  name: Replace the authenticator settings
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{orgUrl}}/attack-protection/api/v1/authenticator-settings
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "verifyKnowledgeSecondWhen2faRequired": false
+  }
+}
+
+docs {
+Replaces the Authenticator Settings for an org
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: Forbidden
+- `429`:
+}

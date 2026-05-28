@@ -1,0 +1,39 @@
+meta {
+  name: /primary-authenticate
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{orgUrl}}/oauth2/{{authorizationServerId}}/v1/primary-authenticate
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  challenge_hint: urn:okta:params:oauth:grant-type:oob
+  channel_hint: push
+  login_hint: 
+}
+
+docs {
+Initiates direct authentication with an out-of-band authenticator
+
+> **Note:** The `/primary-authenticate` endpoint requires client authentication. The method is configured per client app. See [Client authentication methods](/openapi/okta-oauth/guides/client-auth/).
+
+**Responses:**
+- `200`: Out-of-band authentication has successfully been initiated.
+- `400`: Bad Request
+- `401`: Unauthorized
+- `403`: Forbidden
+- `429`: Too Many Requests
+}

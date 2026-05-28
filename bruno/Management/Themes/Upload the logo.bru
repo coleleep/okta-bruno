@@ -1,0 +1,31 @@
+meta {
+  name: Upload the logo
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/themes/{{themeId}}/logo
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:multipart-form {
+  # populate fields here
+}
+
+docs {
+Uploads and replaces the logo for the theme. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

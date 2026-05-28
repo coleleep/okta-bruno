@@ -1,0 +1,31 @@
+meta {
+  name: /authorize
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/oauth2/v1/authorize
+  body: formUrlEncoded
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:form-urlencoded {
+  client_id: 
+  redirect_uri: 
+  response_type: 
+  scope: 
+  state: 
+}
+
+docs {
+This is a starting point for browser-based OpenID Connect flows such as the implicit and authorization code flows. This endpoint method behaves the same as [`GET /oauth2/v1/authorize`](/openapi/okta-oauth/oauth/orgas/authorize), except that all parameters are specified in the request body and submitted through the form post. No query parameters are allowed.
+> **Note:** Requests to the `/authorize` endpoint should redirect the browser (user agent) to the endpoint. You can't use AJAX with this endpoint. Example responses are intentionally omitted, but include displaying a sign-in prompt, redirecting to the client app, or displaying an error.
+
+**Responses:**
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Create an auto-activated TAC authenticator enrollment
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/authenticator-enrollments/tac
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Creates an auto-activated Temporary access code (TAC) authenticator enrollment
+
+**Responses:**
+- `200`: 
+- `400`: 
+- `403`: 
+- `429`:
+}

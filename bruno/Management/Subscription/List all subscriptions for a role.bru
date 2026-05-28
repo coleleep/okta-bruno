@@ -1,0 +1,26 @@
+meta {
+  name: List all subscriptions for a role
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/roles/{{roleRef}}/subscriptions
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all subscriptions available to a specified Role
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: Not Found
+- `429`:
+}

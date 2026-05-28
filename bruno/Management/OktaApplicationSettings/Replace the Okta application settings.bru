@@ -1,0 +1,34 @@
+meta {
+  name: Replace the Okta application settings
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{orgUrl}}/api/v1/first-party-app-settings/{{appName}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "sessionIdleTimeoutMinutes": 15,
+    "sessionMaxLifetimeMinutes": 720
+  }
+}
+
+docs {
+Replaces the settings for an Okta app (also known as an Okta first-party app)
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: Forbidden
+- `429`:
+}

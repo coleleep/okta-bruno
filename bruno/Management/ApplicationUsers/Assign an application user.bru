@@ -1,0 +1,51 @@
+meta {
+  name: Assign an application user
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/users
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "externalId": "70c14cc17d3745e8a9f98d599a68329c",
+    "id": "00u11z6WHMYCGPCHCRFK",
+    "lastSync": "2014-06-24T15:27:59.000Z",
+    "passwordChanged": "2014-06-24T15:27:59.000Z",
+    "scope": "USER",
+    "statusChanged": "2014-06-24T15:28:14.000Z",
+    "_embedded": {}
+  }
+}
+
+docs {
+Assigns a user to an app for:
+
+  * SSO only<br>
+    Assignments to SSO apps typically don't include a user profile.
+    However, if your SSO app requires a profile but doesn't have provisioning enabled, you can add profile attributes in the request body.
+
+  * SSO and provisioning<br>
+    Assignments to SSO and provisioning apps typically include credentials and an app-specific profile.
+    Profile mappings defined for the app are applied first before applying any profile properties that are specified in the request body.
+    > **Notes:**
+    > * When Universal Directory is enabled, you can only specify profile properties that aren't defined in profile mappings.
+    > * Omit mapped properties during assignment to minimize assignment errors.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,38 @@
+meta {
+  name: Retrieve all Cross App Access connections
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/cwo/connections
+  body: none
+  auth: none
+}
+
+params:query {
+  ~after: 
+  ~limit: -1
+  ~status: 
+  ~requestingAppId: 
+  ~resourceAppId: 
+  ~activeAppsOnly: 
+  ~requestingAppName: 
+  ~resourceAppName: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves inbound and outbound Cross App Access connections associated with an app
+
+**Responses:**
+- `200`: Success
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

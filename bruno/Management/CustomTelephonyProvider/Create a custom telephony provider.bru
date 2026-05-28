@@ -1,0 +1,37 @@
+meta {
+  name: Create a custom telephony provider
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/telephony-providers
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "providerAuthToken": "",
+    "providerCapability": "ALL",
+    "providerName": "TWILIO",
+    "providerSettings": {
+      "call": ""
+    },
+    "providerSid": ""
+  }
+}
+
+docs {
+Creates a custom telephony provider with the provided credentials
+
+**Responses:**
+- `201`: Created
+- `403`:
+}

@@ -1,0 +1,40 @@
+meta {
+  name: Create a realm assignment
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/realm-assignments
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "actions": {
+      "assignUserToRealm": ""
+    },
+    "conditions": {
+      "profileSourceId": ""
+    },
+    "name": "",
+    "priority": 0
+  }
+}
+
+docs {
+Creates a new realm assignment
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `429`:
+}

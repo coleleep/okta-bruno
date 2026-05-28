@@ -1,0 +1,37 @@
+meta {
+  name: Replace a user type
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{orgUrl}}/api/v1/meta/types/user/{{typeId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "description": "",
+    "displayName": "",
+    "name": ""
+  }
+}
+
+docs {
+Replaces an existing user type. This operation is a full update.
+> **Note**: The `name` of an existing user type can't be changed, but must be part of the request body. You can only replace the `displayName` and `description` elements.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

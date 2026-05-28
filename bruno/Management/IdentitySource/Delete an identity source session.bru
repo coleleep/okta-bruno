@@ -1,0 +1,26 @@
+meta {
+  name: Delete an identity source session
+  type: http
+  seq: 11
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes an identity source session for a given identity source ID and session Id
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,36 @@
+meta {
+  name: Replace the customized well-known URI of the specific path
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/well-known-uris/{{path}}/customized
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "representation": {}
+  }
+}
+
+docs {
+Replaces the content of a customized well-known URI that you specify.
+
+There are endpoint-specific format requirements when you update the content of a customized well-known URI. See [Customize associated domains](https://developer.okta.com/docs/guides/custom-well-known-uri/main/).
+
+**Responses:**
+- `200`: Successfully updated the well-known URI of the specified path
+- `400`: Bad Request
+- `403`: 
+- `404`: 
+- `429`:
+}

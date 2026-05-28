@@ -1,0 +1,37 @@
+meta {
+  name: Link a user to IdP
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/idps/{{idpId}}/users/{{userId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "externalId": "121749775026145"
+  }
+}
+
+docs {
+Links an Okta user to an existing SAML or social identity provider (IdP).
+
+The SAML IdP must have `honorPersistentNameId` set to `true` to use this API.
+The [Name Identifier Format](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProvider/#tag/IdentityProvider/operation/replaceIdentityProvider!path=protocol/0/settings&t=request) of the incoming assertion must be `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

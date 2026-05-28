@@ -1,0 +1,26 @@
+meta {
+  name: List all custom token claims
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/claims
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all custom token Claims defined for a specified custom authorization server
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

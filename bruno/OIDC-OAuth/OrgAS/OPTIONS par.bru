@@ -1,0 +1,30 @@
+meta {
+  name: /par
+  type: http
+  seq: 12
+}
+
+options {
+  url: {{orgUrl}}/oauth2/v1/par
+  body: none
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+docs {
+Use this operation to request the permitted communication options for the `/par` operation.
+
+> **Note:** CORS is enforced on a per-client basis. This endpoint always returns CORS headers with the current origin.
+
+**Responses:**
+- `204`: Success
+- `429`:
+}

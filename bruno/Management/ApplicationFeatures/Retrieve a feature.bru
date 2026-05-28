@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a feature
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/features/{{featureName}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a Feature object for an app
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

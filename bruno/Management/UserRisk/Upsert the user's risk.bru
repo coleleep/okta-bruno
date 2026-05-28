@@ -1,0 +1,35 @@
+meta {
+  name: Upsert the user's risk
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/risk
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "riskLevel": "HIGH"
+  }
+}
+
+docs {
+Upserts (creates or updates) the user risk object for a user ID. You can optionally provide a `riskReason` to describe why the risk level is being changed. If `riskReason` isn't provided, the reason defaults to `override.by.admin`.
+
+**Responses:**
+- `200`: Updated the user's risk
+- `201`: Created the user's risk
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,25 @@
+meta {
+  name: List all custom telephony providers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/telephony-providers
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all custom telephony providers that are configured in your org
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`:
+}

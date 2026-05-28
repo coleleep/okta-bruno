@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve all the well-known URIs
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/well-known-uris
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the content from each of the well-known URIs for a specified brand
+
+**Responses:**
+- `200`: Successfully retrieved all the well-known URIs
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,36 @@
+meta {
+  name: Upload the group external IDs to be deleted in Okta
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}/bulk-groups-delete
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "externalIds": [
+      ""
+    ]
+  }
+}
+
+docs {
+Uploads external IDs of groups that need to be deleted in Okta from the identity source for the given session
+
+**Responses:**
+- `202`: Accepted
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

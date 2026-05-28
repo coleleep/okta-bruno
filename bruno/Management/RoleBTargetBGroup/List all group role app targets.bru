@@ -1,0 +1,26 @@
+meta {
+  name: List all group role app targets
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}/roles/{{roleAssignmentId}}/targets/catalog/apps
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all app targets for an `APP_ADMIN` role assignment to a group. The response includes a list of OIN-cataloged apps or app instances. The response payload for an app instance contains the `id` property, but an OIN-cataloged app doesn't.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

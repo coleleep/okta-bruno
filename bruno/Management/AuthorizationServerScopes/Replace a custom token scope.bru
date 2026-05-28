@@ -1,0 +1,34 @@
+meta {
+  name: Replace a custom token scope
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/scopes/{{scopeId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "name": ""
+  }
+}
+
+docs {
+Replaces a custom token scope
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

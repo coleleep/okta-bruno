@@ -1,0 +1,26 @@
+meta {
+  name: Deactivate an agent pool update
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates/{{updateId}}/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates scheduled agent pool update
+
+**Responses:**
+- `201`: Deactivated
+- `403`: 
+- `404`: 
+- `429`:
+}

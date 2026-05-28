@@ -1,0 +1,40 @@
+meta {
+  name: Create a Cross App Access connection
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/cwo/connections
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2024-10-15T10:30:00.000Z",
+    "id": "cwofxqCAJWWGELFTYASJ",
+    "lastUpdated": "2024-10-15T14:20:00.000Z",
+    "requestingAppInstanceId": "0oafxqCAJWWGELFTYASJ",
+    "resourceAppInstanceId": "0oafxqCBJWWGELFTYASK",
+    "status": "ACTIVE"
+  }
+}
+
+docs {
+Creates a Cross App Access connection
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

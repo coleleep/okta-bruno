@@ -1,0 +1,28 @@
+meta {
+  name: List all tokens from OIDC IdP
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{orgUrl}}/api/v1/idps/{{idpId}}/users/{{userId}}/credentials/tokens
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists the tokens minted by the social authentication provider when the user authenticates with Okta via Social Auth.
+
+Okta doesn't import all the user information from a social provider. If the app needs information that isn't imported, it can get the user token from this endpoint. Then the app can make an API call to the social provider with the token to request the additional information.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

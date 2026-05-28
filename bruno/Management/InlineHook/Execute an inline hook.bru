@@ -1,0 +1,42 @@
+meta {
+  name: Execute an inline hook
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/inlineHooks/{{inlineHookId}}/execute
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "cloudEventVersion": "",
+    "data": ""
+  }
+}
+
+docs {
+Executes the inline hook that matches the provided `inlineHookId` by using the request body as the input. This inline hook sends the provided
+data through the `channel` object and returns a response if it matches the correct data contract. Otherwise it returns an error. You need to
+construct a JSON payload that matches the payloads that Okta would send to your external service for this inline hook type.
+
+A timeout of three seconds is enforced on all outbound requests, with one retry in the event of a timeout or an error response from the remote system.
+If a successful response isn't received after the request, a 400 error is returned with more information about what failed.
+
+>**Note:** This execution endpoint isn't tied to any other functionality in Okta, and you should only use it for testing purposes.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

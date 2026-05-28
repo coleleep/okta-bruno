@@ -1,0 +1,57 @@
+meta {
+  name: Update an agent pool update by ID
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates/{{updateId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "agents": [
+      {
+        "id": ""
+      }
+    ],
+    "agentType": "AD",
+    "enabled": false,
+    "id": "",
+    "name": "region1A.dc",
+    "notifyAdmin": false,
+    "reason": "Update failed.",
+    "schedule": {
+      "cron": "0 8 ? * 6#3",
+      "delay": 0,
+      "duration": 120,
+      "lastUpdated": "2026-01-01T00:00:00Z",
+      "timezone": "America/New_York"
+    },
+    "sortOrder": 0,
+    "status": "Cancelled",
+    "targetVersion": "3.20.0",
+    "_links": {
+      "self": ""
+    }
+  }
+}
+
+docs {
+Updates an agent pool update instance and returns the latest agent pool update
+
+**Responses:**
+- `201`: Updated
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

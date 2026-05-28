@@ -1,0 +1,26 @@
+meta {
+  name: Revoke a certificate signing request
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/idps/{{idpId}}/credentials/csrs/{{idpCsrId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Revokes a certificate signing request (CSR) and deletes the key pair from the identity provider (IdP)
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a device integration
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/device-integrations/{{deviceIntegrationId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a device integration by `deviceIntegrationId`
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `429`:
+}

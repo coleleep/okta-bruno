@@ -1,0 +1,27 @@
+meta {
+  name: List all configured federated claims
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/federated-claims
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all federated claims for your app
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

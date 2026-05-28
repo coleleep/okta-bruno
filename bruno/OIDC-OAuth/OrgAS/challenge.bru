@@ -1,0 +1,37 @@
+meta {
+  name: /challenge
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/oauth2/v1/challenge
+  body: formUrlEncoded
+  auth: basic
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:basic {
+  username: {{oauthClientId}}
+  password: {{oauthClientSecret}}
+}
+
+body:form-urlencoded {
+  mfa_token: 
+}
+
+docs {
+Initiates the challenge of subsequent factor(s) in a direct authentication flow after the token endpoint has responded with `mfa_required`. This endpoint is optional if the client is able to proceed without it, for example, when the client knows it needs to follow up with an OTP and can prompt the end user for one.
+
+> **Note:** The `/challenge` endpoint requires client authentication. The method is configured per client app. See [Client authentication methods](/openapi/okta-oauth/guides/client-auth/).
+
+**Responses:**
+- `200`: The next factor type to challenge is returned and in the case of out-of-band factors, any information needed for the out-of-band transaction.
+- `400`: Bad Request
+- `401`: Unauthorized
+- `403`: Forbidden
+- `429`: Too Many Requests
+}

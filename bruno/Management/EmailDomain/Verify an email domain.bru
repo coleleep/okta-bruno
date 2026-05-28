@@ -1,0 +1,27 @@
+meta {
+  name: Verify an email domain
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/email-domains/{{emailDomainId}}/verify
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Verifies an Email Domain by `emailDomainId`
+
+**Responses:**
+- `200`: Success
+- `400`: Email domain could not be verified by mail provider
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an identity source group
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/groups/{{groupOrExternalId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a group from an identity source for a given identity source ID and group ID or external ID
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

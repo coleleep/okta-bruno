@@ -1,0 +1,26 @@
+meta {
+  name: Deactivate the default provisioning connection
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/connections/default/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates the default provisioning connection for an app
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

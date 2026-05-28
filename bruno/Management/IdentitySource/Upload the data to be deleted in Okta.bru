@@ -1,0 +1,39 @@
+meta {
+  name: Upload the data to be deleted in Okta
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}/bulk-delete
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "entityType": "USERS",
+    "profiles": [
+      {
+        "externalId": ""
+      }
+    ]
+  }
+}
+
+docs {
+Uploads external IDs of entities that need to be deleted in Okta from the identity source for the given session
+
+**Responses:**
+- `202`: Accepted
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

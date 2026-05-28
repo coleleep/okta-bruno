@@ -1,0 +1,34 @@
+meta {
+  name: Create an allowed app mapping for a target app
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/interclient-allowed-apps
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "id": "0oa1elyw9EAkUNUrW0g5"
+  }
+}
+
+docs {
+Creates a mapping between the target app and an allowed app for interclient SSO using the interclient token
+
+**Responses:**
+- `201`: Created
+- `400`: Bad Request
+- `401`: 
+- `403`: 
+- `429`:
+}

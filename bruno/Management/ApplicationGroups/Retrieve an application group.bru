@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an application group
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/groups/{{groupId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves an app group assignment
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

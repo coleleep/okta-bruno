@@ -1,0 +1,30 @@
+meta {
+  name: Assign an admin role app target
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles/{{roleAssignmentId}}/targets/catalog/apps/{{appName}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Assigns an OIN app target for an `APP_ADMIN` role assignment to an admin user. When you assign the first app target, you reduce the scope of the role assignment.
+The role no longer applies to all app targets, but applies only to the specified target.
+
+Assigning an OIN app target overrides any existing app instance targets of the OIN app.
+For example, if a user was assigned to administer a specific Facebook instance, a successful request to add an OIN app target with `facebook` for `appName` makes that user the admin for all Facebook instances.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

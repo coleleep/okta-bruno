@@ -1,0 +1,30 @@
+meta {
+  name: Delete a group rule
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/groups/rules/{{groupRuleId}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~removeUsers: False
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a specific group rule by `groupRuleId`
+
+**Responses:**
+- `202`: Accepted
+- `403`: 
+- `404`: 
+- `429`:
+}

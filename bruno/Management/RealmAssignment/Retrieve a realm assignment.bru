@@ -1,0 +1,27 @@
+meta {
+  name: Retrieve a realm assignment
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{orgUrl}}/api/v1/realm-assignments/{{assignmentId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a realm assignment
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

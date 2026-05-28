@@ -1,0 +1,27 @@
+meta {
+  name: Retrieve a realm
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/realms/{{realmId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a realm
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

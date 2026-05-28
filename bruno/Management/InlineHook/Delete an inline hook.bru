@@ -1,0 +1,26 @@
+meta {
+  name: Delete an inline hook
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/inlineHooks/{{inlineHookId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes an inline hook by `inlineHookId`. After it's deleted, the inline hook is unrecoverable. As a safety precaution, only inline hooks with a status of `INACTIVE` are eligible for deletion.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,31 @@
+meta {
+  name: Retrieve a key by ID
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{orgUrl}}/api/v1/hook-keys/{{id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the public portion of the Key object using the `id` parameter
+
+>**Note:** The `?expand=publickey` query parameter optionally returns the full object including the details of the public key in the response body's `_embedded` property.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+
+**Path parameters:**
+- `{{id}}` — A valid key ID
+}

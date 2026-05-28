@@ -1,0 +1,30 @@
+meta {
+  name: Publish a certificate signing request
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/api/v1/idps/{{idpId}}/credentials/csrs/{{idpCsrId}}/lifecycle/publish
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Publishes the certificate signing request (CSR) with a signed X.509 certificate and adds it into the signing key credentials for the identity provider (IdP)
+> **Notes:**
+> * Publishing a certificate completes the lifecycle of the CSR, and it's no longer accessible.
+> * If the validity period of the certificate is less than 90 days, a 400 error response is returned.
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

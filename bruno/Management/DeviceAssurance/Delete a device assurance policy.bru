@@ -1,0 +1,27 @@
+meta {
+  name: Delete a device assurance policy
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/device-assurances/{{deviceAssuranceId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a device assurance policy by `deviceAssuranceId`. If the device assurance policy is currently being used in the org Authentication Policies, the delete will not be allowed.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `409`: Conflict
+- `429`:
+}

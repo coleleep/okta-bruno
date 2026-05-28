@@ -1,0 +1,26 @@
+meta {
+  name: Unassign an application group
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/groups/{{groupId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unassigns a Group from an app
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

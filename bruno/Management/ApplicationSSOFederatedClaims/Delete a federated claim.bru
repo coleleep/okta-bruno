@@ -1,0 +1,27 @@
+meta {
+  name: Delete a federated claim
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/federated-claims/{{claimId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a federated claim by `claimId`
+
+**Responses:**
+- `204`: No Content
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

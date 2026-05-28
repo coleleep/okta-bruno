@@ -1,0 +1,33 @@
+meta {
+  name: Replace the rate limit admin notification settings
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{orgUrl}}/api/v1/rate-limit-settings/admin-notifications
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "notificationsEnabled": false
+  }
+}
+
+docs {
+Replaces the Rate Limit Admin Notification Settings and returns the configured properties
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

@@ -1,0 +1,39 @@
+meta {
+  name: Replace a governance bundle
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/iam/governance/bundles/{{bundleId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "description": "",
+    "entitlements": [
+      {
+        "resourceSets": ""
+      }
+    ],
+    "name": ""
+  }
+}
+
+docs {
+Replaces the properties of a governance bundle for the Admin Console
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

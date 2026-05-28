@@ -1,0 +1,28 @@
+meta {
+  name: Suspend a Device
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/devices/{{deviceId}}/lifecycle/suspend
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Suspends a device by setting its status to `SUSPENDED`.
+Use suspended devices to create and delete device user links. You can only unsuspend or deactivate suspended devices.
+> **Note:** `SUSPENDED` status is meant to be temporary, so it isn't destructive.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

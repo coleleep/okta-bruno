@@ -1,0 +1,33 @@
+meta {
+  name: Execute a realm assignment
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/realm-assignments/operations
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "assignmentId": ""
+  }
+}
+
+docs {
+Executes a realm assignment
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `429`:
+}

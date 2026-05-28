@@ -1,0 +1,25 @@
+meta {
+  name: List all keys
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/hook-keys
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all keys
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

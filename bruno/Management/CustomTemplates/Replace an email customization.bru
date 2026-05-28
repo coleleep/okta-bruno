@@ -1,0 +1,39 @@
+meta {
+  name: Replace an email customization
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/templates/email/{{templateName}}/customizations/{{customizationId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "body": "",
+    "subject": "",
+    "language": ""
+  }
+}
+
+docs {
+Replaces an email customization using property values
+
+<x-lifecycle class="ea"></x-lifecycle> If Custom languages for Okta Email Templates is disabled, requests to update a customization for an additional language return a `404 Not Found` error response.
+
+**Responses:**
+- `200`: Successfully updated the email customization.
+- `400`: 
+- `403`: 
+- `404`: 
+- `409`: Could not update the email customization because the update would cause a conflict with an existing email customization.
+- `429`:
+}

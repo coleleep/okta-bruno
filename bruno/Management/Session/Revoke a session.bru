@@ -1,0 +1,26 @@
+meta {
+  name: Revoke a session
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/sessions/{{sessionId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Revokes the specified session
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

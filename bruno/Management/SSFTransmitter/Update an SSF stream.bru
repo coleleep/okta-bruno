@@ -1,0 +1,44 @@
+meta {
+  name: Update an SSF stream
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{orgUrl}}/api/v1/ssf/stream
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "delivery": {
+      "endpoint_url": "https://example.com/",
+      "method": "https://schemas.openid.net/secevent/risc/delivery-method/push"
+    },
+    "events_requested": [
+      "https://schemas.openid.net/secevent/caep/event-type/session-revoked",
+      "https://schemas.openid.net/secevent/caep/event-type/credential-change"
+    ]
+  }
+}
+
+docs {
+Updates properties for an existing SSF stream configuration.
+
+If the `stream_id` isn't provided in the request body, the associated stream with the client ID (through the request OAuth 2.0 access token) is updated.
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

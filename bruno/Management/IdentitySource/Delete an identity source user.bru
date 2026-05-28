@@ -1,0 +1,26 @@
+meta {
+  name: Delete an identity source user
+  type: http
+  seq: 23
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/users/{{externalId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a user in an identity source for the given identity source instance and external ID
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

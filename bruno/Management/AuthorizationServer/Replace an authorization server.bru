@@ -1,0 +1,55 @@
+meta {
+  name: Replace an authorization server
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "accessTokenEncryptedResponseAlgorithm": "RSA-OAEP-256",
+    "audiences": [
+      ""
+    ],
+    "created": "2026-01-01T00:00:00Z",
+    "credentials": {
+      "signing": ""
+    },
+    "description": "",
+    "id": "",
+    "issuer": "",
+    "issuerMode": "",
+    "jwks": {
+      "keys": []
+    },
+    "jwks_uri": "",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "name": "",
+    "status": "ACTIVE",
+    "_links": {
+      "claims": ""
+    }
+  }
+}
+
+docs {
+Replaces an authorization server
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

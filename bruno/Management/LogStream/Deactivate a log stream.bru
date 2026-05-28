@@ -1,0 +1,26 @@
+meta {
+  name: Deactivate a log stream
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/logStreams/{{logStreamId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates a log stream by `logStreamId`
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

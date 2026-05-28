@@ -1,0 +1,26 @@
+meta {
+  name: Delete a role resource set binding
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}/bindings/{{roleIdOrLabel}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a binding of a role (identified by `roleIdOrLabel`) and a resource set (identified by `resourceSetIdOrLabel`)
+
+**Responses:**
+- `204`: No Content
+- `403`: Forbidden
+- `404`: 
+- `429`:
+}

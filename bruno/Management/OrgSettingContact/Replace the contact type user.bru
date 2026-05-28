@@ -1,0 +1,37 @@
+meta {
+  name: Replace the contact type user
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{orgUrl}}/api/v1/org/contacts/{{contactType}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "userId": "",
+    "_links": {
+      "user": ""
+    }
+  }
+}
+
+docs {
+Replaces the user associated with the specified contact type
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

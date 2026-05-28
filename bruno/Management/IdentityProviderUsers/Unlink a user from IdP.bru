@@ -1,0 +1,26 @@
+meta {
+  name: Unlink a user from IdP
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/idps/{{idpId}}/users/{{userId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unlinks the Okta user and the identity provider (IdP) user. The next time the user federates into Okta through this IdP, they have to re-link their account according to the account link policy.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

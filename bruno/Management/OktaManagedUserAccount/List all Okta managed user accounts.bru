@@ -1,0 +1,28 @@
+meta {
+  name: List all Okta managed user accounts
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/privileged-access/api/v1/okta-service-accounts
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all Okta managed user accounts in your org.
+
+Use the `match` parameter to search for accounts where the account name (`name`) or username (`username`) contains the specified value.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

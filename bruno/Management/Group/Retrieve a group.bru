@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a group
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a specific group by `id` from your org
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

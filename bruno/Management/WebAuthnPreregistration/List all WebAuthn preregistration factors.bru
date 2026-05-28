@@ -1,0 +1,26 @@
+meta {
+  name: List all WebAuthn preregistration factors
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{orgUrl}}/webauthn-registration/api/v1/users/{{userId}}/enrollments
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all WebAuthn preregistration factors for the specified user
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

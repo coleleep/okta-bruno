@@ -1,0 +1,35 @@
+meta {
+  name: List all inline hooks
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/inlineHooks
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all inline hooks or all inline hooks of a specific type.
+
+When listing a specific inline hook, you need to specify its type. The following types are currently supported:
+  | Type Value                         | Name                                                           |
+  |------------------------------------|----------------------------------------------------------------|
+  | `com.okta.import.transform`        | [User import inline hook](/openapi/okta-management/management/management/inlinehook/createuserimportinlinehook)       |
+  | `com.okta.oauth2.tokens.transform` | [Token inline hook](/openapi/okta-management/management/management/inlinehook/createtokeninlinehook)               |
+  | `com.okta.saml.tokens.transform`   | [SAML assertion inline hook](/openapi/okta-management/management/management/inlinehook/createsamlassertioninlinehook)       |
+  | `com.okta.telephony.provider`      | [Telephony inline hook](/openapi/okta-management/management/management/inlinehook/createtelephonyinlinehook) |
+  | `com.okta.user.credential.password.import` | [Password import inline hook](openapi/okta-management/management/management/inlinehook/createpasswordimportinlinehook)|
+  | `com.okta.user.pre-registration`   | [Registration inline hook](/openapi/okta-management/management/management/inlinehook/create-registration-hook) |
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

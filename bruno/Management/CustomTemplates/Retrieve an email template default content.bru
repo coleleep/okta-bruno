@@ -1,0 +1,30 @@
+meta {
+  name: Retrieve an email template default content
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/templates/email/{{templateName}}/default-content
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves an email template's default content
+
+<x-lifecycle class="ea"></x-lifecycle> Defaults to the current user's language given the following:
+- Custom languages for Okta Email Templates is enabled
+- An additional language is specified for the `language` parameter
+
+**Responses:**
+- `200`: Successfully retrieved the email template's default content.
+- `403`: 
+- `404`: 
+- `429`:
+}

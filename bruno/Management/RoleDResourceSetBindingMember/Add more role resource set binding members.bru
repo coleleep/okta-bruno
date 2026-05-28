@@ -1,0 +1,36 @@
+meta {
+  name: Add more role resource set binding members
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}/bindings/{{roleIdOrLabel}}/members
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "additions": [
+      "https://{yourOktaDomain}/api/v1/groups/{groupId}"
+    ]
+  }
+}
+
+docs {
+Adds more members to a role resource set binding
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: Forbidden
+- `404`: 
+- `429`:
+}

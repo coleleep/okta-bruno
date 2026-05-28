@@ -1,0 +1,26 @@
+meta {
+  name: Delete the customized error page
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/error/customized
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes the customized error page. As a result, the default error page appears in your live environment.
+
+**Responses:**
+- `204`: Successfully deleted the customized error page.
+- `403`: 
+- `404`: 
+- `429`:
+}

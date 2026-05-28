@@ -1,0 +1,26 @@
+meta {
+  name: Deactivate an IdP
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/idps/{{idpId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates an active identity provider (IdP)
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

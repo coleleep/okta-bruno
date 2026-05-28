@@ -1,0 +1,34 @@
+meta {
+  name: Create a behavior detection rule
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/behaviors
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "name": "",
+    "type": "ANOMALOUS_DEVICE"
+  }
+}
+
+docs {
+Creates a new behavior detection rule
+
+**Responses:**
+- `200`: Created
+- `400`: Bad Request
+- `403`: 
+- `429`:
+}

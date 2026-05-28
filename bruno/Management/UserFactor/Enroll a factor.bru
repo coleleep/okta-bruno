@@ -1,0 +1,77 @@
+meta {
+  name: Enroll a factor
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/factors
+  body: json
+  auth: none
+}
+
+params:query {
+  ~updatePhone: False
+  ~templateId: 
+  ~tokenLifetimeSeconds: 300
+  ~activate: False
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2022-08-25T00:31:00.000Z",
+    "factorType": "call",
+    "id": "caf8m6jbcvUH8mAep1d7",
+    "lastUpdated": "2022-08-25T00:31:00.000Z",
+    "profile": {},
+    "provider": "",
+    "status": "ACTIVE",
+    "vendorName": "OKTA",
+    "_embedded": {}
+  }
+}
+
+docs {
+Enrolls a supported factor for the specified user
+
+> **Notes:**
+>   * All responses return the enrolled factor with a status of either `PENDING_ACTIVATION` or `ACTIVE`.
+>   * You can't use the Factors API to enroll Okta FastPass (`signed_nonce`) for a user. See [Configure Okta FastPass](https://help.okta.com/okta_help.htm?type=oie&id=ext-fp-configure).
+
+#### Additional SMS/Call factor information
+
+* **Rate limits**: Okta may return a `429 Too Many Requests` status code if you attempt to resend an SMS or a voice call challenge (OTP) within the same time window. The current [rate limit](https://developer.okta.com/docs/reference/rate-limits/) is one SMS/CALL challenge per phone number every 30 seconds.
+
+* **Existing phone numbers**: Okta may return a `400 Bad Request` status code if a user attempts to enroll with a different phone number when the user has an existing mobile phone or has an existing phone with voice call capability. A user can enroll only one mobile phone for `sms` and enroll only one voice call capable phone for `call` factor.
+
+#### Additional WebAuthn factor information
+
+* For detailed information on the WebAuthn standard, including an up-to-date list of supported browsers, see [webauthn.me](https://a0.to/webauthnme-okta-docs).
+
+* When you enroll a WebAuthn factor, the `activation` object in `_embedded` contains properties used to help the client to create a new WebAuthn credential for use with Okta. See the [WebAuthn spec for PublicKeyCredentialCreationOptions](https://www.w3.org/TR/webauthn/#dictionary-makecredentialoptions).
+
+* As of the `2026.04.0` release, the FIDO2 (WebAuthn) authenticator is now called Passkey (FIDO2 WebAuthn) and there are new settings and updates to the authenticator page layout. There have been no changes to any existing parameter names, values, or endpoint paths. For example, the `factorType` for the Passkey (FIDO2 WebAuthn) authenticator is still `webauthn`. See [Passkeys and WebAuthn](https://developer.okta.com/docs/guides/authenticators-web-authn/aspnet/main/#passkeys-and-webauthn).
+
+
+#### Additional Custom TOTP factor information
+
+* The enrollment process involves passing both the `factorProfileId` and `sharedSecret` properties for a token.
+
+* A factor profile represents a particular configuration of the Custom TOTP factor. It includes certain properties that match the hardware token that end users possess, such as the HMAC algorithm, passcode length, and time interval. There can be multiple Custom TOTP factor profiles per org, but users can only enroll in one Custom TOTP factor. Admins can [create Custom TOTP factor profiles](https://help.okta.com/okta_help.htm?id=ext-mfa-totp) in the Admin Console. Then, copy the `factorProfileId` from the Admin Console into the API request.
+
+* <x-lifecycle class="oie"></x-lifecycle>
+For Custom TOTP enrollment, Okta automaticaly enrolls a user with a `token:software:totp` factor and the `push` factor if the user isn't currently enrolled with these factors.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

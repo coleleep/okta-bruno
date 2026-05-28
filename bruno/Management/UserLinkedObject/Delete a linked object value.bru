@@ -1,0 +1,28 @@
+meta {
+  name: Delete a linked object value
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/users/{{userIdOrLogin}}/linkedObjects/{{relationshipName}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes any existing relationship between the `associated` and `primary` user. For the `associated` user, this is specified by the ID. The `primary` name specifies the relationship.
+
+The operation is successful if the relationship is deleted. The operation is also successful if the specified user isn't in the `associated` relationship for any instance of the specified `primary` and thus, no relationship is found.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

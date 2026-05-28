@@ -1,0 +1,42 @@
+meta {
+  name: Replace a resource set
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2026-01-01T00:00:00Z",
+    "description": "",
+    "id": "",
+    "label": "",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "_links": {
+      "self": "",
+      "resources": ""
+    }
+  }
+}
+
+docs {
+Replaces the label and description of a resource set. See [Supported resources](/openapi/okta-management/guides/roles/#supported-resources).
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

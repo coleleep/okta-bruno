@@ -1,0 +1,27 @@
+meta {
+  name: Deactivate a device integration
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/device-integrations/{{deviceIntegrationId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates a device integration by `deviceIntegrationId`
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,37 @@
+meta {
+  name: Replace the preview error page
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/error/preview
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "pageContent": "",
+    "contentSecurityPolicySetting": {
+      "mode": ""
+    }
+  }
+}
+
+docs {
+Replaces the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+
+**Responses:**
+- `200`: Successfully replaced the preview error page.
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

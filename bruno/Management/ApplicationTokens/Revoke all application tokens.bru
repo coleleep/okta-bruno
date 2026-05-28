@@ -1,0 +1,26 @@
+meta {
+  name: Revoke all application tokens
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/tokens
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Revokes all OAuth 2.0 refresh tokens for the specified app. Any access tokens issued with these refresh tokens are also revoked, but access tokens issued without a refresh token aren't affected.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

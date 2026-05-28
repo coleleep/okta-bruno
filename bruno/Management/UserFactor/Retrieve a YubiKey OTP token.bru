@@ -1,0 +1,29 @@
+meta {
+  name: Retrieve a YubiKey OTP token
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org/factors/yubikey_token/tokens/{{tokenId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the specified YubiKey OTP token by `id`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+
+**Path parameters:**
+- `{{tokenId}}` — The YubiKey OTP token ID
+}

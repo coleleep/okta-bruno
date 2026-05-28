@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a CAPTCHA instance
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/captchas/{{captchaId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the properties of a specified CAPTCHA instance
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

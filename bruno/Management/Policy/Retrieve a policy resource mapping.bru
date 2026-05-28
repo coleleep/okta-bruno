@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a policy resource mapping
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{orgUrl}}/api/v1/policies/{{policyId}}/mappings/{{mappingId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a resource mapping for a policy identified by `policyId` and `mappingId`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

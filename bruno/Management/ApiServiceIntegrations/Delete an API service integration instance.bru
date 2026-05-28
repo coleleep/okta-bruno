@@ -1,0 +1,27 @@
+meta {
+  name: Delete an API service integration instance
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/integrations/api/v1/api-services/{{apiServiceId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes an API Service Integration instance by `id`. This operation also revokes access to scopes that were previously granted to this API Service Integration instance.
+
+**Responses:**
+- `204`: No Content
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

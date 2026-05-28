@@ -1,0 +1,25 @@
+meta {
+  name: Opt out of Okta user communication emails
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/org/privacy/oktaCommunication/optOut
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Opts out all users of this org from Okta communication emails
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

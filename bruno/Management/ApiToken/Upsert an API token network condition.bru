@@ -1,0 +1,40 @@
+meta {
+  name: Upsert an API token network condition
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/api-tokens/{{apiTokenId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "name": "api_token_name",
+    "clientName": "client_name",
+    "userId": "00uabcdefg1234567890",
+    "network": {
+      "connection": "ANYWHERE"
+    },
+    "created": "2021-11-09T20:38:10.000Z"
+  }
+}
+
+docs {
+Upserts an API Token Network Condition by `apiTokenId`
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

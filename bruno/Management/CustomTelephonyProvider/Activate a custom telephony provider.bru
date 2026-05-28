@@ -1,0 +1,25 @@
+meta {
+  name: Activate a custom telephony provider
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/telephony-providers/{{customTelephonyProviderId}}/lifecycle/activate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Activates a custom telephony provider by its ID. You must activate a provider before it can be used.
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`:
+}

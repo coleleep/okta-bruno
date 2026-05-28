@@ -1,0 +1,37 @@
+meta {
+  name: Create an Okta managed user account
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/privileged-access/api/v1/okta-service-accounts
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "name": "AD Integrations Admin",
+    "oktaUserId": "00u11s48P9zGW8yqm0g5"
+  }
+}
+
+docs {
+Creates a new Okta managed user account for managing a Universal Directory user as a service account.
+
+You must specify an existing Okta user in your org with the `oktaUserId` request parameter.
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

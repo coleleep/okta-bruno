@@ -1,0 +1,49 @@
+meta {
+  name: Register a client app
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/oauth2/v1/clients
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "client_name": ""
+  }
+}
+
+docs {
+Registers a new client app
+
+> **Note:** You can create apps on the Apps endpoint (`/api/v1/apps`) and default to `consent_method=TRUSTED`, while those created with Dynamic Client Registration (`/oauth2/v1/clients`) default to `consent_method=REQUIRED`.
+
+> **Note:** If you want to specify the `client_id` or `client_secret`, you can use the Applications API to create or update a client app.
+
+Different app types have different valid values for the corresponding grant type:
+
+| App Type  | Valid Grant Type                                                           | Requirements                                   |
+| :---------------- | :------------------------------------------------------------------------- | :--------------------------------------------- |
+| `browser`         | `authorization_code`, `implicit`, `urn:ietf:params:oauth:grant-type:saml2-bearer`. The following grant types are <x-lifecycle class="oie"></x-lifecycle>only: `urn:okta:params:oauth:grant-type:otp`, `urn:okta:params:oauth:grant-type:oob`, `http://auth0.com/oauth/grant-type/mfa-otp`, `http://auth0.com/oauth/grant-type/mfa-oob`                                           |                                                |
+| `native`          | `authorization_code`, `implicit`, `password`, `refresh_token`, `urn:ietf:params:oauth:grant-type:saml2-bearer`. The following grant types are <x-lifecycle class="oie"></x-lifecycle>only: `urn:okta:params:oauth:grant-type:otp`, `urn:okta:params:oauth:grant-type:oob`, `http://auth0.com/oauth/grant-type/mfa-otp`, `http://auth0.com/oauth/grant-type/mfa-oob`              | Must have at least `authorization_code`        |
+| `service`         | `client_credentials`, `urn:ietf:params:oauth:grant-type:saml2-bearer`. The following grant types are <x-lifecycle class="oie"></x-lifecycle>only: `urn:okta:params:oauth:grant-type:otp`, `urn:okta:params:oauth:grant-type:oob`, `http://auth0.com/oauth/grant-type/mfa-otp`, `http://auth0.com/oauth/grant-type/mfa-oob`                                                       | Works with the OAuth 2.0 flow (not OpenID Connect) |
+| `web`             | `authorization_code`, `implicit`, `refresh_token`, `client_credentials`(*), `urn:ietf:params:oauth:grant-type:saml2-bearer`. The following grant types are <x-lifecycle class="oie"></x-lifecycle>only: `urn:okta:params:oauth:grant-type:otp`, `urn:okta:params:oauth:grant-type:oob`, `http://auth0.com/oauth/grant-type/mfa-otp`, `http://auth0.com/oauth/grant-type/mfa-oob` | Must have at least `authorization_code`        |
+
+> **Note:** The `client_credentials` grant with a web app type allows you to use one `client_id` for an app that needs to make user-specific calls and back-end calls for data.
+
+> **Note:** The `grant_types` and `response_types` values described above are partially orthogonal, as they refer to arguments passed to different endpoints in the [OAuth 2.0 protocol](https://tools.ietf.org/html/rfc6749). However, they are related in that the `grant_types` available to a client influence the `response_types` that the client is allowed to use and vice versa. For instance, a `grant_types` value that includes `authorization_code` implies a `response_types` value that includes `code`, as both values are defined as part of the OAuth 2.0 authorization code grant.
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `429`:
+}

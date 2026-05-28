@@ -1,0 +1,52 @@
+meta {
+  name: Create an event hook
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/eventHooks
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "channel": {
+      "config": "",
+      "type": "",
+      "version": ""
+    },
+    "events": {
+      "items": "",
+      "type": ""
+    },
+    "name": ""
+  }
+}
+
+docs {
+Creates a new event hook for your organization in `ACTIVE` status. You pass an event hook object in the JSON payload
+of your request. That object represents the set of required information about the event hook you're registering, including:
+  * The URI of your external service
+  * The [events](https://developer.okta.com/docs/reference/api/event-types/) in Okta you want to subscribe to
+  * An optional event hook filter that can reduce the number of event hook calls. This is a self-service Early Access (EA) feature.
+    See [Create an event hook filter](https://developer.okta.com/docs/concepts/event-hooks/#create-an-event-hook-filter).
+
+    Additionally, you can specify a secret API key for Okta to pass to your external service endpoint for security verification. Note that the API key you set here is unrelated to the Okta API token
+you must supply when making calls to Okta APIs. Optionally, you can specify extra headers that Okta passes to your external
+service with each call.
+Your external service must use a valid HTTPS endpoint.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

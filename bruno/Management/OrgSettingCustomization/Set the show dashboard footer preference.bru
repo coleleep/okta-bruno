@@ -1,0 +1,25 @@
+meta {
+  name: Set the show dashboard footer preference
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/org/preferences/showEndUserFooter
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Sets the preference to show the Okta UI footer for all end users of your org
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

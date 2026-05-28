@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a log stream
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/logStreams/{{logStreamId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a log stream object by ID
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

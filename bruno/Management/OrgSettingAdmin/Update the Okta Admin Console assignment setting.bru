@@ -1,0 +1,35 @@
+meta {
+  name: Update the Okta Admin Console assignment setting
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/org/settings/autoAssignAdminAppSetting
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "autoAssignAdminAppSetting": false
+  }
+}
+
+docs {
+Updates the org setting to automatically assign the Okta Admin Console when an admin role is assigned
+
+> **Note:** This setting doesn't apply to the `SUPER_ADMIN` role.
+> When you assign the `SUPER_ADMIN` role to a user, the Admin Console is always assigned to the user regardless of the `autoAssignAdminAppSetting` setting.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

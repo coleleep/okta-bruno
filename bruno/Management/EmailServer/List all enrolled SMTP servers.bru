@@ -1,0 +1,25 @@
+meta {
+  name: List all enrolled SMTP servers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/email-servers
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all the enrolled custom SMTP server configurations
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

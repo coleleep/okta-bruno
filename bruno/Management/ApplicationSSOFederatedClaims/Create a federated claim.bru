@@ -1,0 +1,35 @@
+meta {
+  name: Create a federated claim
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/federated-claims
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "expression": "appuser.entitlements.role",
+    "name": "role"
+  }
+}
+
+docs {
+Creates a claim that will be included in tokens produced by federation protocols (for example: OIDC `id_tokens` or SAML Assertions)
+
+**Responses:**
+- `201`: Created
+- `400`: Bad Request
+- `401`: 
+- `403`: 
+- `429`:
+}

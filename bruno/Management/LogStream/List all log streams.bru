@@ -1,0 +1,29 @@
+meta {
+  name: List all log streams
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/logStreams
+  body: none
+  auth: none
+}
+
+params:query {
+  ~filter: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all log stream objects in your org. You can request a paginated list or a subset of log streams that match a supported filter expression.
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

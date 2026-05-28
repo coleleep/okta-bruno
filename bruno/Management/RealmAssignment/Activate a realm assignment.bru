@@ -1,0 +1,27 @@
+meta {
+  name: Activate a realm assignment
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{orgUrl}}/api/v1/realm-assignments/{{assignmentId}}/lifecycle/activate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Activates a realm assignment
+
+**Responses:**
+- `204`: No Content
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

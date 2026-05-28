@@ -1,0 +1,29 @@
+meta {
+  name: List all realm assignments
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/realm-assignments
+  body: none
+  auth: none
+}
+
+params:query {
+  ~after: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all realm assignments
+
+**Responses:**
+- `200`: OK
+- `403`: Forbidden
+- `429`:
+}

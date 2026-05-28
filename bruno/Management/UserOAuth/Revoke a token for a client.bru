@@ -1,0 +1,26 @@
+meta {
+  name: Revoke a token for a client
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/clients/{{clientId}}/tokens/{{tokenId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Revokes the specified refresh and access tokens
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,29 @@
+meta {
+  name: List all push providers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/push-providers
+  body: none
+  auth: none
+}
+
+params:query {
+  ~type: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all push providers
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

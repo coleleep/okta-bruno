@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the sign-out page settings
+  type: http
+  seq: 18
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/sign-out/customized
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the sign-out page settings
+
+**Responses:**
+- `200`: Successfully retrieved the sign-out page settings.
+- `403`: 
+- `404`: 
+- `429`:
+}

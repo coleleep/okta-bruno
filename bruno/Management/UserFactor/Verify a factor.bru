@@ -1,0 +1,44 @@
+meta {
+  name: Verify a factor
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/factors/{{factorId}}/verify
+  body: json
+  auth: none
+}
+
+params:query {
+  ~templateId: 
+  ~tokenLifetimeSeconds: 300
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "passCode": 1234567890
+  }
+}
+
+docs {
+Verifies an OTP for a factor. Some factors (`call`, `email`, `push`, `sms`, `u2f`, and `webauthn`) must first issue a challenge before you can verify the factor. Do this by making a request without a body. After a challenge is issued, make another request to verify the factor.
+
+> **Notes:**
+> - You can send standard push challenges or number matching push challenges to Okta Verify `push` factor enrollments. Use a [request body](https://developer.okta.com/docs/api/openapi/okta-management/management/userfactor/verifyfactor!path=2/useNumberMatchingChallenge&t=request) for number matching push challenges.
+> - To verify a `push` factor, use the **poll** link returned when you issue the challenge. See [Retrieve a factor transaction status](/openapi/okta-management/management/tags/userfactor/other/getfactortransactionstatus).
+
+**Responses:**
+- `200`: Success
+- `201`: Created
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

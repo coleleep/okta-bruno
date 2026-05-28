@@ -1,0 +1,26 @@
+meta {
+  name: Unassign a role resource set binding member
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}/bindings/{{roleIdOrLabel}}/members/{{memberId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unassigns a member (identified by `memberId`) from a role resource set binding
+
+**Responses:**
+- `204`: No Content
+- `403`: Forbidden
+- `404`: 
+- `429`:
+}

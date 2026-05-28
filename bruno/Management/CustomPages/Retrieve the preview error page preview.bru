@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the preview error page preview
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/error/preview
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+
+**Responses:**
+- `200`: Successfully retrieved the preview error page.
+- `403`: 
+- `404`: 
+- `429`:
+}

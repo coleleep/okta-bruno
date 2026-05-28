@@ -1,0 +1,26 @@
+meta {
+  name: Delete the logo
+  type: http
+  seq: 9
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/themes/{{themeId}}/logo
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a Theme logo. The theme will use the default Okta logo.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

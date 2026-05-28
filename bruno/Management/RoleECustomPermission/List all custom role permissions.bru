@@ -1,0 +1,26 @@
+meta {
+  name: List all custom role permissions
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/iam/roles/{{roleIdOrLabel}}/permissions
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all permissions for a custom role by `roleIdOrLabel`
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

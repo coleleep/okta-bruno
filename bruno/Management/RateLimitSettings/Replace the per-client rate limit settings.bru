@@ -1,0 +1,33 @@
+meta {
+  name: Replace the per-client rate limit settings
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/rate-limit-settings/per-client
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "defaultMode": "DISABLE"
+  }
+}
+
+docs {
+Replaces the Per-Client Rate Limit Settings and returns the configured properties
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

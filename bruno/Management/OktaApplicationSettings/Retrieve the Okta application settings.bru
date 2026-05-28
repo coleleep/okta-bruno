@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the Okta application settings
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/first-party-app-settings/{{appName}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the settings for an Okta app (also known as an Okta first-party app)
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

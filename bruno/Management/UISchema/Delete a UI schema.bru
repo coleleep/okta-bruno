@@ -1,0 +1,27 @@
+meta {
+  name: Delete a UI schema
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/meta/uischemas/{{id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a UI Schema by `id`
+
+**Responses:**
+- `204`: No Content
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

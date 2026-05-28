@@ -1,0 +1,35 @@
+meta {
+  name: Update a Cross App Access connection
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/cwo/connections/{{connectionId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "status": "ACTIVE"
+  }
+}
+
+docs {
+Updates the Cross App Access connection with the specified ID
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

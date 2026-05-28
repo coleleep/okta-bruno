@@ -1,0 +1,27 @@
+meta {
+  name: Delete a CAPTCHA instance
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/captchas/{{captchaId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a specified CAPTCHA instance
+> **Note:** If your CAPTCHA instance is still associated with your org, the request fails. You must first update your Org-wide CAPTCHA settings to remove the CAPTCHA instance.
+
+**Responses:**
+- `204`: No Content
+- `403`: Forbidden
+- `404`: 
+- `429`:
+}

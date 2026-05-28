@@ -1,0 +1,23 @@
+meta {
+  name: Publish a security event token
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/security/api/v1/security-events
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+Publishes a security event token (SET) sent by a security events provider. After the token is verified, Okta ingests the event and performs any appropriate action.
+
+**Responses:**
+- `202`: Accepted
+- `400`: Bad Request
+}

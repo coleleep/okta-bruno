@@ -1,0 +1,25 @@
+meta {
+  name: List all agent pools
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/agentPools
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all agent pools with pagination support
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

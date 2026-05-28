@@ -1,0 +1,34 @@
+meta {
+  name: Replace a custom domain's brand
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/domains/{{domainId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "brandId": "bndul904tTZ6kWVhP0g3"
+  }
+}
+
+docs {
+Replaces a custom domain's brand
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

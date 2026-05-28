@@ -1,0 +1,61 @@
+meta {
+  name: Replace the preview sign-in page
+  type: http
+  seq: 15
+}
+
+put {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/sign-in/preview
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "pageContent": "",
+    "contentSecurityPolicySetting": {
+      "mode": ""
+    },
+    "widgetCustomizations": {
+      "signInLabel": "",
+      "usernameLabel": "",
+      "usernameInfoTip": "",
+      "passwordLabel": "",
+      "passwordInfoTip": "",
+      "showPasswordVisibilityToggle": false,
+      "showUserIdentifier": false,
+      "forgotPasswordLabel": "",
+      "forgotPasswordUrl": "",
+      "unlockAccountLabel": "",
+      "unlockAccountUrl": "",
+      "helpLabel": "",
+      "helpUrl": "",
+      "customLink1Label": "",
+      "customLink1Url": "",
+      "customLink2Label": "",
+      "customLink2Url": "",
+      "authenticatorPageCustomLinkLabel": "",
+      "authenticatorPageCustomLinkUrl": "",
+      "classicRecoveryFlowEmailOrUsernameLabel": "",
+      "classicFooterHelpTitle": ""
+    },
+    "widgetVersion": ""
+  }
+}
+
+docs {
+Replaces the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+
+**Responses:**
+- `200`: Successfully replaced the preview sign-in page.
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Assign the fulfillment error status to a WebAuthn preregistration factor
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/webauthn-registration/api/v1/users/{{userId}}/enrollments/{{authenticatorEnrollmentId}}/mark-error
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Assigns the fulfillment error status to a WebAuthn preregistration factor for a user. The `/mark-error` path indicates that the specific `FULFILLMENT_ERRORED` AuthFactor status is set on the enrollment.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

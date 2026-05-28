@@ -1,0 +1,26 @@
+meta {
+  name: Create an auto-activated Phone authenticator enrollment
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/authenticator-enrollments/phone
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Creates a Phone authenticator enrollment that's automatically activated
+
+**Responses:**
+- `200`: 
+- `400`: 
+- `403`: 
+- `429`:
+}

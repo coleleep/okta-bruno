@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a device posture check
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{orgUrl}}/api/v1/device-posture-checks/{{postureCheckId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a device posture check by `postureCheckId`
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,31 @@
+meta {
+  name: List all member users
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}/users
+  body: none
+  auth: none
+}
+
+params:query {
+  ~limit: 1000
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all users that are a member of a group.
+The default user limit is set to a very high number due to historical reasons that are no longer valid for most orgs. This will change in a future version of this API. The recommended page limit is now `limit=200`.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

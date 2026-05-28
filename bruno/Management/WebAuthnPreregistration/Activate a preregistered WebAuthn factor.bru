@@ -1,0 +1,53 @@
+meta {
+  name: Activate a preregistered WebAuthn factor
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/webauthn-registration/api/v1/activate
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "credResponses": [
+      {
+        "authenticatorEnrollmentId": ""
+      }
+    ],
+    "fulfillmentProvider": "yubico",
+    "pinResponseJwe": "",
+    "serial": "",
+    "userId": "",
+    "version": "",
+    "yubicoSigningJwks": [
+      {
+        "crv": "",
+        "kid": "",
+        "kty": "",
+        "use": "",
+        "x": "",
+        "y": ""
+      }
+    ]
+  }
+}
+
+docs {
+Activates a preregistered WebAuthn factor. As part of this operation, Okta first decrypts and verifies the factor PIN and enrollment data sent by the fulfillment provider.
+
+**Responses:**
+- `200`: Success
+- `400`: PIN or cred requests generation failed
+- `403`: 
+- `404`: 
+- `429`:
+}

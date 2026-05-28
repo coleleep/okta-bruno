@@ -1,0 +1,25 @@
+meta {
+  name: Set a custom telephony provider as a primary telephony provider
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{orgUrl}}/api/v1/telephony-providers/{{customTelephonyProviderId}}/setAsPrimary
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Sets a custom telephony provider as the primary telephony provider for the org. You can only set one provider as a primary provider at a time.
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`:
+}

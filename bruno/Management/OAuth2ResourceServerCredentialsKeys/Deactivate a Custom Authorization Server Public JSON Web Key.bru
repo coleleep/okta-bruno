@@ -1,0 +1,29 @@
+meta {
+  name: Deactivate a Custom Authorization Server Public JSON Web Key
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/resourceservercredentials/keys/{{keyId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates a custom authorization server public JSON web key by key `id`.
+> **Note:** Deactivating the active key isn't allowed if the authorization server has access token encryption enabled. You can activate another key, which makes the current key inactive.
+
+**Responses:**
+- `200`: OK
+- `400`: Bad Request
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

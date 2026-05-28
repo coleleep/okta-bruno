@@ -1,0 +1,43 @@
+meta {
+  name: List all System Log events
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/logs
+  body: none
+  auth: none
+}
+
+params:query {
+  ~since: 7 days prior to until
+  ~until: current time
+  ~after: 
+  ~filter: 
+  ~q: 
+  ~limit: 100
+  ~sortOrder: ASCENDING
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all System Log events
+
+See [System Log query](https://developer.okta.com/docs/reference/system-log-query/) for further details and examples, and [System Log filters and search](https://help.okta.com/okta_help.htm?type=oie&id=csh-syslog-filters) for common use cases.
+
+By default, 100 System Log events are returned. If there are more events, see the [header link](https://developer.okta.com/docs/api/#link-header) for the `next` link,
+or increase the number of returned objects using the `limit` parameter.
+
+>**Note:** The value of the `clientSecret` property in the System Log is secured by a hashing function, and isn't the value used during authentication.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

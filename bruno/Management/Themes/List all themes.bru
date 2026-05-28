@@ -1,0 +1,28 @@
+meta {
+  name: List all themes
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/themes
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all the themes in your brand.
+
+> **Important:** Currently each org supports only one theme, therefore this contains a single object only.
+
+**Responses:**
+- `200`: Successfully returned the list of themes
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,32 @@
+meta {
+  name: Unenroll a factor
+  type: http
+  seq: 9
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/factors/{{factorId}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~removeRecoveryEnrollment: False
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unenrolls an existing factor for the specified user. You can't unenroll a factor from a deactivated user. Unenrolling a factor allows the user to enroll a new factor.
+
+> **Note:** If you unenroll the `push` or the `signed_nonce` factors, Okta also unenrolls any other `totp`, `signed_nonce`, or Okta Verify `push` factors associated with the user.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

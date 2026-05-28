@@ -1,0 +1,26 @@
+meta {
+  name: List all client role assignments
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/oauth2/v1/clients/{{clientId}}/roles
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all roles assigned to a client app identified by `clientId`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

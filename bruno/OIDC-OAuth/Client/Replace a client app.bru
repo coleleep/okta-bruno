@@ -1,0 +1,35 @@
+meta {
+  name: Replace a client app
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/oauth2/v1/clients/{{clientId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "client_name": ""
+  }
+}
+
+docs {
+Replaces the settings for a client app.
+
+> **Note:** You must specify all settings when you update a client app. Partial updates aren't supported. If any settings are missing when you update a client app, the update fails. The exceptions are that you can't include `client_secret_expires_at` or `client_id_issued_at` in the request, and you can omit the `client_secret`.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

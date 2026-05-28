@@ -1,0 +1,25 @@
+meta {
+  name: List all values for a governance bundle entitlement
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{orgUrl}}/api/v1/iam/governance/bundles/{{bundleId}}/entitlements/{{entitlementId}}/values
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all entitlement values that are specific to a governance bundle entitlement
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

@@ -1,0 +1,28 @@
+meta {
+  name: List all client applications
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/oauth2/v1/clients
+  body: none
+  auth: none
+}
+
+params:query {
+  ~q: 
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+Lists all the client apps with pagination
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

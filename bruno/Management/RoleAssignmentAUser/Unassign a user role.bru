@@ -1,0 +1,26 @@
+meta {
+  name: Unassign a user role
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles/{{roleAssignmentId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unassigns a role assignment (identified by `roleAssignmentId`) from a user (identified by `userId`)
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

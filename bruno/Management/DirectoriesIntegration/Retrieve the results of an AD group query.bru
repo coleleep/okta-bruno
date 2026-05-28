@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the results of an AD group query
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/directories/{{appInstanceId}}/groups/{{groupId}}/query/{{resultId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the results of the requested Active Directory (AD) group attributes using the `resultId` returned from the `POST /api/v1/directories/{appInstanceId}/groups/{groupId}/query` call.
+If the operation has expired or if the `resultId` is invalid, returns a `404` status.
+
+**Responses:**
+- `200`: OK. Returns the group profile.
+- `202`: Accepted. Query is still in progress.
+- `404`:
+}

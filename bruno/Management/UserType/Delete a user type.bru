@@ -1,0 +1,27 @@
+meta {
+  name: Delete a user type
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/meta/types/user/{{typeId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a user type permanently.
+> **Note**: You can't delete the default user type or a user type that is currently assigned to users.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

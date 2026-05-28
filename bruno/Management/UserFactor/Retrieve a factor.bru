@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a factor
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/factors/{{factorId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves an existing factor for the specified user
+
+**Responses:**
+- `200`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

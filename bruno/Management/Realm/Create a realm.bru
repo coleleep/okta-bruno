@@ -1,0 +1,35 @@
+meta {
+  name: Create a realm
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/realms
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "profile": {
+      "name": ""
+    }
+  }
+}
+
+docs {
+Creates a new realm
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the rate limit warning threshold percentage
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{orgUrl}}/api/v1/rate-limit-settings/warning-threshold
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the currently configured threshold for warning notifications when the API's rate limit is exceeded
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

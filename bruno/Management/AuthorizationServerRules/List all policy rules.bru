@@ -1,0 +1,26 @@
+meta {
+  name: List all policy rules
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/policies/{{policyId}}/rules
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all policy rules for the specified Custom Authorization Server and Policy
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

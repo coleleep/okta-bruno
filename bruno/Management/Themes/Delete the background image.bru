@@ -1,0 +1,26 @@
+meta {
+  name: Delete the background image
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/themes/{{themeId}}/background-image
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a theme background image
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

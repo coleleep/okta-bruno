@@ -1,0 +1,26 @@
+meta {
+  name: List all group role assignments
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}/roles
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all assigned roles of a group by `groupId`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

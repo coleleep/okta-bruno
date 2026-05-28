@@ -1,0 +1,91 @@
+meta {
+  name: Update a user
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{id}}
+  body: json
+  auth: none
+}
+
+params:query {
+  ~strict: 
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "credentials": {
+      "password": ""
+    },
+    "profile": {
+      "city": "",
+      "costCenter": "",
+      "countryCode": "",
+      "department": "",
+      "displayName": "",
+      "division": "",
+      "email": "user@example.com",
+      "employeeNumber": "",
+      "firstName": "",
+      "honorificPrefix": "",
+      "honorificSuffix": "",
+      "lastName": "",
+      "locale": "",
+      "login": "",
+      "manager": "",
+      "managerId": "",
+      "middleName": "",
+      "mobilePhone": "",
+      "nickName": "",
+      "organization": "",
+      "postalAddress": "",
+      "preferredLanguage": "",
+      "primaryPhone": "",
+      "profileUrl": "",
+      "secondEmail": "user@example.com",
+      "state": "",
+      "streetAddress": "",
+      "timezone": "",
+      "title": "",
+      "userType": "",
+      "zipCode": ""
+    },
+    "realmId": "guo1bfiNtSnZYILxO0g4",
+    "type": {
+      "id": ""
+    }
+  }
+}
+
+docs {
+Updates a user's profile or credentials with partial update semantics.
+
+> **Important:** Use the `POST` method for partial updates. Unspecified properties are set to null with `PUT`.
+
+`profile` and `credentials` can be updated independently or together with a single request.
+
+> **Notes:**
+> * Currently, the user type of a user can only be changed using a full replacement `PUT` operation. If the request parameters of a partial update include the `type` element from the user object,
+the value must match the existing type of the user. Only admins are permitted to change the user type of a user; end users are not allowed to change their own user type.
+>
+> * To update a current user's profile with partial semantics, you can use the `/api/v1/users/me` endpoint. But, a user can only update profile properties that they have write access for. Within the profile, if the user tries to update the primary or the secondary email IDs, verification emails are sent to those email IDs, and the fields are updated only upon verification.
+>
+> * You can update user profiles of users in the `DEPROVISIONED` status if you have the **Edit Deactivated User Profile Updates** option turned on in the Admin Console. See [deactivated user profiles](https://help.okta.com/okta_help.htm?type=oie&id=edit-deactivated-users).
+
+If you are using this endpoint to set a password, it sets a password without validating existing user credentials. This is an administrative operation. For operations that validate credentials, refer to the [Reset password](https://developer.okta.com/docs/api/openapi/okta-management/management/usercred/resetpassword), [Start forgot password flow](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/forgotPassword), and [Update password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserCred/#tag/UserCred/operation/changePassword) endpoints.
+
+**Responses:**
+- `200`: Success
+- `400`: Bad Request
+- `403`: Forbidden
+- `404`: Not Found
+- `429`:
+}

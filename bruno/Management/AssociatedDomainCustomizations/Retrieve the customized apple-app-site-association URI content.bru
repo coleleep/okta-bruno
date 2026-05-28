@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the customized apple-app-site-association URI content
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/.well-known/apple-app-site-association
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+Retrieves the content of the `apple-app-site-assocation` well-known URI
+
+> **Note:**  When serving this URI, Okta adds `authsrv` content to provide a seamless experience for Okta Verify. You can't modify the content in the `authsrv` object.
+
+**Responses:**
+- `200`: Success
+- `429`:
+}

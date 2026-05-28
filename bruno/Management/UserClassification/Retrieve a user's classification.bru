@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a user's classification
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/classification
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a user's classification
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

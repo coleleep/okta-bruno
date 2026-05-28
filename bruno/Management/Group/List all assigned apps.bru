@@ -1,0 +1,31 @@
+meta {
+  name: List all assigned apps
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}/apps
+  body: none
+  auth: none
+}
+
+params:query {
+  ~after: 
+  ~limit: 20
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all apps that are assigned to a group. See [Application Groups API](/openapi/okta-management/management/tags/applicationgroups/).
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

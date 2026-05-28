@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a trusted origin
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/trustedOrigins/{{trustedOriginId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a trusted origin
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

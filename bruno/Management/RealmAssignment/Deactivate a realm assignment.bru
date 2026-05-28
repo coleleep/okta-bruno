@@ -1,0 +1,27 @@
+meta {
+  name: Deactivate a realm assignment
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{orgUrl}}/api/v1/realm-assignments/{{assignmentId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates a realm assignment
+
+**Responses:**
+- `204`: No Content
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

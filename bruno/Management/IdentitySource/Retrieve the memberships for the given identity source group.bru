@@ -1,0 +1,30 @@
+meta {
+  name: Retrieve the memberships for the given identity source group
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/groups/{{groupOrExternalId}}/membership
+  body: none
+  auth: none
+}
+
+params:query {
+  ~limit: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the group memberships for the given identity source group in the given identity source instance
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

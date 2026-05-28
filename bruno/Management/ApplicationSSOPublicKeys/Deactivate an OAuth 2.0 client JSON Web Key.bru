@@ -1,0 +1,29 @@
+meta {
+  name: Deactivate an OAuth 2.0 client JSON Web Key
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/credentials/jwks/{{keyId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates an OAuth 2.0 client JSON Web Key by `keyId`
+> **Note:** You can only deactivate signing keys. Deactivating the active encryption key isn't allowed if the client has ID token encryption enabled. You can activate another encryption key, which makes the current key inactive.
+
+**Responses:**
+- `200`: OK
+- `400`: Bad Request
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

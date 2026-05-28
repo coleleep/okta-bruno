@@ -1,0 +1,35 @@
+meta {
+  name: Assign a group owner
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}/owners
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "id": "",
+    "type": "GROUP"
+  }
+}
+
+docs {
+Assigns a group owner
+
+**Responses:**
+- `201`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

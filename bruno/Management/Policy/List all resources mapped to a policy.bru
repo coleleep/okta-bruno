@@ -1,0 +1,26 @@
+meta {
+  name: List all resources mapped to a policy
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{orgUrl}}/api/v1/policies/{{policyId}}/mappings
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all resources mapped to a policy identified by `policyId`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

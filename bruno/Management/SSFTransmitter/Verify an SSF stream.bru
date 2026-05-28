@@ -1,0 +1,40 @@
+meta {
+  name: Verify an SSF stream
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{orgUrl}}/api/v1/ssf/stream/verification
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "stream_id": "esc1k235GIIztAuGK0g5"
+  }
+}
+
+docs {
+Verifies an SSF stream by publishing a verification event requested by a security events provider.
+
+> **Note:** A successful response doesn't indicate that the verification event
+    was transmitted successfully, only that Okta has transmitted the event or will
+    at some point in the future. The SSF receiver is responsible for validating and acknowledging
+    successful transmission of the request by responding with HTTP Response Status Code 202.
+
+**Responses:**
+- `204`: No Content
+- `400`: 
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

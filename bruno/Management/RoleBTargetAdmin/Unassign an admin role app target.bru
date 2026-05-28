@@ -1,0 +1,29 @@
+meta {
+  name: Unassign an admin role app target
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles/{{roleAssignmentId}}/targets/catalog/apps/{{appName}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unassigns an OIN app target from an `APP_ADMIN` role assignment to an admin user.
+
+> **Note:** You can't remove the last OIN app target from a role assignment since this causes an exception.
+> If you need a role assignment that applies to all apps, delete the `APP_ADMIN` role assignment to the user and recreate a new one.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Delete an authenticator enrollment
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/authenticator-enrollments/{{enrollmentId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes an existing enrollment for the specified user. The user can enroll the authenticator again.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

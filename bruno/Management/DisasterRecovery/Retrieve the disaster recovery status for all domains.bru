@@ -1,0 +1,28 @@
+meta {
+  name: Retrieve the disaster recovery status for all domains
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/dr/status
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the failover or failback status for all the domains for your org
+
+**Responses:**
+- `200`: 
+- `400`: 
+- `401`: 
+- `403`: 
+- `429`: 
+- `500`:
+}

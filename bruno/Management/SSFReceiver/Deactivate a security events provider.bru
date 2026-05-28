@@ -1,0 +1,28 @@
+meta {
+  name: Deactivate a security events provider
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/security-events-providers/{{securityEventProviderId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates a security events provider instance by setting its status to `INACTIVE`.
+This operation stops the flow of events from the security events provider to Okta.
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,36 @@
+meta {
+  name: Replace the blocked email domains
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{orgUrl}}/okta-personal-settings/api/v1/export-blocklists
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "domains": [
+      ""
+    ]
+  }
+}
+
+docs {
+Replaces the list of blocked email domains which are excluded from app migration
+
+**Responses:**
+- `204`: No Content
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

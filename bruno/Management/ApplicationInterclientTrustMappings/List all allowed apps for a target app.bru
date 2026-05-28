@@ -1,0 +1,27 @@
+meta {
+  name: List all allowed apps for a target app
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/interclient-allowed-apps
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all apps allowed by this app to request interclient SSO using the interclient token
+
+**Responses:**
+- `200`: Success
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

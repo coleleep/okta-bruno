@@ -1,0 +1,41 @@
+meta {
+  name: Create a log stream
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/logStreams
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2022-10-21T16:59:59.000Z",
+    "id": "0oa1orzg0CHSgPcjZ0g4",
+    "lastUpdated": "2022-10-21T17:15:10.000Z",
+    "name": "My AWS EventBridge log stream",
+    "status": "ACTIVE",
+    "type": "aws_eventbridge",
+    "_links": {
+      "self": ""
+    }
+  }
+}
+
+docs {
+Creates a new log stream object
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: Forbidden
+- `429`:
+}

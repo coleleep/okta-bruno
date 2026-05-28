@@ -1,0 +1,31 @@
+meta {
+  name: Upload the favicon
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/themes/{{themeId}}/favicon
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:multipart-form {
+  # populate fields here
+}
+
+docs {
+Uploads and replaces the favicon for the theme
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,30 @@
+meta {
+  name: Delete an Okta managed user account
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/privileged-access/api/v1/okta-service-accounts/{{id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes an Okta managed user account specified by ID.
+
+This operation removes the service account management for the Okta user, suspends the underlying Okta user account,
+but doesn't delete the user from Universal Directory.
+
+**Responses:**
+- `204`: No Content
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

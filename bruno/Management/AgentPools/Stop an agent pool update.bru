@@ -1,0 +1,26 @@
+meta {
+  name: Stop an agent pool update
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates/{{updateId}}/stop
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Stops an agent pool update
+
+**Responses:**
+- `201`: Stopped
+- `403`: 
+- `404`: 
+- `429`:
+}

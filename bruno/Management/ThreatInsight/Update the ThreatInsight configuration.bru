@@ -1,0 +1,33 @@
+meta {
+  name: Update the ThreatInsight configuration
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/threats/configuration
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "action": "none"
+  }
+}
+
+docs {
+Updates the ThreatInsight configuration for the org
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

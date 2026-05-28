@@ -1,0 +1,26 @@
+meta {
+  name: List all user role assignments
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all roles assigned to a user (identified by `userId`)
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

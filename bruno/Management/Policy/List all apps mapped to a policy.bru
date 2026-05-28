@@ -1,0 +1,28 @@
+meta {
+  name: List all apps mapped to a policy
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{orgUrl}}/api/v1/policies/{{policyId}}/app
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all applications mapped to a policy identified by `policyId`
+
+> **Note:** Use [List all resources mapped to a policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tags/policy/#tag/Policy/operation/listPolicyMappings) to list all applications mapped to a policy.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

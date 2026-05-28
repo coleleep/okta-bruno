@@ -1,0 +1,25 @@
+meta {
+  name: Opt out the Admin Console from entitlement management
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{orgUrl}}/api/v1/iam/governance/optOut
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Opts out the Admin Console from entitlement management
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

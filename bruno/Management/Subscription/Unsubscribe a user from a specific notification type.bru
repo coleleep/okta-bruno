@@ -1,0 +1,29 @@
+meta {
+  name: Unsubscribe a user from a specific notification type
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/subscriptions/{{notificationType}}/unsubscribe
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unsubscribes the current user from a specified notification type. Returns an `AccessDeniedException` message if requests are made for another user.
+
+**Responses:**
+- `200`: No Content
+- `403`: 
+- `404`: Not Found
+- `429`:
+
+**Path parameters:**
+- `{{userId}}`
+}

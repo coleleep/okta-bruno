@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an email template
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/templates/email/{{templateName}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the details of an email template by name
+
+**Responses:**
+- `200`: Successfully retrieved the email template.
+- `403`: 
+- `404`: 
+- `429`:
+}

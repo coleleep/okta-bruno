@@ -1,0 +1,25 @@
+meta {
+  name: List all Okta Support cases
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org/privacy/oktaSupport/cases
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all Okta Support cases that the requesting principal has permission to view
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

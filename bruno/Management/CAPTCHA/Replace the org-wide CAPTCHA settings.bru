@@ -1,0 +1,42 @@
+meta {
+  name: Replace the org-wide CAPTCHA settings
+  type: http
+  seq: 8
+}
+
+put {
+  url: {{orgUrl}}/api/v1/org/captcha
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "captchaId": "",
+    "enabledPages": [
+      "SIGN_IN"
+    ],
+    "_links": {
+      "self": {
+        "href": ""
+      }
+    }
+  }
+}
+
+docs {
+Replaces the CAPTCHA settings object for your organization
+> **Note**: You can disable CAPTCHA for your organization by setting `captchaId` and `enabledPages` to `null`.
+
+**Responses:**
+- `200`: Success
+- `400`: Bad Request
+- `403`: 
+- `429`:
+}

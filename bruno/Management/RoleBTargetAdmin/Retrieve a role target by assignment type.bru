@@ -1,0 +1,27 @@
+meta {
+  name: Retrieve a role target by assignment type
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles/{{roleIdOrEncodedRoleId}}/targets
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves all role targets for an `APP_ADMIN`, `USER_ADMIN`, `HELP_DESK_ADMIN`, or `GROUP_MEMBERSHIP_ADMIN` role assignment to an admin user by user or group assignment type.
+If the role isn't scoped to specific group targets or any app targets, an empty array `[]` is returned.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

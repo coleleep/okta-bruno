@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a principal rate limit
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/principal-rate-limits/{{principalRateLimitId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a principal rate limit entity by `principalRateLimitId`
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

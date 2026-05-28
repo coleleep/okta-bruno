@@ -1,0 +1,53 @@
+meta {
+  name: Update the app user profile schema for an app
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/meta/schemas/apps/{{appId}}/default
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "$schema": "",
+    "created": "",
+    "definitions": {
+      "base": ""
+    },
+    "id": "",
+    "lastUpdated": "",
+    "name": "",
+    "properties": {
+      "profile": ""
+    },
+    "title": "",
+    "type": "",
+    "_links": {
+      "self": ""
+    }
+  }
+}
+
+docs {
+Updates the app user schema. This updates, adds, or removes one or more custom profile properties or the nullability of a base property in the app user schema for an app. Changing a base property's nullability (for example, the value of its `required` field) is allowed only if it is nullable in the default predefined schema for the app.
+
+> **Note:** You must set properties explicitly to `null` to remove them from the schema; otherwise, `POST` is interpreted as a partial update.
+
+The [User Types](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/) feature does not extend to apps. All users assigned to a given app use the same app user schema. Therefore, unlike the user schema operations, the app user schema operations all specify `default` and don't accept a schema ID.
+
+**Responses:**
+- `200`: successful operation
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

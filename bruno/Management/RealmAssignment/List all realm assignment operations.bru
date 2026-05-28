@@ -1,0 +1,25 @@
+meta {
+  name: List all realm assignment operations
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/realm-assignments/operations
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all realm assignment operations. The upper limit is 200 and operations are sorted in descending order from most recent to oldest by ID.
+
+**Responses:**
+- `200`: OK
+- `403`: Forbidden
+- `429`:
+}

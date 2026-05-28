@@ -1,0 +1,25 @@
+meta {
+  name: List all CAPTCHA instances
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/captchas
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all CAPTCHA instances with pagination support. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

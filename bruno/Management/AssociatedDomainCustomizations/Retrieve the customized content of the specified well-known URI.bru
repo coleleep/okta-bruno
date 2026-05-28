@@ -1,0 +1,27 @@
+meta {
+  name: Retrieve the customized content of the specified well-known URI
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/well-known-uris/{{path}}/customized
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the customized content of a well-known URI for a specific brand and well-known URI path
+
+**Responses:**
+- `200`: Successfully retrieved the customized well-known URI content
+- `400`: Bad Request
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,34 @@
+meta {
+  name: List all group push mappings
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/group-push/mappings
+  body: none
+  auth: none
+}
+
+params:query {
+  ~after: 
+  ~limit: 100
+  ~lastUpdated: 
+  ~sourceGroupId: 
+  ~status: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all group push mappings with pagination support
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `429`:
+}

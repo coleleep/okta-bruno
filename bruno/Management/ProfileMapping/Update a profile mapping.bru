@@ -1,0 +1,36 @@
+meta {
+  name: Update a profile mapping
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/mappings/{{mappingId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "properties": {
+      "expression": ""
+    }
+  }
+}
+
+docs {
+Updates an existing profile mapping by adding, updating, or removing one or many property mappings
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

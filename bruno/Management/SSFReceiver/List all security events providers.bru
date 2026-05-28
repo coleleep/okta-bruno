@@ -1,0 +1,26 @@
+meta {
+  name: List all security events providers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/security-events-providers
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all security events provider instances
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the SSF transmitter metadata
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/.well-known/ssf-configuration
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+Retrieves SSF transmitter configuration metadata. This includes all supported endpoints and key information about certain properties of the Okta org as the transmitter, such as `delivery_methods_supported`, `issuer`, and `jwks_uri`.
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

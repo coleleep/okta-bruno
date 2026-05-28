@@ -1,0 +1,26 @@
+meta {
+  name: List all email templates
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/templates/email
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all supported email templates
+
+**Responses:**
+- `200`: Successfully returned the list of email templates.
+- `403`: 
+- `404`: 
+- `429`:
+}

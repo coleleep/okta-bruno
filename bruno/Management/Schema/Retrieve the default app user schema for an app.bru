@@ -1,0 +1,28 @@
+meta {
+  name: Retrieve the default app user schema for an app
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/meta/schemas/apps/{{appId}}/default
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the default schema for an app user.
+
+The [User Types](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/) feature does not extend to apps. All users assigned to a given app use the same app user schema. Therefore, unlike the user schema operations, the app user schema operations all specify `default` and don't accept a schema ID.
+
+**Responses:**
+- `200`: successful operation
+- `403`: 
+- `404`: 
+- `429`:
+}

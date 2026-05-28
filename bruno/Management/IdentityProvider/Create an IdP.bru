@@ -1,0 +1,87 @@
+meta {
+  name: Create an IdP
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/idps
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2016-01-03T18:15:47.000Z",
+    "id": "0oaWma58liwx40w6boYD",
+    "issuerMode": "DYNAMIC",
+    "lastUpdated": "2016-01-03T18:15:47.000Z",
+    "name": "Sample IdP",
+    "policy": {
+      "accountLink": ""
+    },
+    "properties": {
+      "inquiryTemplateId": "itmpl_HSctx8fNvXoHtrQfz2hxUVH8RBjG"
+    },
+    "protocol": {
+      "algorithms": ""
+    },
+    "status": "ACTIVE",
+    "type": "AMAZON",
+    "_links": {}
+  }
+}
+
+docs {
+Creates a new identity provider (IdP) integration.
+
+#### SAML 2.0 IdP
+
+You must first add the IdP's signature certificate to the IdP key store before you can add a SAML 2.0 IdP with a `kid` credential reference.
+
+Don't use `fromURI` to automatically redirect a user to a particular app after successfully authenticating with a third-party IdP. Instead, use SAML deep links. Using `fromURI` isn't tested or supported. For more information about using deep links when signing users in using an SP-initiated flow, see [Understanding SP-Initiated Login flow](https://developer.okta.com/docs/concepts/saml/#understanding-sp-initiated-login-flow).
+
+Use SAML deep links to automatically redirect the user to an app after successfully authenticating with a third-party IdP. To use deep links, assemble these three parts into a URL:
+
+* SP ACS URL<br>
+For example: `https://${yourOktaDomain}/sso/saml2/:idpId`
+* The app to which the user is automatically redirected after successfully authenticating with the IdP <br>
+For example: `/app/:app-location/:appId/sso/saml`
+* Optionally, if the app is an outbound SAML app, you can specify the `relayState` passed to it.<br>
+For example: `?RelayState=:anyUrlEncodedValue`
+
+The deep link for the above three parts is:<br>
+`https://${yourOktaDomain}/sso/saml2/:idpId/app/:app-location/:appId/sso/saml?RelayState=:anyUrlEncodedValue`
+
+#### Smart Card X509 IdP
+
+You must first add the IdP's server certificate to the IdP key store before you can add a Smart Card `X509` IdP with a `kid` credential reference.
+You need to upload the whole trust chain as a single key using the [Key Store API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderKeys/#tag/IdentityProviderKeys/operation/createIdentityProviderKey).
+Depending on the information stored in the smart card, select the proper [template](https://developer.okta.com/docs/reference/okta-expression-language/#idp-user-profile) `idpuser.subjectAltNameEmail` or `idpuser.subjectAltNameUpn`.
+
+#### Identity verification vendors as identity providers
+
+Identity verification (IDV) vendors work like IdPs, with a few key differences. IDV vendors verify your user's identities by requiring them to submit a proof of identity. There are many ways to verify user identities. For example, a proof of identity can be a selfie to determine liveliness or it can be requiring users to submit a photo of their driver's license and matching that information with a database.
+
+There are three IDV vendors (Persona, CLEAR Verified, and Incode) with specific configuration settings and another IDV vendor type (Custom IDV) that lets you create a custom IDV vendor, using a [standardized IDV process](https://developer.okta.com/docs/guides/idv-integration/main/). You can configure each of the IDV vendors as IdPs in your org by creating an account with the vendor, and then creating an IdP integration. Control how the IDVs verify your users by using [Okta account management policy rules](https://developer.okta.com/docs/guides/okta-account-management-policy/main/).
+
+* [Persona](https://withpersona.com/)
+
+* [CLEAR Verified](https://www.clearme.com/)
+
+* [Incode](https://incode.com/)
+
+* [Custom IDV](https://help.okta.com/okta_help.htm?type=oie&id=idp-add-custom-idv-vendor)
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

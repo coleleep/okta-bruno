@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the preview sign-in page preview
+  type: http
+  seq: 14
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/sign-in/preview
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+
+**Responses:**
+- `200`: Successfully retrieved the preview sign-in page.
+- `403`: 
+- `404`: 
+- `429`:
+}

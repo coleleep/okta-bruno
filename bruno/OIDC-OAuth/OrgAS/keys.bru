@@ -1,0 +1,39 @@
+meta {
+  name: /keys
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{orgUrl}}/oauth2/v1/keys
+  body: none
+  auth: none
+}
+
+params:query {
+  ~client_id: 
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+Returns a JSON Web Key Set (JWKS) that contains the public keys that you can use to verify the signatures of tokens that you receive from your authorization server.
+
+> **Note:** Looking for how to obtain the `jwks_uri` for your org authorization server? See the [well-known OpenID Connect metadata endpoint](/openapi/okta-oauth/oauth/customas/getwellknownopenidconfigurationcustomas).
+
+Any of the two or three keys listed are used to sign tokens. The order of keys in the result doesn't indicate which keys are used.
+
+You can use these keys to locally validate JWTs returned by Okta. Standard open-source libraries are available for every major language to perform [JWS](https://datatracker.ietf.org/doc/html/rfc7515) signature validation.
+
+> **Note:** The information returned from this endpoint could lag slightly, but eventually updates.
+
+> **Note:** Okta returns [standard HTTP Cache-Control headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) for applicable JWKS endpoints. Ensure that you respect the cache header directives, as they are updated based on the time of the request.
+
+For more information on key rotation and best practices, see [JSON Web Key Set](/openapi/okta-oauth/guides/overview/#json-web-key-set).
+
+**Responses:**
+- `200`: Success
+- `429`:
+}

@@ -1,0 +1,31 @@
+meta {
+  name: Upload the background image
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/themes/{{themeId}}/background-image
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:multipart-form {
+  # populate fields here
+}
+
+docs {
+Uploads and replaces the background image for the theme. The file must be in PNG, JPG, or GIF format and less than 2 MB in size.
+
+**Responses:**
+- `201`: Content Created
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

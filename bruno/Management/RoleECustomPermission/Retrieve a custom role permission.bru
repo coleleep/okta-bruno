@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a custom role permission
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/iam/roles/{{roleIdOrLabel}}/permissions/{{permissionType}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a permission (identified by `permissionType`) for a custom role
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

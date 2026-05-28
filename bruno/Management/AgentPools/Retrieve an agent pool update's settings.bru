@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an agent pool update's settings
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates/settings
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the current state of the agent pool update instance settings
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

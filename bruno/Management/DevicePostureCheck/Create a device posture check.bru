@@ -1,0 +1,55 @@
+meta {
+  name: Create a device posture check
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/device-posture-checks
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "createdBy": "00u217pyf72CdUrBt1c5",
+    "createdDate": "2019-10-02T18:03:07.000Z",
+    "description": "Query macOS devices to check if firewall is enabled",
+    "id": "dch3m8o4rWhwReDeM1c5",
+    "lastUpdate": "2019-10-02T18:03:07.000Z",
+    "lastUpdatedBy": "00u217pyf72CdUrBt1c5",
+    "mappingType": "CHECKBOX",
+    "name": "Device posture check macOS",
+    "platform": "MACOS",
+    "query": "SELECT CASE WHEN global_state = 0 THEN 0 ELSE 1 END AS firewall_enabled FROM  alf;",
+    "remediationSettings": {
+      "link": {
+        "defaultUrl": ""
+      },
+      "message": {
+        "defaultI18nKey": ""
+      }
+    },
+    "type": "BUILTIN",
+    "variableName": "macOSFirewall",
+    "_links": {
+      "self": ""
+    }
+  }
+}
+
+docs {
+Creates a device posture check
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `429`:
+}

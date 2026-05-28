@@ -1,0 +1,24 @@
+meta {
+  name: Retrieve the OpenID Connect metadata
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/oauth2/{{authorizationServerId}}/.well-known/openid-configuration
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+Returns OpenID Connect metadata for the specified custom authorization server. Clients can use this information to programmatically configure their interactions with Okta. Custom scopes are returned only when they are configured to be publicly discoverable. Custom claims are never returned.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `404`:
+}

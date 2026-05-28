@@ -1,0 +1,28 @@
+meta {
+  name: Activate an OAuth 2.0 client JSON Web Key
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/credentials/jwks/{{keyId}}/lifecycle/activate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Activates an OAuth 2.0 client JSON Web Key by `keyId`
+> **Note:** You can have only one active encryption key at any given time for an app. When you activate an inactive key, the current active key is automatically deactivated.
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

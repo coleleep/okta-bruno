@@ -1,0 +1,45 @@
+meta {
+  name: Replace a trusted origin
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/trustedOrigins/{{trustedOriginId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2026-01-01T00:00:00Z",
+    "createdBy": "",
+    "id": "",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "lastUpdatedBy": "",
+    "name": "",
+    "origin": "",
+    "scopes": [],
+    "status": "ACTIVE",
+    "_links": {
+      "activate": ""
+    }
+  }
+}
+
+docs {
+Replaces a trusted origin
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

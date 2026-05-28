@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a theme
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/themes/{{themeId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a theme for a brand
+
+**Responses:**
+- `200`: Successfully retrieved the theme
+- `403`: 
+- `404`: 
+- `429`:
+}

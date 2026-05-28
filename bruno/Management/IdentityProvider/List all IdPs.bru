@@ -1,0 +1,30 @@
+meta {
+  name: List all IdPs
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/idps
+  body: none
+  auth: none
+}
+
+params:query {
+  ~q: 
+  ~type: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all identity provider (IdP) integrations with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

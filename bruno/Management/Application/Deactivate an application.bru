@@ -1,0 +1,28 @@
+meta {
+  name: Deactivate an application
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates an active application
+
+> **Note:** Deactivating an app triggers a full reconciliation of all users assigned to the app by groups. This reconcile process removes the app assignment for the deactivated app, and might also correct assignments that were supposed to be removed but failed previously.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

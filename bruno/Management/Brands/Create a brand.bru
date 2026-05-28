@@ -1,0 +1,34 @@
+meta {
+  name: Create a brand
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/brands
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "name": ""
+  }
+}
+
+docs {
+Creates a new brand in your org
+
+**Responses:**
+- `201`: Successfully created the brand
+- `400`: 
+- `403`: 
+- `409`: Could not create the new brand because same name already exist.
+- `429`:
+}

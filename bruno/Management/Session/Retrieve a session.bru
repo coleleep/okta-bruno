@@ -1,0 +1,27 @@
+meta {
+  name: Retrieve a session
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/sessions/{{sessionId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves information about the session specified by the given session ID
+
+**Responses:**
+- `200`: Success
+- `400`: Bad Request
+- `403`: 
+- `404`: Not Found
+- `429`:
+}

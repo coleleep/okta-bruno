@@ -1,0 +1,28 @@
+meta {
+  name: List all custom AAGUIDs
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authenticators/{{authenticatorId}}/aaguids
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all custom Authenticator Attestation Global Unique Identifiers (AAGUIDs) in the org
+
+Only custom AAGUIDs that an admin has created are returned.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

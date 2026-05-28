@@ -1,0 +1,28 @@
+meta {
+  name: Retrieve a public key
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/hook-keys/public/{{keyId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a public key by `keyId`
+
+>**Note:** keyId is the alias of the public key.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

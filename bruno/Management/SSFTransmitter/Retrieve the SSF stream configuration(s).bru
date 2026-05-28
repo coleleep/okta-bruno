@@ -1,0 +1,33 @@
+meta {
+  name: Retrieve the SSF stream configuration(s)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/ssf/stream
+  body: none
+  auth: none
+}
+
+params:query {
+  ~stream_id: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves either a list of all known SSF stream configurations or the individual configuration if specified by ID.
+
+As stream configurations are tied to a client ID, you can only view the stream associated with the client ID of the request OAuth 2.0 access token.
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

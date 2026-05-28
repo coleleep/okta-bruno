@@ -1,0 +1,27 @@
+meta {
+  name: Activate a device integration
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/device-integrations/{{deviceIntegrationId}}/lifecycle/activate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Activates a device integration and populates the related configurations by `deviceIntegrationId`
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the contact type user
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org/contacts/{{contactType}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the ID and the user resource associated with the specified contact type
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

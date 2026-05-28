@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a device
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/devices/{{deviceId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a device by `deviceId`
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

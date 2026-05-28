@@ -1,0 +1,35 @@
+meta {
+  name: Create a principal rate limit
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/principal-rate-limits
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "principalId": "",
+    "principalType": "OAUTH_CLIENT"
+  }
+}
+
+docs {
+Creates a new principal rate limit entity. Okta only allows one principal rate limit entity per org and principal.
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

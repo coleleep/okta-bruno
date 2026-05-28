@@ -1,0 +1,33 @@
+meta {
+  name: List all associated authorization servers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/associatedServers
+  body: none
+  auth: none
+}
+
+params:query {
+  ~trusted: 
+  ~q: 
+  ~limit: 200
+  ~after: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all associated Authorization Servers by trusted type for the given `authServerId`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

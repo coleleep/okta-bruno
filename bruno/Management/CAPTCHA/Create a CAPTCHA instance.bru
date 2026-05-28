@@ -1,0 +1,40 @@
+meta {
+  name: Create a CAPTCHA instance
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/captchas
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "id": "",
+    "name": "",
+    "secretKey": "",
+    "siteKey": "",
+    "type": "HCAPTCHA",
+    "_links": {
+      "self": ""
+    }
+  }
+}
+
+docs {
+Creates a new CAPTCHA instance. Currently, an org can only configure a single CAPTCHA instance.
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: Forbidden
+- `429`:
+}

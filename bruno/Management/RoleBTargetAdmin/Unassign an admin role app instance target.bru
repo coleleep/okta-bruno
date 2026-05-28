@@ -1,0 +1,29 @@
+meta {
+  name: Unassign an admin role app instance target
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles/{{roleAssignmentId}}/targets/catalog/apps/{{appName}}/{{appId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unassigns an app instance target from an `APP_ADMIN` role assignment to an admin user.
+
+> **Note:** You can't remove the last app instance target from a role assignment since this causes an exception.
+> If you need a role assignment that applies to all apps, delete the `APP_ADMIN` role assignment and recreate a new one.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

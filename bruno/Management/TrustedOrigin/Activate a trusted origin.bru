@@ -1,0 +1,26 @@
+meta {
+  name: Activate a trusted origin
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/trustedOrigins/{{trustedOriginId}}/lifecycle/activate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Activates a trusted origin. Sets the `status` to `ACTIVE`.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

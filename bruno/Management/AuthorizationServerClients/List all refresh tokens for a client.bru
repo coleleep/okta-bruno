@@ -1,0 +1,32 @@
+meta {
+  name: List all refresh tokens for a client
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/clients/{{clientId}}/tokens
+  body: none
+  auth: none
+}
+
+params:query {
+  ~expand: 
+  ~after: 
+  ~limit: -1
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all refresh tokens issued by an authorization server for a specific Client
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

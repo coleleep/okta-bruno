@@ -1,0 +1,26 @@
+meta {
+  name: Activate the default provisioning connection
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/connections/default/lifecycle/activate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Activates the default provisioning connection for an app
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

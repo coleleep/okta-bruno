@@ -1,0 +1,27 @@
+meta {
+  name: Delete an interclient trust mapping
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/interclient-allowed-apps/{{allowedAppId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes the mapping between the target app and an allowed app
+
+**Responses:**
+- `204`: No Content
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

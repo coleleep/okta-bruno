@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a profile mapping
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/mappings/{{mappingId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a single profile mapping referenced by its ID
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

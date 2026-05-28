@@ -1,0 +1,26 @@
+meta {
+  name: List all authenticator enrollments
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/authenticator-enrollments
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all authenticator enrollments of the specified user
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

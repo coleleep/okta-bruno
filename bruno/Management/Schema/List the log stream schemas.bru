@@ -1,0 +1,25 @@
+meta {
+  name: List the log stream schemas
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{orgUrl}}/api/v1/meta/schemas/logStream
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists the schema for all log stream types visible for this org
+
+**Responses:**
+- `200`: successful operation
+- `403`: 
+- `429`:
+}

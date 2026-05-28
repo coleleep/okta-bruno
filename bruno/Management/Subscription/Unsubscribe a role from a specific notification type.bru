@@ -1,0 +1,26 @@
+meta {
+  name: Unsubscribe a role from a specific notification type
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/roles/{{roleRef}}/subscriptions/{{notificationType}}/unsubscribe
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unsubscribes a Role from a specified notification type. Changes to Role subscriptions override the subscription status of any individual users with the Role.
+
+**Responses:**
+- `200`: No Content
+- `403`: 
+- `404`: Not Found
+- `429`:
+}

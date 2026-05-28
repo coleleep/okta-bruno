@@ -1,0 +1,26 @@
+meta {
+  name: Resume an agent pool update
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates/{{updateId}}/resume
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Resumes a running or queued agent pool update
+
+**Responses:**
+- `201`: Resumed
+- `403`: 
+- `404`: 
+- `429`:
+}

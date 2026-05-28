@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the Okta Admin Console assignment setting
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org/settings/autoAssignAdminAppSetting
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the org setting to automatically assign the Okta Admin Console when an admin role is assigned
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

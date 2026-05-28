@@ -1,0 +1,50 @@
+meta {
+  name: Replace an IdP
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/idps/{{idpId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2016-01-03T18:15:47.000Z",
+    "id": "0oaWma58liwx40w6boYD",
+    "issuerMode": "DYNAMIC",
+    "lastUpdated": "2016-01-03T18:15:47.000Z",
+    "name": "Sample IdP",
+    "policy": {
+      "accountLink": ""
+    },
+    "properties": {
+      "inquiryTemplateId": "itmpl_HSctx8fNvXoHtrQfz2hxUVH8RBjG"
+    },
+    "protocol": {
+      "algorithms": ""
+    },
+    "status": "ACTIVE",
+    "type": "AMAZON",
+    "_links": {}
+  }
+}
+
+docs {
+Replaces an identity provider (IdP) integration by `idpId`
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

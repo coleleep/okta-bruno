@@ -1,0 +1,36 @@
+meta {
+  name: Add a JSON Web Key
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/credentials/jwks
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "alg": "RS256",
+    "use": "sig"
+  }
+}
+
+docs {
+Adds a new JSON Web Key to the client`s JSON Web Keys.
+> **Note:** This API doesn't allow you to add a key if the existing key doesn't have a `kid`. This is also consistent with how the [Dynamic Client Registration](/openapi/okta-oauth/oauth/client) or [Applications](/openapi/okta-management/management/tags/application) APIs behave, as they don't allow the creation of multiple keys without `kids`. Use the [Replace an Application](/openapi/okta-management/management/application/replaceapplication) or the [Replace a Client Application](/openapi/okta-oauth/oauth/client/replaceclient) operation to update the JWKS or [Delete an OAuth 2.0 Client JSON Web Key](/openapi/okta-management/management/applicationssopublickeys/deletejwk) and re-add the key with a `kid`.
+
+**Responses:**
+- `201`: Created
+- `400`: Bad Request
+- `401`: 
+- `403`: 
+- `429`:
+}

@@ -1,0 +1,35 @@
+meta {
+  name: Create a user type
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/meta/types/user
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "displayName": "",
+    "name": ""
+  }
+}
+
+docs {
+Creates a new user type. Okta automatically creates a `default` user type for your org. You may add up to nine additional user types.
+> **Note**: New user types are based on the current default schema template. Modifications to this schema do not automatically propagate to previously created user types.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

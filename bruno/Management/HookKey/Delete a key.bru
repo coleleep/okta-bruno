@@ -1,0 +1,28 @@
+meta {
+  name: Delete a key
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/hook-keys/{{id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a key by `id`. After being deleted, the key is unrecoverable.
+
+As a safety precaution, only keys that aren't being used are eligible for deletion.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

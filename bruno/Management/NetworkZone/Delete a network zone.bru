@@ -1,0 +1,29 @@
+meta {
+  name: Delete a network zone
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/zones/{{zoneId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a Network Zone by `zoneId`
+> **Notes:**
+> * You can't delete a Network Zone that's used by a [Policy](https://developer.okta.com/docs/api/openapi/okta-management/management/tags/policy/) or [Rule](https://developer.okta.com/docs/api/openapi/okta-management/management/tags/policy/#tag/Policy/operation/listPolicyRules).
+> * For Okta Identity Engine orgs, you can't delete a Network Zone with an ACTIVE `status`. <x-lifecycle class="oie"></x-lifecycle>
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

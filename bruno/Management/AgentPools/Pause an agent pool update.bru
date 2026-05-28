@@ -1,0 +1,26 @@
+meta {
+  name: Pause an agent pool update
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates/{{updateId}}/pause
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Pauses a running or queued agent pool update
+
+**Responses:**
+- `201`: Paused
+- `403`: 
+- `404`: 
+- `429`:
+}

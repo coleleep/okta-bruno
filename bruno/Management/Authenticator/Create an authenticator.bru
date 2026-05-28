@@ -1,0 +1,30 @@
+meta {
+  name: Create an authenticator
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authenticators
+  body: none
+  auth: none
+}
+
+params:query {
+  ~activate: True
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Creates an authenticator
+
+**Responses:**
+- `200`: 
+- `400`: 
+- `403`: 
+- `429`:
+}

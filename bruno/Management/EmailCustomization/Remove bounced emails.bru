@@ -1,0 +1,40 @@
+meta {
+  name: Remove bounced emails
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/api/v1/org/email/bounces/remove-list
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "emailAddresses": [
+      ""
+    ]
+  }
+}
+
+docs {
+Removes emails from an email service bounce list.
+
+The emails submitted in this operation are removed from the bounce list by an asynchronous job.
+Any email address that passes validation is accepted for the removal process, even if there are other email addresses in the request that failed validation.
+
+> **Note:** If there are validation errors for all email addresses, a `200 OK` HTTP status is still returned.
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `429`:
+}

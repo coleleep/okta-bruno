@@ -1,0 +1,35 @@
+meta {
+  name: Replace a behavior detection rule
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/behaviors/{{behaviorId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "name": "",
+    "type": "ANOMALOUS_DEVICE"
+  }
+}
+
+docs {
+Replaces a Behavior Detection Rule by `behaviorId`
+
+**Responses:**
+- `200`: Created
+- `400`: Bad Request
+- `403`: 
+- `404`: Not Found
+- `429`:
+}

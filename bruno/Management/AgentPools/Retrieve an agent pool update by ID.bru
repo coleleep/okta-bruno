@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an agent pool update by ID
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates/{{updateId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves an agent pool update by its `updateId`
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

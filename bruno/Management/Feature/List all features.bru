@@ -1,0 +1,25 @@
+meta {
+  name: List all features
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/features
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all self-service features for your org
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

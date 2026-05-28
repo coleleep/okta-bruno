@@ -1,0 +1,39 @@
+meta {
+  name: Create a resource set
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/iam/resource-sets
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "description": "",
+    "label": "",
+    "resources": [
+      ""
+    ]
+  }
+}
+
+docs {
+Creates a new resource set. See [Supported resources](/openapi/okta-management/guides/roles/#supported-resources).
+
+> **Note:** The maximum number of `resources` allowed in a resource set object is 1000. Resources are identified by either an Okta Resource Name (ORN) or by a REST URL format. See [Okta Resource Name](/openapi/okta-management/guides/roles/#okta-resource-name-orn).
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: Forbidden
+- `429`:
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Unsuspend a user
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{id}}/lifecycle/unsuspend
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unsuspends a user and returns them to the `ACTIVE` state. This operation can only be performed on users that have a `SUSPENDED` status.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

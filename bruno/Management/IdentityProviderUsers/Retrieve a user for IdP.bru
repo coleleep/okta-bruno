@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a user for IdP
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/idps/{{idpId}}/users/{{userId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a linked identity provider (IdP) user by ID
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

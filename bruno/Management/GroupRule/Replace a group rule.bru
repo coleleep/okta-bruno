@@ -1,0 +1,51 @@
+meta {
+  name: Replace a group rule
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/groups/rules/{{groupRuleId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "actions": {
+      "assignUserToGroups": ""
+    },
+    "conditions": {
+      "expression": ""
+    },
+    "created": "2026-01-01T00:00:00Z",
+    "id": "",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "name": "",
+    "status": "ACTIVE",
+    "type": "",
+    "_embedded": {
+      "groupIdToGroupNameMap": {}
+    }
+  }
+}
+
+docs {
+Replaces a group rule
+> **Notes:** You can only update rules with a group whose status is set to `INACTIVE`.
+>
+> You currently can't update the `actions` section.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

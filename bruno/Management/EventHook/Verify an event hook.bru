@@ -1,0 +1,32 @@
+meta {
+  name: Verify an event hook
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{orgUrl}}/api/v1/eventHooks/{{eventHookId}}/lifecycle/verify
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Verifies that the event hook matches the provided `eventHookId`. To verify ownership, your endpoint must send information back to Okta in JSON format. See [Event hooks](https://developer.okta.com/docs/concepts/event-hooks/#one-time-verification-request).
+
+Only `ACTIVE` and `VERIFIED` event hooks can receive events from Okta.
+
+If a response is not received within 3 seconds, the outbound request times out. One retry is attempted after a timeout or error response.
+If a successful response still isn't received, this operation returns a 400 error with more information about the failure.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

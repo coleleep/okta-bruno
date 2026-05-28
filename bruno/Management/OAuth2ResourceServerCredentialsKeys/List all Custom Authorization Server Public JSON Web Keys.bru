@@ -1,0 +1,27 @@
+meta {
+  name: List all Custom Authorization Server Public JSON Web Keys
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/resourceservercredentials/keys
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all the public keys used by the custom authorization server
+
+**Responses:**
+- `200`: Success
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

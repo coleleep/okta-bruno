@@ -1,0 +1,29 @@
+meta {
+  name: Suspend a user
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{id}}/lifecycle/suspend
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Suspends a user. Perform this operation only on users with an `ACTIVE` status. The user has a `SUSPENDED` status when the process completes.
+
+Suspended users can't sign in to Okta. They can only be unsuspended or deactivated. Their group and app assignments are retained.
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve a network zone
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/zones/{{zoneId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a Network Zone by `zoneId`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

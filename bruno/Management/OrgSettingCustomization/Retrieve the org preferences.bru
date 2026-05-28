@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the org preferences
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org/preferences
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves preferences of your Okta org
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

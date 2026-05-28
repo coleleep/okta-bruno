@@ -1,0 +1,26 @@
+meta {
+  name: Start the import from the identity source
+  type: http
+  seq: 18
+}
+
+post {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}/start-import
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Starts the import from the identity source described by the uploaded bulk operations
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

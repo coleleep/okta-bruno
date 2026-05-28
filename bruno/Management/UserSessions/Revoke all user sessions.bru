@@ -1,0 +1,34 @@
+meta {
+  name: Revoke all user sessions
+  type: http
+  seq: 1
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/sessions
+  body: none
+  auth: none
+}
+
+params:query {
+  ~oauthTokens: False
+  ~forgetDevices: True
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
+
+You can also clear the user's remembered factors for all devices using the `forgetDevices` parameter. See [forgetDevices](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserSessions/#tag/UserSessions/operation/revokeUserSessions!in=query&path=forgetDevices&t=request).
+> **Note:** This operation doesn't clear the sessions created for web or native apps.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

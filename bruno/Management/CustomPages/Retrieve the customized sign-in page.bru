@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the customized sign-in page
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/sign-in/customized
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the customized sign-in page. The customized sign-in page appears in your live environment.
+
+**Responses:**
+- `200`: Successfully retrieved the customized sign-in page.
+- `403`: 
+- `404`: 
+- `429`:
+}

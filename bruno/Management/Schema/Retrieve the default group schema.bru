@@ -1,0 +1,27 @@
+meta {
+  name: Retrieve the default group schema
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/meta/schemas/group/default
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the group schema
+
+The [User Types](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/) feature does not extend to groups. All groups use the same group schema. Unlike user schema operations, group schema operations all specify `default` and don't accept a schema ID.
+
+**Responses:**
+- `200`: successful operation
+- `403`: 
+- `429`:
+}

@@ -1,0 +1,45 @@
+meta {
+  name: Generate a certificate signing request
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/idps/{{idpId}}/credentials/csrs
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "subject": {
+      "commonName": "SP Issuer",
+      "countryName": "US",
+      "localityName": "San Francisco",
+      "organizationalUnitName": "Dev",
+      "organizationName": "Okta, Inc.",
+      "stateOrProvinceName": "California"
+    },
+    "subjectAltNames": {
+      "dnsNames": []
+    }
+  }
+}
+
+docs {
+Generates a new key pair and returns a certificate signing request (CSR) for it
+> **Note:** The private key isn't listed in the [signing key credentials for the identity provider (IdP)](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProviderSigningKeys/#tag/IdentityProviderSigningKeys/operation/listIdentityProviderSigningKeys) until it's published.
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

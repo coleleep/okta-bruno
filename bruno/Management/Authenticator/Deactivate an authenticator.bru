@@ -1,0 +1,26 @@
+meta {
+  name: Deactivate an authenticator
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{orgUrl}}/api/v1/authenticators/{{authenticatorId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates an authenticator by `authenticatorId`
+
+**Responses:**
+- `200`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

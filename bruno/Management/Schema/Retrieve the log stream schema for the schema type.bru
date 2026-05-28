@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the log stream schema for the schema type
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{orgUrl}}/api/v1/meta/schemas/logStream/{{logStreamType}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the schema for a log stream type. The `logStreamType` element in the URL specifies the log stream type, which is either `aws_eventbridge` or `splunk_cloud_logstreaming`. Use the `aws_eventbridge` literal to retrieve the AWS EventBridge type schema, and use the `splunk_cloud_logstreaming` literal retrieve the Splunk Cloud type schema.
+
+**Responses:**
+- `200`: successful operation
+- `403`: 
+- `404`: 
+- `429`:
+}

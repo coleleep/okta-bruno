@@ -1,0 +1,29 @@
+meta {
+  name: Unassign a user from a group
+  type: http
+  seq: 9
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}/users/{{userId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unassigns a user from a group with the `OKTA_GROUP` type.
+> **Note:** You only can modify memberships for groups of the `OKTA_GROUP` type.
+>
+> App imports are responsible for managing group memberships for groups of the `APP_GROUP` type, such as Active Directory groups.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

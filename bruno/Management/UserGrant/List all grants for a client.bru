@@ -1,0 +1,32 @@
+meta {
+  name: List all grants for a client
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/clients/{{clientId}}/grants
+  body: none
+  auth: none
+}
+
+params:query {
+  ~expand: 
+  ~after: 
+  ~limit: 20
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all grants for a specified user and client
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

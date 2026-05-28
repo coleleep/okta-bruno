@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the org-wide CAPTCHA settings
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org/captcha
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the CAPTCHA settings object for your organization
+> **Note**: If the current organization hasn't configured CAPTCHA Settings, the request returns an empty object.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

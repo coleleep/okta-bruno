@@ -1,0 +1,33 @@
+meta {
+  name: List all custom token scopes
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authorizationServers/{{authServerId}}/scopes
+  body: none
+  auth: none
+}
+
+params:query {
+  ~q: 
+  ~filter: 
+  ~after: 
+  ~limit: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all custom token scopes
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

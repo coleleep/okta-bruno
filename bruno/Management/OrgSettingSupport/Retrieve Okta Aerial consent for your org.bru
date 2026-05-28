@@ -1,0 +1,27 @@
+meta {
+  name: Retrieve Okta Aerial consent for your org
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org/privacy/aerial
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the Okta Aerial consent grant details for your Org. Returns a 404 Not Found error if no consent has been granted.
+
+**Responses:**
+- `200`: Success
+- `400`: Can't complete request due to errors
+- `403`: 
+- `404`: Consent hasn't been given and there are no grants to any Aerial Accounts
+- `429`:
+}

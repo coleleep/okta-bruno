@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an authenticator method
+  type: http
+  seq: 15
+}
+
+get {
+  url: {{orgUrl}}/api/v1/authenticators/{{authenticatorId}}/methods/{{methodType}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a method identified by `methodType` of an authenticator identified by `authenticatorId`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

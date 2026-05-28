@@ -1,0 +1,43 @@
+meta {
+  name: List all groups
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/groups
+  body: none
+  auth: none
+}
+
+params:query {
+  ~search: 
+  ~filter: 
+  ~q: 
+  ~after: 
+  ~limit: 
+  ~expand: 
+  ~sortBy: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all groups with pagination support.
+
+> **Note:** To list all groups belonging to a member, use the [List all groups endpoint in the User Resources API](/openapi/okta-management/management/tags/userresources/other/listusergroups).
+
+The number of groups returned depends on the specified [`limit`](/openapi/okta-management/management/group/listgroups#group/listgroups/t=request&in=query&path=limit), if you have a search, filter, and/or query parameter set, and if that parameter is not null. We recommend using a limit less than or equal to 200.
+
+A subset of groups can be returned that match a supported filter expression, query, or search criteria.
+
+> **Note:** The `search` parameter results are sourced from an eventually consistent datasource and may not reflect the latest information.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

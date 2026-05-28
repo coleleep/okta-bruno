@@ -1,0 +1,42 @@
+meta {
+  name: Resend a factor enrollment
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/factors/{{factorId}}/resend
+  body: json
+  auth: none
+}
+
+params:query {
+  ~templateId: 
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "factorType": "call"
+  }
+}
+
+docs {
+Resends an `sms`, `call`, or `email` factor challenge as part of an enrollment flow.
+
+For `call` and `sms` factors, Okta enforces a rate limit of one OTP challenge per device every 30 seconds. You can configure your `sms` and `call` factors to use a third-party telephony provider. See the [Telephony inline hook reference](https://developer.okta.com/docs/reference/telephony-hook/). Okta alternates between SMS providers with every resend request to ensure delivery of SMS and Call OTPs across different carriers.
+
+> **Note:** Resend operations aren't allowed after a factor exceeds the activation rate limit. See [Activate a factor](./#tag/UserFactor/operation/activateFactor).
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

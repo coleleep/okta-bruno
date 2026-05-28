@@ -1,0 +1,26 @@
+meta {
+  name: Delete the customized sign-in page
+  type: http
+  seq: 12
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/sign-in/customized
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes the customized sign-in page. As a result, the default sign-in page appears in your live environment.
+
+**Responses:**
+- `204`: Successfully deleted the sign-in page.
+- `403`: 
+- `404`: 
+- `429`:
+}

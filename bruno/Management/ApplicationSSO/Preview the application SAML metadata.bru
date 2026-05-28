@@ -1,0 +1,30 @@
+meta {
+  name: Preview the application SAML metadata
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/sso/saml/metadata
+  body: none
+  auth: none
+}
+
+params:query {
+  kid: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Previews the SSO SAML metadata for an application
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

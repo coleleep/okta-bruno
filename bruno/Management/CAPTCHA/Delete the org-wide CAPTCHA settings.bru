@@ -1,0 +1,26 @@
+meta {
+  name: Delete the org-wide CAPTCHA settings
+  type: http
+  seq: 9
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/org/captcha
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes the CAPTCHA settings object for your organization
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

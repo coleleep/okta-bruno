@@ -1,0 +1,28 @@
+meta {
+  name: List all email customizations
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/templates/email/{{templateName}}/customizations
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all customizations of an email template
+
+<x-lifecycle class="ea"></x-lifecycle> If Custom languages for Okta Email Templates is enabled, all existing customizations are retrieved, including customizations for additional languages. If disabled, only customizations for Okta-supported languages are returned.
+
+**Responses:**
+- `200`: Successfully retrieved all email customizations for the specified email template.
+- `403`: 
+- `404`: 
+- `429`:
+}

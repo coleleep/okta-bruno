@@ -1,0 +1,38 @@
+meta {
+  name: Create a policy
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/policies
+  body: json
+  auth: none
+}
+
+params:query {
+  ~activate: True
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "name": "",
+    "type": "ACCESS_POLICY"
+  }
+}
+
+docs {
+Creates a policy. There are many types of policies that you can create. See [Policies](https://developer.okta.com/docs/concepts/policies/) for an overview of the types of policies available and links to more indepth information.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `429`:
+}

@@ -1,0 +1,38 @@
+meta {
+  name: Update an application group
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/groups/{{groupId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  [
+    {
+      "op": "remove",
+      "path": "",
+      "value": {}
+    }
+  ]
+}
+
+docs {
+Updates a group assignment to an app
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

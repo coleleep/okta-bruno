@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve the Org general settings
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the Org General Settings
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

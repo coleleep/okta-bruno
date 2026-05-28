@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an SMTP server configuration
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/email-servers/{{emailServerId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the specified custom SMTP server configuration
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

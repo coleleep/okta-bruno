@@ -1,0 +1,26 @@
+meta {
+  name: Delete a resource set
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/iam/resource-sets/{{resourceSetIdOrLabel}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a resource set by `resourceSetIdOrLabel`
+
+**Responses:**
+- `204`: No Content
+- `403`: Forbidden
+- `404`: 
+- `429`:
+}

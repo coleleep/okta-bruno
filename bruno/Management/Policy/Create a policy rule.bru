@@ -1,0 +1,49 @@
+meta {
+  name: Create a policy rule
+  type: http
+  seq: 16
+}
+
+post {
+  url: {{orgUrl}}/api/v1/policies/{{policyId}}/rules
+  body: json
+  auth: none
+}
+
+params:query {
+  ~activate: True
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "created": "2026-01-01T00:00:00Z",
+    "id": "",
+    "lastUpdated": "2026-01-01T00:00:00Z",
+    "name": "",
+    "priority": 0,
+    "system": false,
+    "type": "ACCESS_POLICY",
+    "_links": {
+      "activate": ""
+    }
+  }
+}
+
+docs {
+Creates a policy rule
+
+> **Note:** You can't create additional rules for the `PROFILE_ENROLLMENT`, `POST_AUTH_SESSION`, `CLIENT_UPDATE`, or <x-lifecycle class="ea"></x-lifecycle> `IDENTITY_CLAIM_SOURCING` policies.
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

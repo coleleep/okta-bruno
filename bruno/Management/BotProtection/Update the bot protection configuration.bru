@@ -1,0 +1,34 @@
+meta {
+  name: Update the bot protection configuration
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/bot-protection/configuration
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "level": "ANY",
+    "mode": "DISABLED"
+  }
+}
+
+docs {
+Updates the bot protection configuration for your org
+
+**Responses:**
+- `200`: OK
+- `400`: Bad Request
+- `403`: 
+- `429`:
+}

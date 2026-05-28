@@ -1,0 +1,28 @@
+meta {
+  name: Publish a certificate signing request
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/credentials/csrs/{{csrId}}/lifecycle/publish
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Publishes a certificate signing request (CSR) for the app with a signed X.509 certificate and adds it into the application key credentials.
+> **Note:** Publishing a certificate completes the lifecycle of the CSR and it's no longer accessible.
+
+**Responses:**
+- `201`: Created
+- `400`: Bad Request
+- `403`: 
+- `404`: 
+- `429`:
+}

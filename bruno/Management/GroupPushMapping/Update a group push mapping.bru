@@ -1,0 +1,35 @@
+meta {
+  name: Update a group push mapping
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/group-push/mappings/{{mappingId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "status": "ACTIVE"
+  }
+}
+
+docs {
+Updates the status of a group push mapping
+
+**Responses:**
+- `200`: Success
+- `400`: 
+- `401`: 
+- `403`: Forbidden
+- `404`: 
+- `429`:
+}

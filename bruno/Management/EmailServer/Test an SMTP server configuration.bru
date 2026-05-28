@@ -1,0 +1,35 @@
+meta {
+  name: Test an SMTP server configuration
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/email-servers/{{emailServerId}}/test
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "fromAddress": "sender@host.com",
+    "toAddress": "receiver@host.com"
+  }
+}
+
+docs {
+Tests the specified custom SMTP server configuration
+
+**Responses:**
+- `204`: No content
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

@@ -1,0 +1,25 @@
+meta {
+  name: List all custom roles
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/iam/roles
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all custom roles with pagination support
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

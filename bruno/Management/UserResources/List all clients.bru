@@ -1,0 +1,28 @@
+meta {
+  name: List all clients
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/clients
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all client resources for which the specified user has grants or tokens
+
+> **Note:** To list all client resources for which a specified authorization server has tokens, use the [List all client resources for an authorization server in the Authorization Servers API](/openapi/okta-management/management/authorizationserverclients/listoauth2clientsforauthorizationserver).
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

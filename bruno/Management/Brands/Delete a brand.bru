@@ -1,0 +1,27 @@
+meta {
+  name: Delete a brand
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a brand by `brandId`
+
+**Responses:**
+- `204`: Successfully deleted the brand.
+- `403`: 
+- `404`: 
+- `409`: Conflict
+- `429`:
+}

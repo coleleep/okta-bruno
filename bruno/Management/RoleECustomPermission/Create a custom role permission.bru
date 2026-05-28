@@ -1,0 +1,37 @@
+meta {
+  name: Create a custom role permission
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/iam/roles/{{roleIdOrLabel}}/permissions/{{permissionType}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "conditions": {
+      "exclude": {},
+      "include": {}
+    }
+  }
+}
+
+docs {
+Creates a permission (specified by `permissionType`) for a custom role
+
+**Responses:**
+- `204`: No Content
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

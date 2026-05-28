@@ -1,0 +1,26 @@
+meta {
+  name: Revoke an app grant
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/grants/{{grantId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Revokes permission for the app to grant the given scope
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

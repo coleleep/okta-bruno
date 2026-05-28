@@ -1,0 +1,26 @@
+meta {
+  name: List all agent pool updates
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all agent pool updates
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `404`: 
+- `429`:
+}

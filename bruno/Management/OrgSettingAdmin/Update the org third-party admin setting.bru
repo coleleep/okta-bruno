@@ -1,0 +1,38 @@
+meta {
+  name: Update the org third-party admin setting
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/org/orgSettings/thirdPartyAdminSetting
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "thirdPartyAdmin": false
+  }
+}
+
+docs {
+Updates the third-party admin setting.
+This setting allows third-party admins to perform administrative actions in the Admin Console, but they can't do any of the following:
+  * Receive Okta admin email notifications
+  * Contact Okta support
+  * Sign in to the Okta Help Center
+
+See [Configure third-party administrators](https://help.okta.com/okta_help.htm?type=oie&id=csh_admin-third) in the Okta product documentation.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

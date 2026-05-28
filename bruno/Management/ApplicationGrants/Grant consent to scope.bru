@@ -1,0 +1,35 @@
+meta {
+  name: Grant consent to scope
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/grants
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "issuer": "https://my_test_okta_org.oktapreview.com",
+    "scopeId": "okta.users.read"
+  }
+}
+
+docs {
+Grants consent for the app to request an OAuth 2.0 Okta scope
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

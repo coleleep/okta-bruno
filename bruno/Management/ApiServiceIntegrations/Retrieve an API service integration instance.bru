@@ -1,0 +1,27 @@
+meta {
+  name: Retrieve an API service integration instance
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/integrations/api/v1/api-services/{{apiServiceId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves an API Service Integration instance by `id`
+
+**Responses:**
+- `200`: OK
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

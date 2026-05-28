@@ -1,0 +1,33 @@
+meta {
+  name: Replace the user's classification
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/classification
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "type": "LITE"
+  }
+}
+
+docs {
+Replaces the user's classification
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

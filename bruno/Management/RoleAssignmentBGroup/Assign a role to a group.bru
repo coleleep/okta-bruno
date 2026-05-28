@@ -1,0 +1,45 @@
+meta {
+  name: Assign a role to a group
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{orgUrl}}/api/v1/groups/{{groupId}}/roles
+  body: json
+  auth: none
+}
+
+params:query {
+  ~disableNotifications: False
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "type": "ACCESS_CERTIFICATIONS_ADMIN"
+  }
+}
+
+docs {
+Assigns a [standard role](/openapi/okta-management/guides/roles/#standard-roles) to a group.
+
+You can also assign a custom role to a group, but the preferred method to assign a custom role to a group is to create a binding between the custom role, the resource set, and the group. See [Create a role resource set binding](/openapi/okta-management/management/roledresourcesetbinding/createresourcesetbinding).
+
+> **Notes:**
+> * The request payload is different for standard and custom role assignments.
+> * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role's assignment response.
+
+**Responses:**
+- `200`: Success
+- `201`: Success
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

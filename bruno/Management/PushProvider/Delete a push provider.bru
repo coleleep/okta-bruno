@@ -1,0 +1,27 @@
+meta {
+  name: Delete a push provider
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/push-providers/{{pushProviderId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `409`: Conflict
+- `429`:
+}

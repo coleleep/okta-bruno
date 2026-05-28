@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve an SMS template
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{orgUrl}}/api/v1/templates/sms/{{templateId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a specific template by `id`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

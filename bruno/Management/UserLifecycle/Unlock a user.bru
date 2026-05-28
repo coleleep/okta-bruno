@@ -1,0 +1,27 @@
+meta {
+  name: Unlock a user
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{id}}/lifecycle/unlock
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Unlocks a user with a `LOCKED_OUT` status or unlocks a user with an `ACTIVE` status that's blocked from unknown devices. Unlocked users have an `ACTIVE` status and can sign in with their current password.
+> **Note:** This operation works with Okta-sourced users. It doesn't support directory-sourced accounts such as Active Directory.
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

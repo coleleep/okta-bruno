@@ -1,0 +1,28 @@
+meta {
+  name: Delete an OAuth 2.0 client JSON Web Key
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/apps/{{appId}}/credentials/jwks/{{keyId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes an OAuth 2.0 Client JSON Web Key by `keyId`. You can only delete an inactive key.
+
+**Responses:**
+- `204`: No Content
+- `400`: Bad Request
+- `401`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

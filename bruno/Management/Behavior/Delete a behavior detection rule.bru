@@ -1,0 +1,26 @@
+meta {
+  name: Delete a behavior detection rule
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/behaviors/{{behaviorId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a Behavior Detection Rule by `behaviorId`
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: Not Found
+- `429`:
+}

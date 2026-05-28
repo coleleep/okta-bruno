@@ -1,0 +1,37 @@
+meta {
+  name: Create an identity source group
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{orgUrl}}/api/v1/identity-sources/{{identitySourceId}}/groups
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "externalId": "",
+    "profile": {
+      "description": "",
+      "displayName": ""
+    }
+  }
+}
+
+docs {
+Creates a group in an identity source for the given identity source instance
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

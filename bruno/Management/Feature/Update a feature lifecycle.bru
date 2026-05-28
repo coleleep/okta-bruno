@@ -1,0 +1,40 @@
+meta {
+  name: Update a feature lifecycle
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{orgUrl}}/api/v1/features/{{featureId}}/{{lifecycle}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~mode: 
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Updates a feature's lifecycle status. Use this endpoint to enable or disable a feature for your org.
+
+Use the `mode=force` parameter to override dependency restrictions for a particular feature. Normally, you can't enable a feature if it has one or more dependencies that aren't enabled.
+
+When you use the `mode=force` parameter while enabling a feature, Okta first tries to enable any disabled features that this feature may have as dependencies. If you don't pass the `mode=force` parameter and the feature has dependencies that need to be enabled before the feature is enabled, a 400 error is returned.
+
+When you use the `mode=force` parameter while disabling a feature, Okta first tries to disable any enabled features that this feature may have as dependents. If you don't pass the `mode=force` parameter and the feature has dependents that need to be disabled before the feature is disabled, a 400 error is returned.
+
+The following chart shows the different state transitions for a feature.
+
+<img alt="Example" src="https://developer.okta.com/docs/api/images/features/update-ssfeat-flowchart.png" width="1000"/>
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

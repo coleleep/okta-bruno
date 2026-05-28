@@ -1,0 +1,37 @@
+meta {
+  name: Replace a custom role permission
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/api/v1/iam/roles/{{roleIdOrLabel}}/permissions/{{permissionType}}
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "conditions": {
+      "exclude": {},
+      "include": {}
+    }
+  }
+}
+
+docs {
+Replaces a permission (specified by `permissionType`) for a custom role
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

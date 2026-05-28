@@ -1,0 +1,28 @@
+meta {
+  name: Retrieve a preview of an email customization
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/templates/email/{{templateName}}/customizations/{{customizationId}}/preview
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a Preview of an Email Customization. All variable references are populated from the current user's context. For example, `${user.profile.firstName}`.
+
+<x-lifecycle class="ea"></x-lifecycle> If Custom languages for Okta Email Templates is disabled, requests for the preview of an additional language customization by ID return a `404 Not Found` error response.
+
+**Responses:**
+- `200`: Successfully generated a preview of the email customization.
+- `403`: 
+- `404`: 
+- `429`:
+}

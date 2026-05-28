@@ -1,0 +1,23 @@
+meta {
+  name: Retrieve the Org metadata
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/.well-known/okta-organization
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+Retrieves the org metadata, which includes the org ID, configured custom domains, and authentication pipeline
+
+**Responses:**
+- `200`: Success
+- `429`:
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Activate a device
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{orgUrl}}/api/v1/devices/{{deviceId}}/lifecycle/activate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Activates a device by setting its status to `ACTIVE` by `deviceId`.
+Activated devices are used to create and delete device user links.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

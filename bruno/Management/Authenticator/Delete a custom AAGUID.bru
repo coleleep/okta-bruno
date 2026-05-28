@@ -1,0 +1,28 @@
+meta {
+  name: Delete a custom AAGUID
+  type: http
+  seq: 11
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/authenticators/{{authenticatorId}}/aaguids/{{aaguid}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a custom AAGUID
+
+You can only delete custom AAGUIDs that an admin has created.
+
+**Responses:**
+- `204`: Deleted
+- `403`: 
+- `404`: 
+- `429`:
+}

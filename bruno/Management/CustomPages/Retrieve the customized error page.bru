@@ -1,0 +1,26 @@
+meta {
+  name: Retrieve the customized error page
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/error/customized
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves the customized error page. The customized error page appears in your live environment.
+
+**Responses:**
+- `200`: Successfully retrieved the customized error page.
+- `403`: 
+- `404`: 
+- `429`:
+}

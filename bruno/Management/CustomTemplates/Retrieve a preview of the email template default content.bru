@@ -1,0 +1,30 @@
+meta {
+  name: Retrieve a preview of the email template default content
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/templates/email/{{templateName}}/default-content/preview
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Retrieves a preview of an Email Template's default content. All variable references are populated using the current user's context. For example, `${user.profile.firstName}`.
+
+<x-lifecycle class="ea"></x-lifecycle> Defaults to the current user's language given the following:
+- Custom languages for Okta Email Templates is enabled
+- An additional language is specified for the `language` parameter
+
+**Responses:**
+- `200`: Successfully generated a preview of the email template's default content.
+- `403`: 
+- `404`: 
+- `429`:
+}

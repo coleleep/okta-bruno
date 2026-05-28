@@ -1,0 +1,37 @@
+meta {
+  name: Replace the customized error page
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/error/customized
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "pageContent": "",
+    "contentSecurityPolicySetting": {
+      "mode": ""
+    }
+  }
+}
+
+docs {
+Replaces the customized error page. The customized error page appears in your live environment.
+
+**Responses:**
+- `200`: Successfully replaced the customized error page.
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

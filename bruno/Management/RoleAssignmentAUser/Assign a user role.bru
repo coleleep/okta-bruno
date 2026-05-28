@@ -1,0 +1,42 @@
+meta {
+  name: Assign a user role
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/users/{{userId}}/roles
+  body: json
+  auth: none
+}
+
+params:query {
+  ~disableNotifications: False
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {}
+}
+
+docs {
+Assigns a [standard role](/openapi/okta-management/guides/roles/#standard-roles) to a user.
+
+You can also assign a custom role to a user, but the preferred method to assign a custom role to a user is to create a binding between the custom role, the resource set, and the user. See [Create a role resource set binding](/openapi/okta-management/management/roledresourcesetbinding/createresourcesetbinding).
+
+> **Notes:**
+> * The request payload is different for standard and custom role assignments.
+> * For IAM-based standard role assignments, use the request payload for standard roles. However, the response payload for IAM-based role assignments is similar to the custom role's assignment response.
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `403`: 
+- `404`: 
+- `429`:
+}

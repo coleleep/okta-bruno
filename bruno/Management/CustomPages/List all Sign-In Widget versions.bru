@@ -1,0 +1,26 @@
+meta {
+  name: List all Sign-In Widget versions
+  type: http
+  seq: 17
+}
+
+get {
+  url: {{orgUrl}}/api/v1/brands/{{brandId}}/pages/sign-in/widget-versions
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all sign-in widget versions supported by the current org
+
+**Responses:**
+- `200`: Successfully listed the sign-in widget versions.
+- `403`: 
+- `404`: 
+- `429`:
+}

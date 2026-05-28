@@ -1,0 +1,26 @@
+meta {
+  name: List all client role app targets
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/oauth2/v1/clients/{{clientId}}/roles/{{roleAssignmentId}}/targets/catalog/apps
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all OIN app targets for an `APP_ADMIN` role that's assigned to a client (by `clientId`).
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

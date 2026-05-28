@@ -1,0 +1,35 @@
+meta {
+  name: Generate a fulfillment request
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/webauthn-registration/api/v1/initiate-fulfillment-request
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "fulfillmentData": [],
+    "fulfillmentProvider": "yubico",
+    "userId": ""
+  }
+}
+
+docs {
+Generates a fulfillment request by sending a WebAuthn preregistration event to start the flow. The WebAuthn preregistration integration for Okta Workflows uses a preregistration event to populate the fulfillment request.
+
+**Responses:**
+- `204`: No Content
+- `403`: 
+- `404`: 
+- `429`:
+}

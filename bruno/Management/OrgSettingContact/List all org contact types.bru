@@ -1,0 +1,25 @@
+meta {
+  name: List all org contact types
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/org/contacts
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all org contact types for your Okta org
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `429`:
+}

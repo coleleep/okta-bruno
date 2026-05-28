@@ -1,0 +1,33 @@
+meta {
+  name: Revoke Okta Aerial access to your org
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/org/privacy/aerial/revoke
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "accountId": ""
+  }
+}
+
+docs {
+Revokes access of an Okta Aerial account to your Org. The revoke operation will fail if the org has already been added to an Aerial account.
+
+**Responses:**
+- `200`: Success
+- `400`: Can't complete request due to errors
+- `403`: 
+- `429`:
+}

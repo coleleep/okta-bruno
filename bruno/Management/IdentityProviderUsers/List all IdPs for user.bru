@@ -1,0 +1,26 @@
+meta {
+  name: List all IdPs for user
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{orgUrl}}/api/v1/users/{{id}}/idps
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists the identity providers (IdPs) associated with the user
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

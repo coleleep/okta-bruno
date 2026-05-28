@@ -1,0 +1,26 @@
+meta {
+  name: Delete an agent pool update
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/agentPools/{{poolId}}/updates/{{updateId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes agent pool update
+
+**Responses:**
+- `204`: Deleted
+- `403`: 
+- `404`: 
+- `429`:
+}

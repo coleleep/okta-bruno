@@ -1,0 +1,33 @@
+meta {
+  name: Replace the user lockout settings
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{orgUrl}}/attack-protection/api/v1/user-lockout-settings
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "preventBruteForceLockoutFromUnknownDevices": false
+  }
+}
+
+docs {
+Replaces the User Lockout Settings for an org
+
+**Responses:**
+- `200`: OK
+- `400`: 
+- `403`: Forbidden
+- `429`:
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Deactivate an inline hook
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{orgUrl}}/api/v1/inlineHooks/{{inlineHookId}}/lifecycle/deactivate
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deactivates the inline hook by `inlineHookId`
+
+**Responses:**
+- `200`: Success
+- `403`: 
+- `404`: 
+- `429`:
+}

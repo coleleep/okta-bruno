@@ -1,0 +1,25 @@
+meta {
+  name: List all device assurance policies
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{orgUrl}}/api/v1/device-assurances
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Lists all device assurance policies
+
+**Responses:**
+- `200`: OK
+- `403`: 
+- `429`:
+}

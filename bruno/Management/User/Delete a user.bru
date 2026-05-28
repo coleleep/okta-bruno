@@ -1,0 +1,39 @@
+meta {
+  name: Delete a user
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{orgUrl}}/api/v1/users/{{id}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~sendEmail: False
+}
+
+headers {
+  Accept: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+docs {
+Deletes a user permanently. This operation can only be performed on users that have a `DEPROVISIONED` status.
+
+> **Warning:** This action can't be recovered!
+
+This operation on a user that hasn't been deactivated causes that user to be deactivated. A second delete operation is required to delete the user.
+
+> **Note:** You can also perform user deletion asynchronously. To invoke asynchronous user deletion, pass an HTTP header `Prefer: respond-async` with the request.
+
+This header is also supported by user deactivation, which is performed if the delete endpoint is invoked on a user that hasn't been deactivated.
+
+**Responses:**
+- `204`: No Content
+- `400`: Bad Request
+- `403`: Forbidden
+- `404`: Not Found
+- `429`:
+}

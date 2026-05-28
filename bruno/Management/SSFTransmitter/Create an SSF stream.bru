@@ -1,0 +1,46 @@
+meta {
+  name: Create an SSF stream
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{orgUrl}}/api/v1/ssf/stream
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+  Authorization: SSWS {{apiKey}}
+}
+
+body:json {
+  {
+    "delivery": {
+      "endpoint_url": "https://example.com/",
+      "method": "https://schemas.openid.net/secevent/risc/delivery-method/push"
+    },
+    "events_requested": [
+      "https://schemas.openid.net/secevent/caep/event-type/session-revoked",
+      "https://schemas.openid.net/secevent/caep/event-type/credential-change"
+    ]
+  }
+}
+
+docs {
+Creates an SSF stream for an event receiver to start receiving security events in the form of Security Event Tokens (SETs) from Okta.
+
+An SSF stream is associated with the client ID of the OAuth 2.0 access token used to create the stream. The client ID is provided by Okta for an [OAuth 2.0 app integration](https://help.okta.com/okta_help.htm?id=ext_Apps_App_Integration_Wizard-oidc). One SSF stream is allowed for each client ID, hence, one SSF stream is allowed for each app integration in Okta.
+
+You can create a maximum of 10 SSF stream configurations for one org.
+
+**Responses:**
+- `201`: Created
+- `400`: 
+- `401`: 
+- `403`: 
+- `409`: 
+- `429`:
+}
