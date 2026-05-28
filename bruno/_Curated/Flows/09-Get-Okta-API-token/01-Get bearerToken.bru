@@ -7,7 +7,7 @@ meta {
 post {
   url: {{orgUrl}}/oauth2/v1/token
   body: formUrlEncoded
-  auth: basic
+  auth: none
 }
 
 headers {
@@ -15,14 +15,53 @@ headers {
   Content-Type: application/x-www-form-urlencoded
 }
 
-auth:basic {
-  username: {{oauthClientId}}
-  password: {{oauthClientSecret}}
+script:pre-request {
+  // The Okta Org Authorization Server (/oauth2/v1/token, no authServerId)
+  // requires private_key_jwt for client authentication on the Client
+  // Credentials grant. Build a signed JWT here and inject it as
+  // `client_assertion` in the request body.
+
+  const crypto = require('crypto');
+  const jwt = require('jsonwebtoken');
+
+  const orgUrl = bru.getEnvVar('orgUrl');
+  const clientId = bru.getEnvVar('oktaApiClientId');
+  const jwkString = bru.getEnvVar('oktaApiPrivateJwk');
+
+  if (!clientId || !jwkString) {
+    throw new Error('Set oktaApiClientId and oktaApiPrivateJwk in your environment.');
+  }
+
+  const jwk = JSON.parse(jwkString);
+  const privateKey = crypto.createPrivateKey({ key: jwk, format: 'jwk' });
+
+  const now = Math.floor(Date.now() / 1000);
+  const payload = {
+    iss: clientId,
+    sub: clientId,
+    aud: orgUrl + '/oauth2/v1/token',
+    iat: now,
+    exp: now + 300,
+    jti: crypto.randomUUID(),
+  };
+
+  const header = { alg: jwk.alg || 'RS256', typ: 'JWT' };
+  if (jwk.kid) header.kid = jwk.kid;
+
+  const assertion = jwt.sign(payload, privateKey, {
+    algorithm: header.alg,
+    header,
+  });
+
+  bru.setVar('clientAssertion', assertion);
+  console.log('Signed client_assertion JWT (alg=' + header.alg + (jwk.kid ? ', kid=' + jwk.kid : '') + ').');
 }
 
 body:form-urlencoded {
   grant_type: client_credentials
   scope: okta.users.read okta.groups.read okta.apps.read
+  client_assertion_type: urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+  client_assertion: {{clientAssertion}}
 }
 
 script:post-response {
@@ -47,20 +86,39 @@ tests {
 }
 
 docs {
-**Purpose:** populate the collection-level `bearerToken` variable so you can use OAuth instead of SSWS for Okta Management API calls.
+**Purpose:** populate the `bearerToken` collection variable so you can use OAuth instead of SSWS for Okta Management API calls.
 
-**Endpoint:** `/oauth2/v1/token` — note this is the **org-level** auth server (no `/{authServerId}/`), which is required for Okta API scopes.
+**Endpoint:** `/oauth2/v1/token` — the **Org Authorization Server**. This is the only auth server that issues tokens with Okta API access scopes (`okta.users.*`, `okta.groups.*`, etc.).
 
-**Setup:** create an OAuth Service app in your Okta admin console:
+**Client authentication:** the Org auth server requires `private_key_jwt` (RFC 7523). Client secrets do not work here. The pre-request script signs a short-lived JWT with your private key and sends it as `client_assertion`.
 
-1. Admin Console → Applications → Create App → API Services.
-2. Configure OAuth client authentication (private key JWT or client secret).
-3. Under Okta API Scopes, grant the scopes you need (e.g., `okta.users.manage`, `okta.groups.manage`, `okta.apps.read`, etc.).
-4. Add the scopes to the `scope` parameter in the body of this request.
+## Setup
 
-**Scope reference:** see https://developer.okta.com/docs/api/oauth2/
+1. **Create an API Services app in Okta:**
+   - Admin Console → Applications → Create App Integration → API Services.
+   - Note the **Client ID** — set it as the `oktaApiClientId` env variable.
 
-**Switching a request from SSWS to Bearer:**
+2. **Configure key authentication on the app:**
+   - On the General tab, under Client Credentials, choose **Public key / Private key**.
+   - Generate a new key pair (Okta will create the keys for you) or upload your own.
+   - When the JWK is shown, click **PEM / JWK toggle** if needed and copy the **private JWK** as JSON.
+   - Paste the JWK into the `oktaApiPrivateJwk` env variable as a **single-line JSON string** (minified). Example:
+     ```
+     {"kty":"RSA","kid":"abc123","n":"...","e":"AQAB","d":"...","p":"...","q":"...","dp":"...","dq":"...","qi":"...","alg":"RS256"}
+     ```
+
+3. **Grant Okta API scopes:**
+   - On the API Services app, go to the **Okta API Scopes** tab.
+   - Grant the scopes you need (e.g., `okta.users.manage`, `okta.groups.manage`, `okta.apps.read`).
+   - Update the `scope` parameter in this request's body to match.
+
+4. **Run this request.** The pre-request script signs the JWT, the body sends it, and the post-response script captures the access token into `bearerToken`.
+
+## Switching a request from SSWS to Bearer
 
 In the auto-generated Management requests, the `headers` block has `Authorization: SSWS {{apiKey}}`. Edit that one line to `Authorization: Bearer {{bearerToken}}` to use the OAuth token. Bruno will save your change to the local `.bru` file — it will be overwritten on the next regen, so don't make the change permanent there. Instead, copy the request into `_Curated/` if you want a long-lived OAuth-authenticated version.
+
+## Scope reference
+
+See https://developer.okta.com/docs/api/oauth2/ for the full list of Okta API scopes.
 }
