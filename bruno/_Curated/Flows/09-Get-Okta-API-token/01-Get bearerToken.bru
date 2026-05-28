@@ -4,156 +4,93 @@ meta {
   seq: 1
 }
 
-post {
-  url: {{orgUrl}}/oauth2/v1/token
-  body: formUrlEncoded
+get {
+  url: {{orgUrl}}/.well-known/openid-configuration
+  body: none
   auth: none
 }
 
 headers {
   Accept: application/json
-  Content-Type: application/x-www-form-urlencoded
-}
-
-script:pre-request {
-  // The Okta Org Authorization Server (/oauth2/v1/token, no authServerId)
-  // requires private_key_jwt for client authentication on the Client
-  // Credentials grant. Build a signed JWT here and inject it as
-  // `client_assertion` in the request body.
-  //
-  // Uses Node's built-in `crypto` only — no jsonwebtoken dependency.
-  // `crypto` must be in bruno.json's scripts.moduleWhitelist.
-
-  const crypto = require('crypto');
-
-  const orgUrl = bru.getEnvVar('orgUrl');
-  const clientId = bru.getEnvVar('oktaApiClientId');
-  const jwkString = bru.getEnvVar('oktaApiPrivateJwk');
-
-  if (!clientId || !jwkString) {
-    throw new Error('Set oktaApiClientId and oktaApiPrivateJwk in your environment.');
-  }
-
-  const jwk = JSON.parse(jwkString);
-  const alg = jwk.alg || 'RS256';
-
-  function base64url(input) {
-    const buf = Buffer.isBuffer(input) ? input : Buffer.from(input);
-    return buf.toString('base64')
-      .replace(/=/g, '')
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_');
-  }
-
-  const header = { alg: alg, typ: 'JWT' };
-  if (jwk.kid) header.kid = jwk.kid;
-
-  const now = Math.floor(Date.now() / 1000);
-  const payload = {
-    iss: clientId,
-    sub: clientId,
-    aud: orgUrl + '/oauth2/v1/token',
-    iat: now,
-    exp: now + 300,
-    jti: crypto.randomUUID(),
-  };
-
-  const headerB64 = base64url(JSON.stringify(header));
-  const payloadB64 = base64url(JSON.stringify(payload));
-  const signingInput = headerB64 + '.' + payloadB64;
-
-  const privateKey = crypto.createPrivateKey({ key: jwk, format: 'jwk' });
-
-  let hashAlg;
-  if (alg === 'RS256') hashAlg = 'RSA-SHA256';
-  else if (alg === 'RS384') hashAlg = 'RSA-SHA384';
-  else if (alg === 'RS512') hashAlg = 'RSA-SHA512';
-  else throw new Error('Unsupported alg: ' + alg + '. This script supports RS256/RS384/RS512.');
-
-  const signer = crypto.createSign(hashAlg);
-  signer.update(signingInput);
-  signer.end();
-  const signatureBuf = signer.sign(privateKey);
-  const assertion = signingInput + '.' + base64url(signatureBuf);
-
-  bru.setVar('clientAssertion', assertion);
-  console.log('Signed client_assertion JWT (alg=' + alg + (jwk.kid ? ', kid=' + jwk.kid : '') + ').');
-}
-
-body:form-urlencoded {
-  grant_type: client_credentials
-  scope: okta.users.read okta.groups.read okta.apps.read
-  client_assertion_type: urn:ietf:params:oauth:client-assertion-type:jwt-bearer
-  client_assertion: {{clientAssertion}}
-}
-
-script:post-response {
-  if (res.status === 200 && res.body && res.body.access_token) {
-    bru.setVar('bearerToken', res.body.access_token);
-    console.log('bearerToken captured. Expires in ' + res.body.expires_in + 's.');
-    console.log('To use in any auto-generated Management request, change the Authorization header from:');
-    console.log('  Authorization: SSWS {{apiKey}}');
-    console.log('to:');
-    console.log('  Authorization: Bearer {{bearerToken}}');
-  } else {
-    console.log('Failed: ' + res.status);
-    console.log(JSON.stringify(res.body, null, 2));
-  }
-}
-
-tests {
-  test('grant succeeded', function() {
-    expect(res.status).to.equal(200);
-    expect(res.body).to.have.property('access_token');
-  });
 }
 
 docs {
-**Purpose:** populate the `bearerToken` collection variable so you can use OAuth instead of SSWS for Okta Management API calls.
+**This request does not mint the bearer token itself.** Bruno's QuickJS script sandbox cannot do RSA signing — `require('crypto')` is unavailable, and there's no Node-equivalent fallback.
 
-**Endpoint:** `/oauth2/v1/token` — the **Org Authorization Server**. This is the only auth server that issues tokens with Okta API access scopes (`okta.users.*`, `okta.groups.*`, etc.).
+The HTTP call above hits OIDC discovery as a connectivity sanity check.
 
-**Client authentication:** the Org auth server requires `private_key_jwt` (RFC 7523). Client secrets do not work here. The pre-request script signs a short-lived JWT with your private key (using Node's built-in `crypto`) and sends it as `client_assertion`.
+## To get a bearer token, run the helper script
 
-## One-time Bruno setup
+The repo includes `scripts/get_okta_token.py`. It signs a `private_key_jwt`, hits `/oauth2/v1/token`, and prints the access token.
 
-Bruno sandboxes the script runtime and blocks `require()` by default. The collection's `bruno.json` already declares `crypto` in `scripts.moduleWhitelist`, but you may also need to flip Bruno's app-level safe mode:
-
-- **Bruno Preferences → General → JavaScript Sandbox** must be set to allow scripts (not Safe Mode).
-
-If you see "require is not defined" or similar, that's the setting.
-
-## Setup
+### One-time setup
 
 1. **Create an API Services app in Okta:**
    - Admin Console → Applications → Create App Integration → API Services.
-   - Note the **Client ID** — paste into `oktaApiClientId` env var.
+   - Note the **Client ID**.
 
 2. **Configure key authentication:**
-   - On the General tab, under Client Credentials, choose **Public key / Private key**.
-   - Generate a new key pair (Okta will create both halves) or upload your own.
+   - General tab → Client Credentials → choose **Public key / Private key**.
+   - Generate a new key pair (Okta creates both halves) or upload your own.
    - Copy the **private** JWK as JSON.
-   - Paste it into the `oktaApiPrivateJwk` env variable as a **single-line minified JSON string**:
-     ```
-     {"kty":"RSA","kid":"abc123","n":"...","e":"AQAB","d":"...","p":"...","q":"...","dp":"...","dq":"...","qi":"...","alg":"RS256"}
-     ```
 
-3. **Grant Okta API scopes:**
-   - On the API Services app, **Okta API Scopes** tab.
-   - Grant the scopes you need (e.g., `okta.users.manage`, `okta.groups.read`).
-   - Update the `scope` parameter in this request's body to match.
+3. **Grant Okta API scopes** on the app's **Okta API Scopes** tab (e.g., `okta.users.manage`, `okta.groups.read`).
 
-4. **Run this request.** The pre-request script signs the JWT, the body sends it, and the post-response script captures the access token into `bearerToken`.
+4. **Save your config** in one of three forms:
 
-## Switching a Management request from SSWS to Bearer
+   **Option A — JSON config file** (simplest, kept out of git):
+   ```bash
+   cat > ~/.okta-token-config.json <<'EOF'
+   {
+     "orgUrl": "https://nicole-oie.okta.com",
+     "clientId": "0oa...",
+     "scopes": "okta.users.read okta.groups.read okta.apps.read",
+     "privateJwk": { ...paste full JWK here... }
+   }
+   EOF
+   chmod 600 ~/.okta-token-config.json
+   ```
 
-Edit the `headers` block: change `Authorization: SSWS {{apiKey}}` to `Authorization: Bearer {{bearerToken}}`. Bruno saves the edit to the local `.bru` file. It will be overwritten on regen — copy the request into `_Curated/` if you want a long-lived OAuth-authenticated version.
+   **Option B — separate JWK file:**
+   ```bash
+   echo '{"kty":"RSA","kid":"...",...}' > ~/.okta-private-jwk.json
+   chmod 600 ~/.okta-private-jwk.json
+   ```
 
-## Supported algorithms
+   **Option C — env vars:**
+   ```bash
+   export OKTA_ORG_URL='https://nicole-oie.okta.com'
+   export OKTA_API_CLIENT_ID='0oa...'
+   export OKTA_API_SCOPES='okta.users.read okta.groups.read'
+   export OKTA_API_PRIVATE_JWK='{"kty":"RSA",...}'
+   ```
 
-This script supports `RS256` (default), `RS384`, and `RS512`. ECDSA (`ES256`, `ES384`, `ES512`) is not implemented — JOSE format requires `r||s` signature encoding which differs from Node's DER output. Stick with RSA keys.
+### Per-session use
 
-## Scope reference
+Run the helper and pipe to clipboard:
 
-https://developer.okta.com/docs/api/oauth2/
+```bash
+# With config file:
+python3 scripts/get_okta_token.py --config ~/.okta-token-config.json | pbcopy
+
+# Or with separate JWK file:
+python3 scripts/get_okta_token.py \
+    --org-url https://nicole-oie.okta.com \
+    --client-id 0oa... \
+    --scopes 'okta.users.read okta.groups.read' \
+    --jwk-file ~/.okta-private-jwk.json | pbcopy
+
+# Or with env vars set:
+python3 scripts/get_okta_token.py | pbcopy
+```
+
+Then in Bruno, paste the token into the **`bearerToken`** environment variable. It's good for the auth server's access-token lifetime (default 1 hour).
+
+### Switching a Management request from SSWS to Bearer
+
+Edit the request's `headers` block: change `Authorization: SSWS {{apiKey}}` to `Authorization: Bearer {{bearerToken}}`. The change persists in the local `.bru` file. Note: it will be overwritten on the next regen — copy the request into `_Curated/` if you want a long-lived OAuth-authenticated version.
+
+### Why not in Bruno itself?
+
+Bruno's pre-request scripts run in [QuickJS](https://bellard.org/quickjs/) — a sandboxed JS engine without Node modules. `require('crypto')` errors out (you saw this). RSA signing in pure portable JS is possible but requires bundling a several-KB library, which would clutter every collection. External minting via the Python helper is cleaner and the JWT is reusable for an hour.
 }

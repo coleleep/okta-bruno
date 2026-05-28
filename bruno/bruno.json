@@ -5,13 +5,5 @@
   "ignore": [
     "node_modules",
     ".git"
-  ],
-  "scripts": {
-    "moduleWhitelist": [
-      "crypto"
-    ],
-    "filesystemAccess": {
-      "allow": false
-    }
-  }
+  ]
 }
