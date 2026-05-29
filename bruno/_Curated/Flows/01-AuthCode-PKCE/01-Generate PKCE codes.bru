@@ -17,19 +17,20 @@ headers {
 script:pre-request {
   // Generate PKCE code_verifier and code_challenge.
   // Also creates random state and nonce for the authorize request.
-  const crypto = require('crypto');
+  // Uses crypto-js because Bruno's QuickJS sandbox does not expose Node's crypto.
+  const CryptoJS = require('crypto-js');
 
-  function base64url(buf) {
-    return buf.toString('base64')
+  function base64urlFromWordArray(wordArray) {
+    return CryptoJS.enc.Base64.stringify(wordArray)
       .replace(/=/g, '')
       .replace(/\+/g, '-')
       .replace(/\//g, '_');
   }
 
-  const verifier = base64url(crypto.randomBytes(32));
-  const challenge = base64url(crypto.createHash('sha256').update(verifier).digest());
-  const state = base64url(crypto.randomBytes(16));
-  const nonce = base64url(crypto.randomBytes(16));
+  const verifier = base64urlFromWordArray(CryptoJS.lib.WordArray.random(32));
+  const challenge = base64urlFromWordArray(CryptoJS.SHA256(verifier));
+  const state = base64urlFromWordArray(CryptoJS.lib.WordArray.random(16));
+  const nonce = base64urlFromWordArray(CryptoJS.lib.WordArray.random(16));
 
   bru.setVar('pkceCodeVerifier', verifier);
   bru.setVar('pkceCodeChallenge', challenge);
