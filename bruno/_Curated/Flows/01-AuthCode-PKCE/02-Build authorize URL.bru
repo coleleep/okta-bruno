@@ -5,46 +5,79 @@ meta {
 }
 
 get {
-  url: {{orgUrl}}/oauth2/{{defaultAuthServerId}}/v1/authorize
+  url: {{orgUrl}}/.well-known/openid-configuration
   body: none
   auth: none
 }
 
-params:query {
-  client_id: {{oauthClientId}}
-  response_type: code
-  scope: openid profile email offline_access
-  redirect_uri: {{oauthRedirectUri}}
-  state: {{oauthState}}
-  nonce: {{oauthNonce}}
-  code_challenge: {{pkceCodeChallenge}}
-  code_challenge_method: S256
-}
-
 headers {
-  Accept: text/html
+  Accept: application/json
 }
 
-script:post-response {
-  // The /authorize endpoint returns a redirect (or a sign-in page if not yet authenticated).
-  // Print the full URL so you can copy it into a browser and complete sign-in.
-  const url = req.getUrl();
-  console.log('Authorize URL — open this in a browser:');
+script:pre-request {
+  // Build the /authorize URL with PKCE challenge, state, and nonce, and print it
+  // for you to open in a real browser.
+  //
+  // We deliberately do NOT fire /authorize from Bruno — Okta's sign-in widget needs
+  // JS execution and cookies that Bruno's response panel cannot provide. The actual
+  // HTTP request below points at the OIDC discovery endpoint as a harmless sanity
+  // check (200 OK, JSON) so the response panel stays clean.
+
+  const orgUrl = bru.getEnvVar('orgUrl');
+  const authServerId = bru.getEnvVar('defaultAuthServerId');
+  const clientId = bru.getEnvVar('oauthClientId');
+  const redirectUri = bru.getEnvVar('oauthRedirectUri');
+  const state = bru.getVar('oauthState');
+  const nonce = bru.getVar('oauthNonce');
+  const challenge = bru.getVar('pkceCodeChallenge');
+
+  if (!challenge) {
+    console.log('No pkceCodeChallenge found. Run "01 - Generate PKCE codes" first.');
+    return;
+  }
+
+  const params = [
+    ['client_id', clientId],
+    ['response_type', 'code'],
+    ['scope', 'openid profile email offline_access'],
+    ['redirect_uri', redirectUri],
+    ['state', state],
+    ['nonce', nonce],
+    ['code_challenge', challenge],
+    ['code_challenge_method', 'S256'],
+  ].map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
+
+  const url = `${orgUrl}/oauth2/${authServerId}/v1/authorize?${params}`;
+
+  console.log('');
+  console.log('========================================================');
+  console.log('  AUTHORIZE URL — Cmd+click to open in your browser:');
+  console.log('========================================================');
   console.log(url);
+  console.log('========================================================');
+  console.log('');
+  console.log('After signing in, Okta redirects to your redirect_uri with ?code=... in the URL.');
+  console.log('Copy that `code` value into the `authCode` collection variable, then run step 03.');
 }
 
 docs {
-**This request is meant to be inspected, not consumed programmatically.**
+  **This step builds the `/authorize` URL — it does not call it.**
 
-Run it once to print the full `/authorize` URL with your PKCE challenge, state, and nonce baked in. Copy the URL from the console output and paste it into a browser.
+  Bruno cannot render Okta's sign-in widget (no JS execution, no cookie persistence in the response panel), so the authorize URL is built in the pre-request script and printed to the console. The actual HTTP request points at `/.well-known/openid-configuration` as a harmless connectivity sanity check.
 
-You will be prompted to sign in to your Okta org. After successful authentication, Okta redirects to `{{oauthRedirectUri}}` with a `code` parameter in the query string:
+  ## How to use this request
 
-```
-http://localhost:8080/callback?code=ABC123…&state=xyz
-```
+  1. **Run step 01 first** to generate fresh PKCE codes, state, and nonce.
+  2. Run this request. Open the **Console** tab — the authorize URL is printed in a banner.
+  3. **Cmd+click** the URL (macOS) or copy-paste it into your default browser.
+  4. Sign in to Okta. After auth, Okta redirects to `{{oauthRedirectUri}}` with a `code` query parameter:
+     ```
+     http://localhost:8080/callback?code=ABC123…&state=xyz
+     ```
+  5. Copy the `code` value, then in Bruno set the collection variable `authCode` to that value (Collection Settings > Vars).
+  6. Run `03 - Exchange code for tokens`.
 
-Copy the `code` value, then in Bruno set the collection variable `authCode` to that value (Collection Settings > Vars). Then run `03 - Exchange code for tokens`.
+  **No callback server needed.** If nothing is listening on `oauthRedirectUri`, the browser will show a connection error after sign-in — that's fine. The `code` is in the address bar and that's all you need.
 
-**Tip:** if you don't have a callback server running on `oauthRedirectUri`, your browser will show a connection error after auth — that is fine. The `code` is in the address bar and that is all you need.
+  **Why not just send the request from Bruno?** Bruno's response panel renders raw HTML; it doesn't execute the sign-in widget's JS or maintain a session. Hitting `/authorize` from Bruno gets you a broken-looking response with no path forward. Building the URL and handing off to a real browser is the only workable pattern.
 }
