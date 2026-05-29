@@ -26,25 +26,25 @@ body:form-urlencoded {
 }
 
 docs {
-Introspects an opaque or JWT token. Returns:
+  Introspects an opaque or JWT token. Returns:
 
-```json
-{
-  "active": true,
-  "scope": "openid profile email",
-  "username": "user@example.com",
-  "exp": 1672531200,
-  "iat": 1672527600,
-  "sub": "00u...",
-  "aud": "client_id",
-  "iss": "https://your-org.okta.com/oauth2/default",
-  "jti": "..."
-}
-```
+  ```json
+  {
+    "active": true,
+    "scope": "openid profile email",
+    "username": "user@example.com",
+    "exp": 1672531200,
+    "iat": 1672527600,
+    "sub": "00u...",
+    "aud": "client_id",
+    "iss": "https://your-org.okta.com/oauth2/default",
+    "jti": "..."
+  }
+  ```
 
-If the token is expired, revoked, or invalid, the response is just `{ "active": false }`.
+  If the token is expired, revoked, or invalid, the response is just `{ "active": false }`.
 
-**`token_type_hint`** values: `access_token`, `refresh_token`, `id_token`. Optional — Okta will attempt all if omitted.
+  **`token_type_hint`** values: `access_token`, `refresh_token`, `id_token`. Optional — Okta will attempt all if omitted.
 
-**Note:** for ID tokens (JWTs), introspection is rarely useful since you can validate them locally with the public keys from `/keys`. Use introspection mainly for opaque access tokens or to check refresh token state.
+  **Note:** for ID tokens (JWTs), introspection is rarely useful since you can validate them locally with the public keys from `/keys`. Use introspection mainly for opaque access tokens or to check refresh token state.
 }
