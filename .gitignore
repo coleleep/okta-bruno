@@ -19,3 +19,6 @@ Thumbs.db
 # Bruno local state (collection-private secret stores, runtime caches)
 bruno/.bruno/
 bruno/.bru-cli-cache/
+
+# Private design docs and plans (not for public repo)
+docs/superpowers/
